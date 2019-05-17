@@ -1,12 +1,12 @@
 <?php
 
 	//criar conexao com banco com PDO
-	$servidor = "172.16.1.215";
+	$servidor = "localhost";
 	//em 99% dos casos é localhost
 
 	//usuario de acesso ao banco
-	$usuario = "1234";
-	$senha = "1234";
+	$usuario = "root";
+	$senha = "";
 
 	//nome do banco de dados
 	$banco = "1234_hqs";
