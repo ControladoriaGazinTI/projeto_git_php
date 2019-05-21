@@ -64,4 +64,24 @@
 			$consulta = $pdo->prepare($sql);
 			$consulta->bindValue(":quadrinho",$id,PDO::PARAM_INT);
 			$consulta-excute();
-
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+<table>
+	<thead>
+		<tr>
+			<td>ID:</td>
+			<td>Nome do personagem:</td>
+			<td>exluir</td>
+		</tr>
+	</thead>
+</table>
+</body>
+</html>
