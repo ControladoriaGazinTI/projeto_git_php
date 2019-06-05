@@ -35,7 +35,7 @@ if (isset($p[2])) {
                 </div>
                 <div class="form-group">
                     <label>Nome:</label>
-                    <input type="text" placeholder="Digite o nome da função:" class="form-control" maxlength="50" required name="nome_fc" value="<?= $nome; ?>" >
+                    <input type="text" placeholder="Digite o nome da função:" class="form-control" maxlength="50" required name="nome" value="<?= $nome; ?>" >
                 </div>
         </div>
         <div class="card-footer pd-15">

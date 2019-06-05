@@ -1,14 +1,14 @@
 <?php
-$msg = "";
 //verificar se foi dado um $_POST
 if ($_POST) {
-    $login = $senha = "";
 
     if (isset($_POST["login"]))
         $login = trim($_POST["login"]);
     if (isset($_POST["senha"]))
         $senha = trim($_POST["senha"]);
     //verificar se o longin esta em branco
+    print_r($login,$senha);
+    
     if (empty($login)) {
         $msg = "Preencha o login:";
         menssagem($msg);
@@ -34,13 +34,13 @@ if ($_POST) {
 
         if (isset($dados->id)) {
             //verifica se trouxe algum resultado
-            if (!password_verify($senha, $dados->senha)) {
+            if ($senha != $dados->senha) {
                 $msg = "Senha invalida!!!";
                 menssagem($msg);
             } else {
                 $_SESSION["banco_tcc"] = array(
-                    "id" => $dados->idusuario,
-                    "login" => $dados->login,
+                    "id" => $dados->id,
+                    "login" => $dados->login
                 );
             }
         } else {
