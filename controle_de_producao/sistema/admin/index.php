@@ -54,7 +54,7 @@ include "config/funcoes.php";
 <body>
     <?php
 		//verificar se esta logado
-	if (!isset($_SESSION["banco_fabone"]["id"])) {
+	if (!isset($_SESSION["banco_tcc"]["id"])) {
 		//incluir o formulario
 		include "paginas/login.php";
 	} else {

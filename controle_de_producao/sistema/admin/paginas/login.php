@@ -18,10 +18,10 @@ if ($_POST) {
     } else {
         //login e a senha foram preenchidos
         //buscar o usuario em banco
-        $sql = "select idusuario , nome, senha,login
-     from usuario
-     where login = ? 
-     limit 1";
+        $sql = "SELECT id, nome ,login , senha
+                from funcionario
+                where login = ? 
+                limit 1";
         //preparar o sql para execução
         $consulta = $pdo->prepare($sql);
         //passar o parametro
@@ -32,13 +32,13 @@ if ($_POST) {
 
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
 
-        if (isset($dados->idusuario)) {
+        if (isset($dados->id)) {
             //verifica se trouxe algum resultado
             if (!password_verify($senha, $dados->senha)) {
                 $msg = "Senha invalida!!!";
                 menssagem($msg);
             } else {
-                $_SESSION["banco_fabone"] = array(
+                $_SESSION["banco_tcc"] = array(
                     "id" => $dados->idusuario,
                     "login" => $dados->login,
                 );
