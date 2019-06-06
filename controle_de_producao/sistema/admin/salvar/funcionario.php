@@ -5,6 +5,7 @@ if (file_exists("verificalogin.php"))
 else
     include "../verificalogin.php";
 if ($_POST) {
+    //recebendo dados do formulario
     if (isset($_POST["id"])) {
         $id = trim($_POST["id"]);
     }
@@ -38,16 +39,16 @@ if ($_POST) {
     if (isset($_POST["funcao"])) {
         $funcao = trim($_POST["funcao"]);
     }
-    if (isset($_POST["email"])) {
-        $funcao = trim($_POST["email"]);
+    if (isset($_POST["login"])) {
+        $login = trim($_POST["login"]);
     }
     if (isset($_POST["senha"])) {
-        $funcao = trim($_POST["senha"]);
+        $senha = trim($_POST["senha"]);
     }
-    if (isset($_POST["login"])) {
-        $funcao = trim($_POST["login"]);
+    if (isset($_POST["email"])) {
+        $email = trim($_POST["email"]);
     }
-    var_dump($senha,$email);
+    //fim dos dados do formulario
     if (empty($id)) {
         $sql = "INSERT INTO funcionario values (
                                                 null,

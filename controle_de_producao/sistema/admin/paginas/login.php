@@ -6,6 +6,8 @@ if ($_POST) {
         $login = trim($_POST["login"]);
     if (isset($_POST["senha"]))
         $senha = trim($_POST["senha"]);
+
+    var_dump($login,$senha);
     //verificar se o longin esta em branco
     print_r($login,$senha);
     
@@ -40,7 +42,7 @@ if ($_POST) {
             } else {
                 $_SESSION["banco_tcc"] = array(
                     "id" => $dados->id,
-                    "login" => $dados->login
+                    "login" => $dados->login,
                 );
             }
         } else {
