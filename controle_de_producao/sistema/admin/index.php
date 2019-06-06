@@ -44,6 +44,7 @@ include "config/funcoes.php";
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap4.min.js"></script>
     <!--style login-->
 </head>
 
@@ -83,9 +84,15 @@ include "config/funcoes.php";
             "infoEmpty": "No records available",
             "infoFiltered": "(filtered from _MAX_ total records)",
             "search":"buscar"
-        }
-    });
-} );</script>
+            }
+        });
+    } );
+</script>
+<script>
+$(document).ready(function() {
+    $('.table').DataTable();
+} );
+</script>
 </body>
 
 </html> 
