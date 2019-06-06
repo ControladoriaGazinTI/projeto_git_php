@@ -45,6 +45,7 @@ include "config/funcoes.php";
     <script src="assets/js/demo.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <!--style login-->
 </head>
 
@@ -79,7 +80,7 @@ include "config/funcoes.php";
     $('.table').DataTable({
         "language": {
             "lengthMenu": "Exibir: _MENU_ registros",
-            "zeroRecords": "Nothing found - sorry",
+            "zeroRecords": "Nada encontrado desculpe!!!",
             "info": "Páginação _PAGE_ de _PAGES_",
             "infoEmpty": "No records available",
             "infoFiltered": "(filtered from _MAX_ total records)",
