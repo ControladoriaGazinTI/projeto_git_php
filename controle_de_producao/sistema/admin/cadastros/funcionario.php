@@ -83,7 +83,7 @@ if (isset($p[2])) {
                 </div>
                 <div class="form-group">
                     <label>Email:</label>
-                    <input type="text" placeholder="email:" class="form-control" require name="email" maxlength="20" >
+                    <input type="text" placeholder="email:" class="form-control" require name="email" maxlength="100" >
                 </div>
                 <div class="form-group">
                     <label>Função:</label>

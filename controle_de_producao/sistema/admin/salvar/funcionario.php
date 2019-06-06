@@ -5,6 +5,7 @@ if (file_exists("verificalogin.php"))
 else
     include "../verificalogin.php";
 if ($_POST) {
+    //recebendo dados do formulario
     if (isset($_POST["id"])) {
         $id = trim($_POST["id"]);
     }
@@ -38,7 +39,17 @@ if ($_POST) {
     if (isset($_POST["funcao"])) {
         $funcao = trim($_POST["funcao"]);
     }
- 
+    if (isset($_POST["login"])) {
+        $login = trim($_POST["login"]);
+    }
+    if (isset($_POST["senha"])) {
+        password_hash ($senha) = trim($_POST["senha"]);
+    }
+    if (isset($_POST["email"])) {
+        $email = trim($_POST["email"]);
+    }
+    //fim dos dados do formulario
+
     if (empty($id)) {
         $sql = "INSERT INTO funcionario values (
                                                 null,
@@ -51,10 +62,10 @@ if ($_POST) {
                                                     ?,
                                                     ?,
                                                     ?,
-                                                null,
-                                                null,
-                                                null,
-                                                null,
+                                                    ?,
+                                                    ?,
+                                                    ?,
+                                                    null,
                                                     ?)";
         //instanciar o sql na conexao  (pdo) e preparar o sql para ser executado
         $consulta = $pdo->prepare($sql);
@@ -67,7 +78,10 @@ if ($_POST) {
         $consulta->bindParam(7, $bairro);
         $consulta->bindParam(8, $rua);
         $consulta->bindParam(9, $numero);
-        $consulta->bindParam(10, $funcao);
+        $consulta->bindParam(10, $login);
+        $consulta->bindParam(11, $senha);
+        $consulta->bindParam(12, $email);
+        $consulta->bindParam(13, $funcao);
     } else {
         $sql = "UPDATE funcionario 
                     SET nome         = ?,
@@ -79,9 +93,9 @@ if ($_POST) {
                         bairro       = ?,
                         rua          = ?,
                         numero       = ?,
-                        login        = null, 
-                        senha        = null, 
-                        email        = null, 
+                        login        = ?, 
+                        senha        = ?, 
+                        email        = ?, 
                         tipo_usuario = null, 
                         idfuncao     = ? 
                 WHERE id = ? LIMIT 1";
@@ -95,8 +109,11 @@ if ($_POST) {
         $consulta->bindParam(7, $bairro);
         $consulta->bindParam(8, $rua);
         $consulta->bindParam(9, $numero);
-        $consulta->bindParam(10, $funcao);
-        $consulta->bindParam(11, $id);
+        $consulta->bindParam(10, $login);
+        $consulta->bindParam(11, $senha);
+        $consulta->bindParam(12, $email);
+        $consulta->bindParam(13, $funcao);
+        $consulta->bindParam(14, $id);
     } //verificar para que serve esse update
     //verifica se o comando sera executado corretamente
     if ($consulta->execute()) {
