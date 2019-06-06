@@ -5,25 +5,29 @@ if (file_exists("verificalogin.php"))
 else
     include "../verificalogin.php";
 
-$id     = "";
-$cpf    = "";
-$nome   = "";
-$cnpj   = "";
+$id       = "";
+$cpf      = "";
+$nome     = "";
+$cnpj     = "";
+$telefone = "";
+$telefone = "";
 
 //$p =[1]  index.php (id-cadastro)
 if (isset($p[2])) {
     //selecioar os dados  conforme o id
-    $sql = "SELECT * FROM cliente WHERE idcliente = ? limit 1";
+    $sql = "SELECT * FROM cliente WHERE id = ? limit 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(1, $p[2]);
     $consulta->execute();
     //recuperar dados
     $dados = $consulta->fetch(PDO::FETCH_OBJ);
 
-    $id      = $dados->idcliente;
-    $cpf     = $dados->cpf;
-    $cnpj    = $dados->cnpj;
-    $nome    = $dados->nome_cli;
+    $id       = $dados->id;
+    $cpf      = $dados->cpf;
+    $cnpj     = $dados->cnpj;
+    $nome     = $dados->nome;
+    $telefone = $dados->telefone;
+    $telefone = $dados->telefone2;
 }
 ?>
 
@@ -40,7 +44,7 @@ if (isset($p[2])) {
                 </div>
                 <div class="form-group">
                     <label>Nome:</label>
-                    <input type="text" placeholder="Digite o nome do cliente:" class="form-control" maxlength="100" required="" name="nome_cli" value="<?= $nome; ?>">
+                    <input type="text" placeholder="Digite o nome do cliente:" class="form-control" maxlength="100" required="" name="nome" value="<?= $nome; ?>">
                 </div>
                 <div class="form-group">
                     <label>CPF:</label>
@@ -49,6 +53,14 @@ if (isset($p[2])) {
                 <div class="form-group">
                     <label for="id">CNPJ:</label>
                     <input type="text" placeholder="Digite o CNPJ:" class="form-control" maxlength="18" name="cnpj" value="<?= $cnpj; ?>">
+                </div>
+                <div class="form-group ">
+                    <label>Telefone:</label>
+                     <input type="text" placeholder="digite o telefone:" class="form-control" maxlength=14 name="telefone" >
+                </div>
+                <div class="form-group">
+                    <label>Telefone 2:</label>
+                    <input type="text" placeholder="digite o telefone:" class="form-control" maxlength=14 name="telefone2" >
                 </div>
         </div>
         <div class="card-footer pd-15">

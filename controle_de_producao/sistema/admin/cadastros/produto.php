@@ -15,7 +15,7 @@ else
 if (isset($p[2])) {
     //selecioar os dados  conforme o id
     $sql =
-               "SELECT produto.* , nome_cat
+               "SELECT produto.* , categoria.nome as nome_cat
                FROM produto 
                INNER JOIN categoria ON categoria.idcategoria =  produto.id
                WHERE idproduto = ? LIMIT 1";

@@ -58,8 +58,8 @@ else
                                 <td>$carteira</td>
                                 <td>$data</td>
                                 <td>
-                                    <a href='cadastros/funcionario/$id' class='btn btn-success'><i class='pe-7s-pen'></i></a>
-                                    <a href='javascript:excluir($id)' class='btn btn-danger'><i class='pe-7s-trash'></i></a> 
+                                    <a href='cadastros/funcionario/$id' class='btn btn-success'><i class='pe-7s-pen'></i>Editar</a>
+                                    <a href='javascript:excluir($id)' class='btn btn-danger'><i class='pe-7s-trash'></i>Apagar</a> 
                                 </td>
                             </tr>
                          ";
