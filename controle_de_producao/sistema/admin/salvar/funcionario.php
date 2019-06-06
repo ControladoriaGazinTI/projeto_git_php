@@ -44,6 +44,7 @@ if ($_POST) {
     }
     if (isset($_POST["senha"])) {
         $senha = trim($_POST["senha"]);
+        $senha = crypt($senha,null);
     }
     if (isset($_POST["email"])) {
         $email = trim($_POST["email"]);

@@ -4,10 +4,9 @@ if ($_POST) {
 
     if (isset($_POST["login"]))
         $login = trim($_POST["login"]);
-    if (isset($_POST["senha"]))
-        $senha = trim($_POST["senha"]);
-
-    var_dump($login,$senha);
+    if (isset($_POST["senha"])){
+       $senha = trim($_POST["senha"]);
+    }
     //verificar se o longin esta em branco
     print_r($login,$senha);
     
@@ -36,7 +35,7 @@ if ($_POST) {
 
         if (isset($dados->id)) {
             //verifica se trouxe algum resultado
-            if ($senha != $dados->senha) {
+            if (!password_verify($senha, $dados->senha)) {
                 $msg = "Senha invalida!!!";
                 menssagem($msg);
             } else {

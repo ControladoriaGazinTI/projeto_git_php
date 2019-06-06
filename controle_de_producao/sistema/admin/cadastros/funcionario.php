@@ -71,7 +71,7 @@ if (isset($p[2])) {
                 </div>
                 <div class="form-group">
                     <label>Numero da casa:</label>
-                    <input type="number" placeholder="numero:" class="form-control" require name="numero" maxlength="100" >
+                    <input type="number" placeholder="numero:" class="form-control" require name="numero" maxlength="5" >
                 </div>
                 <div class="form-group">
                     <label>Login:</label>
@@ -79,7 +79,7 @@ if (isset($p[2])) {
                 </div>
                 <div class="form-group">
                     <label>Senha:</label>
-                    <input type="text" placeholder="senha:" class="form-control" require name="senha" maxlength="20" >
+                    <input type="password" placeholder="senha:" class="form-control" require name="senha" maxlength="20" >
                 </div>
                 <div class="form-group">
                     <label>Email:</label>
