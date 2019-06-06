@@ -47,7 +47,7 @@ if (isset($p[2])) {
                 </div>
                 <div class="form-group">
                     <label>CPF:</label>
-                    <input type="text" placeholder="Digite CPF do funcionario" class="form-control" require name="cpf" maxlength="14" >
+                    <input type="text" placeholder="Digite CPF do funcionario" class="form-control" require name="cpf" maxlength="14" onkeypress="$(this).mask('(00) 0000-00009')">
                 </div>
                 <div class="form-group">
                     <label>Numero da carteira de trabalho:</label>

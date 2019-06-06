@@ -28,14 +28,12 @@ include "config/funcoes.php";
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
     <link rel="shortcut icon" href="images/icone.png">
    
     <!--   Core JS Files   -->
-    <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
     <!--  Charts Plugin -->
     <script src="assets/js/chartist.min.js"></script>
@@ -45,9 +43,7 @@ include "config/funcoes.php";
     <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src=""></script>
+    <script src="js/jquery.dataTables.min.js"></script>
     <!--style login-->
 </head>
 
@@ -81,9 +77,9 @@ include "config/funcoes.php";
     $(document).ready(function() {
     $('.table').DataTable({
         "language": {
-            "lengthMenu": "exibindo _MENU_ de registros",
+            "lengthMenu": "Exibir: _MENU_ registros",
             "zeroRecords": "Nothing found - sorry",
-            "info": "Showing page _PAGE_ of _PAGES_",
+            "info": "Páginação _PAGE_ de _PAGES_",
             "infoEmpty": "No records available",
             "infoFiltered": "(filtered from _MAX_ total records)",
             "search":"buscar"
