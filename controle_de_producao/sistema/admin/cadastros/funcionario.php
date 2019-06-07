@@ -67,7 +67,8 @@ if (isset($p[2])) {
                 </div>
                 <div class="form-group">
                     <label>CPF:</label>
-                    <input type="text" placeholder="Digite CPF do funcionario" class="form-control" require name="cpf" maxlength="14" value="<?= $cpf; ?>" onkeypress="$(this).mask('000.000.000-00');">
+                    <input type="text" placeholder="000.000.000-00" class="form-control" require name="cpf" maxlength="14" value="<?= $cpf; ?>"
+                     onkeypress="$(this).mask('000.000.000-00');">
                 </div>
                 <div class="form-group">
                     <label>Numero da carteira de trabalho:</label>
@@ -75,7 +76,8 @@ if (isset($p[2])) {
                 </div>
                 <div class="form-group">
                     <label>Telefone:</label>
-                    <input type="text" placeholder="digite o telefone:" class="form-control" maxlength=14 name="telefone" value="<?= $telefone; ?>" onkeypress="$(this).mask('(00)00000-0000')">
+                    <input type="text" placeholder="(00)00000-0000" class="form-control" maxlength=14 name="telefone" value="<?= $telefone; ?>" 
+                    onkeypress="$(this).mask('(00)00000-0000')">
                 </div>
                 <div class="form-group">
                     <label>Cidade:</label>
