@@ -55,32 +55,72 @@ if (isset($p[2])) {
             <h5>Infomações sobre o funcionario:</h5>
             <form method="POST" action="salvar/funcionario">
                 <div class="form-group ">
-                    <label for="id">ID:</label>
-                    <input type="text" class="form-control" name="id" readonly value="<?= $id; ?>">
+                    <label>ID:</label>
+                    <input 
+                        type        = "text" 
+                        name        = "id" 
+                        class       = "form-control" 
+                        value       = "<?= $id; ?>"
+                        readonly 
+                    >
                 </div>
-
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label>Nome:</label>
-                        <input type="text" placeholder="Digite o nome do Funcionario:" class="form-control" maxlength="100" required="" name="nome" value="<?= $nome; ?>">
+                        <input 
+                            type            = "text" 
+                            name            = "nome" 
+                            class           = "form-control" 
+                            maxlength       = "100" 
+                            placeholder     = "Digite o nome do Funcionario:" 
+                            value           = "<?= $nome; ?>"
+                            required        = "" 
+                        >
                     </div>
                     <div class="form-group col-md-6">
                         <label>Data de nascimento:</label>
-                        <input type="date" placeholder="Digite data de nascimento do funcionário:" class="form-control" require name="data">
+                        <input 
+                            type            ="date" 
+                            name            ="data"
+                            class           ="form-control"
+                            require 
+                        >
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label>CPF:</label>
-                        <input type="text" placeholder="Digite CPF do funcionario" class="form-control" require name="cpf" maxlength="14" onkeypress="$(this).mask('(00) 0000-00009')">
+                        <input 
+                            type            ="number" 
+                            name            ="cpf" 
+                            class           ="form-control" 
+                            maxlength       ="14"
+                            placeholder     ="Digite CPF do funcionario:" 
+                            cpf-mas = "000.000.000-00";
+                            require 
+                        >
                     </div>
                     <div class="form-group col-md-4">
                         <label>Numero da carteira de trabalho:</label>
-                        <input type="text" placeholder="Digite numero da carteira:" class="form-control" require name="carteira" maxlength="10" >
+                        <input 
+                            type            ="text" 
+                            name            ="carteira" 
+                            class           ="form-control" 
+                            maxlength       ="10" 
+                            placeholder     ="Digite numero da carteira:" 
+                            require 
+                        >
                     </div>
                     <div class="form-group col-md-4">
                         <label>Telefone:</label>
-                        <input type="text" placeholder="digite o telefone:" class="form-control" maxlength=14 name="telefone" value="<?= $telefone; ?>">
+                        <input 
+                            type            ="text" 
+                            placeholder     ="digite o telefone:" 
+                            class           ="form-control" 
+                            maxlength       =14 
+                            name            ="telefone" 
+                            value           ="<?= $telefone; ?>"
+                        >
                     </div>
                 </div>
                 <div class="form-group">
@@ -111,34 +151,82 @@ if (isset($p[2])) {
                 <div class="row">
                     <div class="form-group col-md-3">
                         <label>Cidade:</label>
-                        <input type="text" placeholder="Cidade:" class="form-control" require name="cidade" maxlength="50" >
+                        <input 
+                            type        = "text"
+                            placeholder = "Cidade:" 
+                            class       = "form-control"
+                            require     = "" 
+                            name        = "cidade" 
+                            maxlength   = "50" 
+                         >
                     </div>
                     <div class="form-group col-md-3">
                         <label>Bairro:</label>
-                        <input type="text" placeholder="Bairro:" class="form-control" require name="bairro" maxlength="50" >
+                        <input 
+                            type            ="text" 
+                            placeholder     ="Bairro:" 
+                            class           ="form-control" 
+                            require 
+                            name            ="bairro" 
+                            maxlength       ="50" 
+                        >
                     </div>
                     <div class="form-group col-md-3">
                         <label>Rua:</label>
-                        <input type="text" placeholder="Rua:" class="form-control" require name="rua" maxlength="100" >
+                        <input 
+                            type            ="text" 
+                            placeholder     ="Rua:" 
+                            class           ="form-control" 
+                            require 
+                            name    ="rua" 
+                            maxlength       ="100" 
+                        >
                     </div>
                     <div class="form-group col-md-3">
                         <label>Numero da casa:</label>
-                        <input type="number" placeholder="numero:" class="form-control" require name="numero" maxlength="5" >
+                        <input 
+                            type            ="number" 
+                            placeholder     ="numero:" 
+                            class           ="form-control" 
+                            require 
+                            name            ="numero" 
+                            maxlength       ="5" 
+                        >
                     </div>
                 </div>
                 <h5>Login do funcionario:</h5>
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label>Login:</label>
-                        <input type="text" placeholder="Login:" class="form-control" require name="login" maxlength="20" >
+                        <input 
+                            type            ="text" 
+                            placeholder     ="Login:" 
+                            class           ="form-control" 
+                            require 
+                            name            ="login" 
+                            maxlength       ="20" 
+                        >
                     </div>
                     <div class="form-group col-md-4">
                         <label>Senha:</label>
-                        <input type="password" placeholder="senha:" class="form-control" require name="senha" maxlength="20" >
+                        <input 
+                            type            ="password" 
+                            placeholder     ="senha:" 
+                            class           ="form-control" 
+                            require 
+                            name            ="senha" 
+                            maxlength       ="20" 
+                        >
                     </div>
                     <div class="form-group col-md-4">
                         <label>Email:</label>
-                        <input type="text" placeholder="email:" class="form-control" require name="email" maxlength="100" >
+                        <input 
+                        type                ="text" 
+                        placeholder         ="email:" 
+                        class               ="form-control" 
+                        require 
+                        name                ="email" 
+                        maxlength           ="100" >
                     </div>
                 </div>
         </div>
