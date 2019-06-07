@@ -83,7 +83,9 @@ if (isset($p[2])) {
                             type            ="date" 
                             name            ="data"
                             class           ="form-control"
+                            value           ="<?= $data_nasc; ?>"
                             require 
+                            value           ="<?= $data_nasc ?>"
                         >
                     </div>
                 </div>
@@ -95,19 +97,22 @@ if (isset($p[2])) {
                             name            ="cpf" 
                             class           ="form-control" 
                             maxlength       ="14"
-                            placeholder     ="Digite CPF do funcionario:" 
-                            cpf-mas = "000.000.000-00"
+                            placeholder     ="Ex:000.000.000-00" 
+                            onkeypress      ="$(this).mask('000.000.000-00')"
                             require 
+                            value           ="<?= $cpf; ?>"
                         >
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Numero da carteira de trabalho:</label>
+                        <label>Numero da PIS/PASEP</label>
                         <input 
                             type            ="text" 
                             name            ="carteira" 
                             class           ="form-control" 
-                            maxlength       ="10" 
-                            placeholder     ="Digite numero da carteira:" 
+                            maxlength       ="14" 
+                            placeholder     ="EX:000.00000.00-0" 
+                            onkeypress      ="$(this).mask('000.00000.00-0')"
+                            value           ="<?= $carteira; ?>"
                             require 
                         >
                     </div>
@@ -115,10 +120,11 @@ if (isset($p[2])) {
                         <label>Telefone:</label>
                         <input 
                             type            ="text" 
-                            placeholder     ="digite o telefone:" 
+                            name            ="telefone" 
                             class           ="form-control" 
                             maxlength       = "14" 
-                            name            ="telefone" 
+                            placeholder     ="EX:(00)00000-0000" 
+                            onkeypress      ="$(this).mask('(00)00000-0000')"
                             value           ="<?= $telefone; ?>"
                         >
                     </div>
@@ -158,17 +164,19 @@ if (isset($p[2])) {
                             require     = "" 
                             name        = "cidade" 
                             maxlength   = "50" 
+                            value       = "<?= $cidade; ?>"
                          >
                     </div>
                     <div class="form-group col-md-3">
                         <label>Bairro:</label>
                         <input 
-                            type            ="text" 
-                            placeholder     ="Bairro:" 
-                            class           ="form-control" 
+                            type            = "text" 
+                            placeholder     = "Bairro:" 
+                            class           = "form-control" 
                             require 
-                            name            ="bairro" 
-                            maxlength       ="50" 
+                            name            = "bairro" 
+                            maxlength       = "50" 
+                            value           = "<?= $bairro; ?>"
                         >
                     </div>
                     <div class="form-group col-md-3">
@@ -178,8 +186,9 @@ if (isset($p[2])) {
                             placeholder     ="Rua:" 
                             class           ="form-control" 
                             require 
-                            name    ="rua" 
+                            name            ="rua" 
                             maxlength       ="100" 
+                            value           ="<?= $rua; ?>"
                         >
                     </div>
                     <div class="form-group col-md-3">
@@ -191,6 +200,7 @@ if (isset($p[2])) {
                             require 
                             name            ="numero" 
                             maxlength       ="5" 
+                            value           ="<?= $numero; ?>"
                         >
                     </div>
                 </div>
@@ -205,6 +215,7 @@ if (isset($p[2])) {
                             require 
                             name            ="login" 
                             maxlength       ="20" 
+                            value           ="<?= $login; ?>"
                         >
                     </div>
                     <div class="form-group col-md-4">
@@ -216,6 +227,7 @@ if (isset($p[2])) {
                             require 
                             name            ="senha" 
                             maxlength       ="20" 
+                            value           ="<?= $senha; ?>"
                         >
                     </div>
                     <div class="form-group col-md-4">
@@ -227,6 +239,7 @@ if (isset($p[2])) {
                         require 
                         name                ="email" 
                         maxlength           ="100" >
+                        value           ="<?= $email; ?>"
                     </div>
                 </div>
         </div>

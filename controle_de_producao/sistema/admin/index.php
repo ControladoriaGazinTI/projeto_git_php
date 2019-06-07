@@ -45,8 +45,7 @@ include "config/funcoes.php";
     <script src="assets/js/demo.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap4.min.js"></script>
-    <script src="jquery/src/jquery.mask.js"></script>
-    <script src="jquery/src/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 </head>
 
