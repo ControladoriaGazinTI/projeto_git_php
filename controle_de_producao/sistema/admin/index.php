@@ -46,6 +46,7 @@ include "config/funcoes.php";
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap4.min.js"></script>
     <script src="jquery/src/jquery.mask.js"></script>
+    <script src="jquery/src/jquery.mask.min.js"></script>
 
 </head>
 
@@ -88,12 +89,6 @@ include "config/funcoes.php";
             }
         });
     } );
-</script>
-   
-<script>
-$(document).ready(function() {
-    $('.table').DataTable();
-} );
 </script>
 </body>
 

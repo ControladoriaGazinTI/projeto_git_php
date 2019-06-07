@@ -91,12 +91,12 @@ if (isset($p[2])) {
                     <div class="form-group col-md-4">
                         <label>CPF:</label>
                         <input 
-                            type            ="number" 
+                            type            ="text" 
                             name            ="cpf" 
                             class           ="form-control" 
                             maxlength       ="14"
                             placeholder     ="Digite CPF do funcionario:" 
-                            cpf-mas = "000.000.000-00";
+                            cpf-mas = "000.000.000-00"
                             require 
                         >
                     </div>
@@ -117,7 +117,7 @@ if (isset($p[2])) {
                             type            ="text" 
                             placeholder     ="digite o telefone:" 
                             class           ="form-control" 
-                            maxlength       =14 
+                            maxlength       = "14" 
                             name            ="telefone" 
                             value           ="<?= $telefone; ?>"
                         >
