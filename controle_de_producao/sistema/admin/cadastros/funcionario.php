@@ -19,14 +19,15 @@ else
     $senha    = "";
     $email    = "";
     $idfuncao = "";
+    $nome_fun = "";
 //$p =[1]  index.php (id-cadastro)
 if (isset($p[2])) {
     //selecioar os dados  conforme o id
     $sql =
-               "SELECT F.funcionario.* , FC.nome as nome_fun 
-               FROM funcionario as F
-               INNER JOIN funcao as FC ON FC.id =  F.id
-               WHERE F.id = 34 LIMIT 1 ;
+               "SELECT funcionario.* , funcao.nome as nome_fun 
+               FROM funcionario
+               INNER JOIN funcao ON funcao.id =  funcionario.idfuncao
+               WHERE funcionario.id = ? LIMIT 1 ";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(1, $p[2]);
     $consulta->execute();
