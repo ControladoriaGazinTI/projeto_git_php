@@ -22,7 +22,11 @@ else
 //$p =[1]  index.php (id-cadastro)
 if (isset($p[2])) {
     //selecioar os dados  conforme o id
-    $sql = "SELECT * FROM funcionario WHERE id = ? limit 1";
+    $sql =
+               "SELECT F.funcionario.* , FC.nome as nome_fun 
+               FROM funcionario as F
+               INNER JOIN funcao as FC ON FC.id =  F.id
+               WHERE F.id = 34 LIMIT 1 ;
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(1, $p[2]);
     $consulta->execute();
@@ -43,6 +47,7 @@ if (isset($p[2])) {
     $senha    = $dados->senha;
     $email    = $dados->email;
     $idfuncao = $dados->idfuncao;
+    $nome_fun = $dados->nome_fun;
 
 }
 ?>
@@ -132,7 +137,7 @@ if (isset($p[2])) {
                 <div class="form-group">
                     <label>Função:</label>
                     <select name="funcao" id="" class="form-control" required="" >
-                        <option value=""></option>
+                        <option  value ="<?= $idfuncao; ?>"><?= $nome_fun; ?></option>
                         <?php
                              //selecionar os dados do tipo do quadrinhos
                         $sql = "SELECT nome,id FROM funcao ORDER BY nome";
@@ -233,13 +238,15 @@ if (isset($p[2])) {
                     <div class="form-group col-md-4">
                         <label>Email:</label>
                         <input 
-                        type                ="text" 
-                        placeholder         ="email:" 
-                        class               ="form-control" 
-                        require 
-                        name                ="email" 
-                        maxlength           ="100" >
-                        value           ="<?= $email; ?>"
+                            type                ="text" 
+                            placeholder         ="email:" 
+                            class               ="form-control" 
+                            require 
+                            name                ="email" 
+                            maxlength           ="100" 
+                            value               ="<?= $email; ?>"
+                        >
+                        
                     </div>
                 </div>
         </div>
