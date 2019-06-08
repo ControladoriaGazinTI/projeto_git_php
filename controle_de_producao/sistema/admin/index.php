@@ -89,6 +89,20 @@ include "config/funcoes.php";
         });
     } );
 </script>
+<script>
+    function validaCpf(cpf) {
+		$.get("validacpf.php",{cpf:cpf},function(dados){
+			//testar
+			//alert(dados);
+			if ( dados != 1 ) {
+				//exibir mensagem
+				alert(dados);
+				//apagar o cpf
+				$("#cpf".val(""));
+			}
+		})
+	}
+</script>
 </body>
 
 </html> 

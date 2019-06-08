@@ -99,14 +99,15 @@ if (isset($p[2])) {
                     <div class="form-group col-md-4">
                         <label>CPF:</label>
                         <input 
-                            type            ="text" 
-                            name            ="cpf" 
-                            class           ="form-control" 
-                            maxlength       ="14"
-                            placeholder     ="Ex:000.000.000-00" 
-                            onkeypress      ="$(this).mask('000.000.000-00')"
+                            type            = "text" 
+                            name            = "cpf" 
+                            class           = "form-control" 
+                            maxlength       = "14"
+                            placeholder     = "Ex:000.000.000-00" 
                             require 
-                            value           ="<?= $cpf; ?>"
+                            value           = "<?= $cpf; ?>"
+                            onkeypress      = "$(this).mask('000.000.000-00')"
+                            onblur          = "validaCpf(this.value)"
                         >
                     </div>
                     <div class="form-group col-md-4">
@@ -239,7 +240,7 @@ if (isset($p[2])) {
                     <div class="form-group col-md-4">
                         <label>Email:</label>
                         <input 
-                            type                ="text" 
+                            type                ="email" 
                             placeholder         ="email:" 
                             class               ="form-control" 
                             require 
