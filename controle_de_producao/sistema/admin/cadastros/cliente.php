@@ -72,6 +72,7 @@ if (isset($p[2])) {
                             value           = " <?= $cpf; ?>"
                             onkeypress      = "$(this).mask('000.000.000-00')"
                             onblur          = "validaCpf(this.value)"
+                            required
                         >
                     </div>
                     <div class="form-group col-md-6">
@@ -99,7 +100,9 @@ if (isset($p[2])) {
                             placeholder     = "digite o telefone:" 
                             maxlength       = "14" 
                             value           = "<?= $telefone; ?>"
-                            onkeypress      ="$(this).mask('(00)00000-0000')"
+                            required
+                            onkeypress      = "$(this).mask('(00)00000-0000')"
+                            
                         >
                     </div>
                     <div class="form-group col-md-6">
@@ -117,8 +120,7 @@ if (isset($p[2])) {
                 </div>
          </div>
         <div class="card-footer pd-15">
-            <button type="submit" class="btn btn-fill btn-info">Enviar</button>
-            <button type="reset" class="btn btn-fill btn-danger">Cancelar</button>
+            <button type="submit" class="btn btn-fill btn-success">Cadastrar</button>
         </div>
         </form>
     </div> 

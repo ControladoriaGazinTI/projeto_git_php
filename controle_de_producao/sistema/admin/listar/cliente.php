@@ -49,8 +49,8 @@ else
                                 <td>$telefone</td>
                                 <td>$telefone2</td>
                                 <td>
-                                    <a href='cadastros/cliente/$id' class='btn btn-success'><i class='pe-7s-pen'></i></a>
-                                    <a href='javascript:excluir($id)' class='btn btn-danger'><i class='pe-7s-trash'></i></a> 
+                                    <a href='cadastros/cliente/$id' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a>
+                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 
                                 </td>
                             </tr>
                          ";

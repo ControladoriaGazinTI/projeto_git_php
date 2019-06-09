@@ -253,8 +253,7 @@ if (isset($p[2])) {
                 </div>
         </div>
         <div class="card-footer pd-15">
-            <button type="submit" class="btn btn-fill btn-info">Enviar</button>
-            <button type="reset" class="btn btn-fill btn-danger">Cancelar</button>
+            <button type="submit" class="btn btn-fill btn-success">Cadastrar</button>
         </div>
         </form>
     </div>

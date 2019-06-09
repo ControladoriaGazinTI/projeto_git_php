@@ -51,6 +51,11 @@ if (isset($p[2])) {
                      name="nome_produto" value="<?=$nome;?>">
                 </div>
                 <div class="form-group">
+                    <label>laynara:</label>
+                    <input type="text" placeholder="Digite o nome do Produto:" class="form-control" maxlength="50" required=""
+                     name="nome_produto" value="<?=$nome;?>">
+                </div>
+                <div class="form-group">
                     <label>Categoria:</label>
                     <select name="categoria" id="" class="form-control" required="" >
                         <option value=""><?=$nomeCategoria ;?></option>
