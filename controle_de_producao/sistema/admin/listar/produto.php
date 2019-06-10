@@ -15,10 +15,13 @@ else
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Categoria</th>
                         <th>Nome</th>
                         <th>Valor</th>
                         <th>Quatidade</th>
-                        <th>Categoria</th>
+                        <th>Descrição</th>
+                        <th>Cor</th>
+                        <th>Foto</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
@@ -26,20 +29,23 @@ else
                 <?php
                     //selecionar os dados do tipo do quadrinhos
                 $sql =
-               "SELECT produto.* , nome_cat
+               "SELECT produto.* , categoria.nome as nome_cat
                FROM produto 
-               INNER JOIN categoria ON categoria.idcategoria =  produto.id";
+               INNER JOIN categoria ON categoria.id =  produto.idcategoria";
                 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
                 //laço de repetição para separar  as Linhas
                 while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
                     //separar os dados 
-                    $id          = $linha->idproduto;
+                    $id          = $linha->id;
                     $nome        = $linha->nome;
                     $valor       = $linha->valor;
-                    $valor  = number_format($valor,2,',','.');
+                    $valor       = number_format($valor,2,',','.');
                     $qtde        = $linha->qtde;
+                    $foto        = $linha->foto;
+                    $descricao   = $linha->descricao;
+                    $cor         = $linha->cor;
                     $categoria   = $linha->nome_cat;
                     //montar linhas e colunas das tabelas
                    
@@ -47,13 +53,16 @@ else
                         "
                             <tr>
                                 <td>$id</td>
+                                <td>$categoria</td>
                                 <td>$nome</td>
                                 <td  class ='text-right'>R$ $valor</td>
                                 <td>$qtde</td>
-                                <td>$categoria</td>
+                                <td>$descricao</td>
+                                <td>$cor</td>
+                                <td><img src='$foto' width='80px'></td>
                                 <td>
-                                    <a href='cadastros/produto/$id' class='btn btn-success'><i class='pe-7s-pen'></i>Editar</a>
-                                    <a href='javascript:excluir($id)' class='btn btn-danger'><i class='pe-7s-trash'>Apagar</i></a> 
+                                    <a href='cadastros/produto/$id' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a>
+                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 
                                 </td>
                             </tr>
                          ";
@@ -61,7 +70,9 @@ else
                 ?>
                 </tbody>
             </table>
-
+            <h5>
+                <a href="cadastros/funcionario" class="btn btn-fill btn-success"><i class="pe-7s-angle-left"></i>Voltar</a>
+            </h5>
         </div>
     </div>
 </div> 

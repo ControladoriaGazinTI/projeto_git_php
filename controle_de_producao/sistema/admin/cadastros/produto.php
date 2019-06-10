@@ -71,7 +71,7 @@ if (isset($p[2])) {
                 </div>
                 <div class="form-group">
                     <label>Categoria:</label>
-                    <select name="categoria" id="" class="form-control" required="" >
+                    <select name="idcategoria" class="form-control" required="" >
                         <option value="<?=$idcategoria ;?>"><?=$nome_cat ;?></option>
                         <?php
                              //selecionar os dados do tipo do quadrinhos
@@ -127,16 +127,24 @@ if (isset($p[2])) {
                         >
                     </div>
                     <?php
+                    	$r = " required data-parsley-required-message=\"Selecione um arquivo\" ";
                         if (!empty($id)) {
                        //zerar o r para o campo não ser requerido
                         $r = "";
                         //montar um input com o numero da foto
-                        echo "<input type='hidden' name='capa' value='$foto'>";
+                        echo "<input type='hidden' name='foto' value='$foto'>";
                     }
                     ?>
 
-                    <label for="capa">Foto da Capa (JPG):</label>
-                    <input type="file" name="foto" class="form-control" <?= $r; ?> accept=".jpg">
+                    <label for="foto">Foto da Capa (JPG):</label>
+                    <input 
+                        type="file" 
+                        name="foto" 
+                        class="form-control" 
+                        <?=$r;?> 
+                        required
+                        accept=".jpg"
+                    >
 
                     <?php
                     //mostrar a foto se estiver editando
