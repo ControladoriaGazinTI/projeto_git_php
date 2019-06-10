@@ -67,7 +67,7 @@ if ($_POST) {
         $consulta->bindParam(5, $descricao);
         $consulta->bindParam(6, $cor);
         $consulta->bindParam(7, $idcategoria);
-        $consulta->bindParam(5, $id);
+        $consulta->bindParam(8, $id);
     } //verificar para que serve esse update
     //verifica se o comando sera executado corretamente
     if ($consulta->execute()) {

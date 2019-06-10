@@ -20,7 +20,7 @@ if (isset($p[2])) {
     $sql =
                "SELECT produto.* , categoria.nome as nome_cat
                FROM produto 
-               INNER JOIN categoria ON categoria.idcategoria =  produto.idcategoria
+               INNER JOIN categoria ON categoria.id =  produto.idcategoria
                WHERE produto.id = ? LIMIT 1";
                 
     $consulta = $pdo->prepare($sql);
