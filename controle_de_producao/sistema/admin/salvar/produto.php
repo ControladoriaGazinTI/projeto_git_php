@@ -70,16 +70,52 @@ if ($_POST) {
         $consulta->bindParam(8, $id);
     } //verificar para que serve esse update
     //verifica se o comando sera executado corretamente
-    if ($consulta->execute()) {
-        $msg = "Inserido com sucesso!!";
-        $link = "listar/produto";
-        sucesso($msg,$link);
-    }else{
-        echo "erro";
-    }
-} else {
-    //erro
-    $msg = "erro ao efuetuar requisição";
-    menssagem($msg);
-}
+    //executar
+		if ( $consulta->execute() ) {
+
+
+			
+
+			//se a capa não estiver vazio - copiar
+			if ( !empty ( $_FILES["foto"]["name"] ) ) {
+				echo $_FILES["foto"]["name"];
+				//copiar o arquivo para a pasta
+
+				if ( !copy( $_FILES["capa"]["tmp_name"], 
+					"../fotos/".$_FILES["capa"]["name"] )) {
+
+					$msg = "Erro ao copiar foto";
+					mensagem( $msg );
+				}
+
+				//echo $capa;
+
+				$pastaFotos = "../fotos/";
+				$imagem = $_FILES["capa"]["name"];
+
+				redimensionarImagem($pastaFotos,$imagem,$capa);
+			}
+			
+			//salvar no banco
+			$pdo->commit();
+
+			$msg = "Registro inserido com sucesso!";
+			sucesso( $msg, "listar/quadrinho" );
+
+		} else {
+			//erro do sql
+			echo $consulta->errorInfo()[2];
+			exit;
+			$msg = "Erro ao salvar quadrinho";
+			mensagem( $msg );
+		}
+
+
+	} else {
+		//se não foi veio do formulario
+		$msg = "Requisição inválida";
+		mensagem( $msg );
+	}
+
+	
  
