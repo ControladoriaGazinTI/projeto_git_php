@@ -149,7 +149,7 @@ if (isset($p[2])) {
                     }
                     ?>
                     <div class="form-group">
-                        <label>Descrição:</label>
+                        <label for="descricao">Descrição:</label>
                         <textarea 
                             id="descricao"
                             name="descricao" 
@@ -157,7 +157,6 @@ if (isset($p[2])) {
                             cols="1" 
                             rows="1"
                             maxlength="100"
-                            placeholder="Descrição do produto!!"
                         >
                         </textarea>
                     </div>
@@ -172,8 +171,7 @@ if (isset($p[2])) {
 	$(document).ready(function() {
 		//aplicar o summernote
 		$("#descricao").summernote({
-			placeholder: "Digite o descrição",
-			height: 200,
+			height: 50,
 			lang: 'pt-BR'
 		});
     })

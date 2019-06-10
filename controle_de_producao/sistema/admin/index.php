@@ -30,7 +30,7 @@ include "config/funcoes.php";
     <!--     Fonts and icons     -->
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/summernote.min.css">
-	<link rel="stylesheet" type="text/css" href="css/summernote-lite.css">
+	<link rel="stylesheet" type="text/css" href="css/summernote-bs4.css">
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
    
     <!--   Core JS Files   -->
