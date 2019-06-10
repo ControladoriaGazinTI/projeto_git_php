@@ -172,7 +172,8 @@ if (isset($p[2])) {
 		//aplicar o summernote
 		$("#descricao").summernote({
 			height: 50,
-			lang: 'pt-BR'
+            lang: 'pt-BR',
+            theme: 'monokai'
 		});
     })
     </script>
