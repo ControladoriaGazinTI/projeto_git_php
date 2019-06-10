@@ -30,25 +30,27 @@ include "config/funcoes.php";
     <!--     Fonts and icons     -->
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/summernote.min.css">
-	<link rel="stylesheet" type="text/css" href="css/summernote-bs4.css">
+	<link rel="stylesheet" type="text/css" href="css/summernote-lite.css">
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
    
     <!--   Core JS Files   -->
-    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js" type="text/javascript"></script>
     <!--  Charts Plugin -->
-    <script src="assets/js/chartist.min.js"></script>
+    <script type="text/javascript" src="assets/js/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap-notify.js"></script>
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+    <script type="text/javascript" src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="assets/js/demo.js"></script>
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="assets/js/demo.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="js/summernote.min.js"></script>
-    <script type="text/javascript" src="js/summernote-bs4.min.js"></script>
+    <script type="text/javascript" src="js/summernote-lite.js"></script>
     <script type="text/javascript" src="lang/summernote-pt-BR.min.js"></script>
+    <script type="text/javascript" src="js/parsley.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     
 </head>

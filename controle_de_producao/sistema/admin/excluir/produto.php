@@ -11,7 +11,7 @@ if(isset($p[2])){
     //var_dump($id);
     //var_dump($p);
     //excluir o quadrinho
-    $sql = "DELETE FROM produto WHERE idproduto = ? limit 1";
+    $sql = "DELETE FROM produto WHERE id = ? limit 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(1,$id);
    
