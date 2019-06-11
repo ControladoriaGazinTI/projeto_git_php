@@ -19,7 +19,6 @@ else
                         <th>Nome</th>
                         <th>Valor</th>
                         <th>Quatidade</th>
-                        <th>Descrição</th>
                         <th>Cor</th>
                         <th>Foto</th>
                         <th>Opções</th>
@@ -44,11 +43,11 @@ else
                     $valor       = number_format($valor,2,',','.');
                     $qtde        = $linha->qtde;
                     $foto        = $linha->foto;
-                    $descricao   = $linha->descricao;
                     $cor         = $linha->cor;
                     $categoria   = $linha->nome_cat;
                     //montar linhas e colunas das tabelas
-                   
+                    $foto = "../fotos/".$foto."p.jpg";
+
                     echo
                         "
                             <tr>
@@ -57,7 +56,6 @@ else
                                 <td>$nome</td>
                                 <td  class ='text-right'>R$ $valor</td>
                                 <td>$qtde</td>
-                                <td>$descricao</td>
                                 <td>$cor</td>
                                 <td><img src='$foto' width='80px'></td>
                                 <td>
@@ -71,7 +69,7 @@ else
                 </tbody>
             </table>
             <h5>
-                <a href="cadastros/funcionario" class="btn btn-fill btn-success"><i class="pe-7s-angle-left"></i>Voltar</a>
+                <a href="cadastros/produto" class="btn btn-fill btn-success"><i class="pe-7s-angle-left"></i>Voltar</a>
             </h5>
         </div>
     </div>

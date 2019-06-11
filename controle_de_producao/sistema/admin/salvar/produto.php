@@ -4,33 +4,34 @@ if (file_exists("verificalogin.php"))
     include "verificalogin.php";
 else
     include "../verificalogin.php";
-if ($_POST) {
-    if (isset($_POST["id"])) {
-        $id = trim($_POST["id"]);
-    }
-    if (isset($_POST["nome"])) {
-        $nome = trim($_POST["nome"]);
-    }
-    if (isset($_POST["valor"])) {
-        $valor = trim($_POST["valor"]);
-    }
-    if (isset($_POST["qtde"])) {
-        $qtde = trim($_POST["qtde"]);
-    }
-    if (isset($_POST["idcategoria"])){
-        $idcategoria = trim($_POST["idcategoria"]);
-    }
-    if (isset($_POST["cor"])){
-        $cor = trim($_POST["cor"]);
-    }
-    if (isset($_POST["foto"])){
-        $foto = trim($_POST["foto"]);
-    }
-    if (isset($_POST["descricao"])){
-        $descricao = trim($_POST["descricao"]);
-    }
-    
+	$pdo->beginTransaction();
+
+	//se os dados vieram por POST
+	if ( $_POST ) {
+		//iniciar as variaveis
+        $id             = "";
+        $nome           = "";
+        $idcategoria    = "";
+        $valor          = "";
+        $qtde           = "";
+        $cor            = "";
+        $foto           = "";
+        $descricao      = "";
+
+
+		//recuperar as variaveis
+		foreach ($_POST as $key => $value) {
+			//echo "<p>$key $value</p>";
+			//$key - nome do campo
+			//$value - valor do campo (digitado)
+			if ( isset ( $_POST[$key] ) ) {
+				$$key = trim ( $value );
+			} 
+		}
     if (empty($id)) {
+
+        $foto = time();
+
         $sql = "INSERT INTO produto values (
                                                 null,
                                                     ?,
@@ -57,7 +58,7 @@ if ($_POST) {
                                  , foto         = ? 
                                  , descricao    = ? 
                                  , cor          = ? 
-                                  idcategoria   = ? 
+                                 , idcategoria   = ? 
                                   WHERE id = ? LIMIT 1";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(1, $nome);
@@ -70,16 +71,36 @@ if ($_POST) {
         $consulta->bindParam(8, $id);
     } //verificar para que serve esse update
     //verifica se o comando sera executado corretamente
-    if ($consulta->execute()) {
-        $msg = "Inserido com sucesso!!";
-        $link = "listar/produto";
-        sucesso($msg,$link);
-    }else{
-        echo "erro";
-    }
-} else {
-    //erro
-    $msg = "erro ao efuetuar requisição";
-    menssagem($msg);
-}
- 
+    //executar
+		if ( $consulta->execute() ) {
+			//se a capa não estiver vazio - copiar
+			if ( !empty ( $_FILES["foto"]["name"] ) ) {
+				echo $_FILES["foto"]["name"];
+				//copiar o arquivo para a pasta
+				if ( !copy( $_FILES["foto"]["tmp_name"], 
+					"../fotos/".$_FILES["foto"]["name"] )) {
+					$msg = "Erro ao copiar foto";
+					mensagem( $msg );
+				}
+				//echo $capa;
+				$pastaFotos = "../fotos/";
+				$imagem = $_FILES["foto"]["name"];
+				redimensionarImagem($pastaFotos,$imagem,$foto);
+			}
+			
+			//salvar no banco
+			$pdo->commit();
+			$msg = "Registro inserido com sucesso!";
+			sucesso( $msg, "listar/produto" );
+		} else {
+			//erro do sql
+			echo $consulta->errorInfo()[2];
+			exit;
+			$msg = "Erro ao salvar quadrinho";
+			mensagem( $msg );
+		}
+	} else {
+		//se não foi veio do formulario
+		$msg = "Requisição inválida";
+		mensagem( $msg );
+	}
