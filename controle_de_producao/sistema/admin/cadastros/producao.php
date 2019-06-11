@@ -4,7 +4,7 @@
             <h4 class="card-title">Cadastro de produção:</h4>
         </div>
         <div class="card-body pd-15">
-            <form method="POST" action="cad_cliente.php">
+            <form method="POST" action="cad_cliente.php" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Funcionario:</label>
                     <select name="" id="" class="form-control" required="">

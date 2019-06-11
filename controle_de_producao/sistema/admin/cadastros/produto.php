@@ -117,16 +117,15 @@ if (isset($p[2])) {
                 </div>
                     <div class="form-grop">
                         <label>Cor:</label>
-                        <input 
-                            type            = "text" 
-                            name            = "cor" 
-                            class           = "form-control" 
-                            required        = "required" 
-                            maxlength       = "30"
-                            value           = "<?=$cor ;?>"
-                        >
+                        <select name="cor" class="form-control">
+                            <option value="1">Branco</option>
+                            <option value="2">Preto</option>
+                            <option value="3">Rosa</option>
+                            <option value="4">Azul</option>
+                            <option value="5">Verde</option>
+                        </select>
                     </div>
-                    <?php
+            <?php
 				$r = " required data-parsley-required-message=\"Selecione um arquivo\" ";
 				//se o id nao esta vazio esta editando
 				if ( !empty ( $id ) ) {

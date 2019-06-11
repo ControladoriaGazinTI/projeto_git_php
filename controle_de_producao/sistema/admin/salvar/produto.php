@@ -71,11 +71,13 @@ else
         $consulta->bindParam(8, $id);
     } //verificar para que serve esse update
     //verifica se o comando sera executado corretamente
-    //executar
+	//executar
 		if ( $consulta->execute() ) {
+
 			//se a capa não estiver vazio - copiar
 			if ( !empty ( $_FILES["foto"]["name"] ) ) {
 				//copiar o arquivo para a pasta
+
 				if ( !copy( $_FILES["foto"]["tmp_name"], 
 					"../fotos/".$_FILES["foto"]["name"] )) {
 					$msg = "Erro ao copiar foto";
@@ -91,6 +93,7 @@ else
 			$pdo->commit();
 			$msg = "Registro inserido com sucesso!";
 			sucesso( $msg, "listar/produto" );
+
 		} else {
 			//erro do sql
 			echo $consulta->errorInfo()[2];
@@ -98,6 +101,7 @@ else
 			$msg = "Erro ao salvar quadrinho";
 			mensagem( $msg );
 		}
+
 	} else {
 		//se não foi veio do formulario
 		$msg = "Requisição inválida";
