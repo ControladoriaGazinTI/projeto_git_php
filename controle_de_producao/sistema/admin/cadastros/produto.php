@@ -46,7 +46,7 @@ if (isset($p[2])) {
             <h4 class="card-title">Cadastro de Produto:</h4>
         </div>
         <div class="card-body pd-15">
-            <form method="POST" action="salvar/produto">
+            <form method="POST" action="salvar/produto" enctype="multipart/form-data" >
             <div class="form-group">
                     <label for="id">ID:</label>
                     <input 
@@ -81,13 +81,13 @@ if (isset($p[2])) {
                             //laço de repetição para separar  as Linhas
                             while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
                                 //separar os dados 
-                                $id = $linha->id;
+                                $idcategoria = $linha->id;
                                 $nome  = $linha->nome;
                                 
                                 //montar linhas e colunas das tabelas
                                 echo 
                                     "
-                                        <option value='$id'>$nome</option>   
+                                        <option value='$idcategoria'>$nome</option>   
                                     ";
                             }
                         ?>
@@ -127,35 +127,32 @@ if (isset($p[2])) {
                         >
                     </div>
                     <?php
-                    	$r = " required data-parsley-required-message=\"Selecione um arquivo\" ";
-                        if (!empty($id)) {
-                       //zerar o r para o campo não ser requerido
-                        $r = "";
-                        //montar um input com o numero da foto
-                        echo "<input type='hidden' name='foto' value='$foto'>";
-                    }
-                    ?>
+				$r = " required data-parsley-required-message=\"Selecione um arquivo\" ";
+				//se o id nao esta vazio esta editando
+				if ( !empty ( $id ) ) {
+					//zerar o r para o campo não ser requerido
+					$r = "";
+					//montar um input com o numero da foto
+					echo "<input type='hidden' name='foto' value='$foto'>";
+                }
+			?>
 
-                    <label for="foto">Foto da Capa (JPG):</label>
-                    <input 
-                        type="file" 
-                        name="foto" 
-                        class="form-control" 
-                        <?=$r;?> 
-                        required
-                        accept=".jpg"
-                    >
+			<label for="foto">Foto da Capa (JPG):</label>
+			<input type="file" name="foto"
+			class="form-control"
+			<?=$r;?>
+			accept=".jpg">
 
-                    <?php
-                    //mostrar a foto se estiver editando
-                    if (!empty($id)) {
-                        // 12345 -> ../fotos/12345p.jpg
-                        //muda o nome do arquivo
-                        $capa = "../fotos/" . $foto . "p.jpg";
-                        //mostra o arquivo dentro do img
-                        echo "<br><img src='$foto' width='80px'><br>";
-                    }
-                    ?>
+			<?php
+				//mostrar a foto se estiver editando
+				if ( !empty ( $id ) ) {
+					// 12345 -> ../fotos/12345p.jpg
+					//muda o nome do arquivo
+					$foto = "../fotos/".$foto."p.jpg";
+					//mostra o arquivo dentro do img
+					echo "<br><img src='$foto' width='80px'><br>";
+				}
+			?>
                     <div class="form-group">
                         <label for="descricao">Descrição:</label>
                         <textarea 
@@ -180,7 +177,8 @@ if (isset($p[2])) {
 		//aplicar o summernote
 		$("#descricao").summernote({
 			height: 50,
-			lang: 'pt-BR'
+            lang: 'pt-BR',
+            theme: 'monokai'
 		});
     })
     </script>
