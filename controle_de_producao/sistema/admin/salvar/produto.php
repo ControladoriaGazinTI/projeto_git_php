@@ -75,7 +75,6 @@ else
 		if ( $consulta->execute() ) {
 			//se a capa não estiver vazio - copiar
 			if ( !empty ( $_FILES["foto"]["name"] ) ) {
-				echo $_FILES["foto"]["name"];
 				//copiar o arquivo para a pasta
 				if ( !copy( $_FILES["foto"]["tmp_name"], 
 					"../fotos/".$_FILES["foto"]["name"] )) {

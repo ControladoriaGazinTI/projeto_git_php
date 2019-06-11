@@ -153,18 +153,18 @@ if (isset($p[2])) {
 					echo "<br><img src='$foto' width='80px'><br>";
 				}
 			?>
-                    <div class="form-group">
-                        <label for="descricao">Descrição:</label>
-                        <textarea 
-                            id="descricao"
-                            name="descricao" 
-                            class="form-control"
-                            cols="1" 
-                            rows="1"
-                            maxlength="100"
-                        >
-                        </textarea>
-                    </div>
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea 
+                    id="descricao"
+                    name="descricao" 
+                    class="form-control"
+                    cols="1" 
+                    rows="1"
+                    maxlength="100"
+                >
+                </textarea>
+            </div>
         </div>
         <div class="card-footer pd-15">
             <button type="submit" class="btn btn-fill btn-success">Cadastrar</button>
