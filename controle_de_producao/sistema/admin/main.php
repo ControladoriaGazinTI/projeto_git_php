@@ -50,6 +50,11 @@ if (!isset($pagina)) {
                             </a>
                         </li>
                         <li>
+                            <a class="profile-dropdown" href="cadastros/peca">
+                                <span class="sidebar-normal">Cadastrar peças</span>
+                            </a>
+                        </li>
+                        <li>
                             <a class="profile-dropdown" href="">
                                 <span class="sidebar-normal">Cadastrar produção</span>
                             </a>

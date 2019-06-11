@@ -71,7 +71,7 @@ else
         $consulta->bindParam(8, $id);
     } //verificar para que serve esse update
     //verifica se o comando sera executado corretamente
-    //executar
+	//executar
 		if ( $consulta->execute() ) {
 
 			//se a capa não estiver vazio - copiar
