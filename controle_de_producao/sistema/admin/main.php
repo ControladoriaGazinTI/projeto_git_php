@@ -115,16 +115,14 @@ if (!isset($pagina)) {
                     </button>
                     <a class="navbar-brand" href="#">C.D.P</a>
                 </div>
-                <div class="navbar navbar-collapse">
+                <div class="navbar navbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <p>
-                                    Usuário
-                                    <b class="caret"></b>
-                                </p>
-
-                            </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <p>
+                                        Usuário
+                                    </p>
+                                </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Action</a></li>
                                 <li><a href="#">Another action</a></li>
