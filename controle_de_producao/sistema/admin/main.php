@@ -45,18 +45,8 @@ if (!isset($pagina)) {
                             </a>
                         </li>
                         <li>
-                            <a class="profile-dropdown" href="cadastros/pedido">
-                                <span class="sidebar-normal">Cadastrar pedido</span>
-                            </a>
-                        </li>
-                        <li>
                             <a class="profile-dropdown" href="cadastros/peca">
                                 <span class="sidebar-normal">Cadastrar peças</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="profile-dropdown" href="">
-                                <span class="sidebar-normal">Cadastrar produção</span>
                             </a>
                         </li>
                         <li>
