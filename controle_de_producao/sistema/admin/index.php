@@ -51,6 +51,7 @@ include "config/funcoes.php";
     <script type="text/javascript" src="js/summernote-lite.js"></script>
     <script type="text/javascript" src="lang/summernote-pt-BR.min.js"></script>
     <script type="text/javascript" src="js/parsley.min.js"></script>
+    <script type="text/javascript" src="js/jquery.maskMoney.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     
 </head>
