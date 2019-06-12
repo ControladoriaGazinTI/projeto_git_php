@@ -101,6 +101,12 @@ if (!isset($pagina)) {
                         <p>Produtos</p>
                     </a>
                 </li>
+                <li>
+                    <a href="listar/produto">
+                        <i class="pe-7s-cart"></i>
+                        <p>Peças</p>
+                    </a>
+                </li>
                
             </ul>
         </div>
