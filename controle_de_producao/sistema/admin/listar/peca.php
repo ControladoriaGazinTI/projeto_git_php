@@ -18,6 +18,7 @@ else
                         <th>Nome</th>
                         <th>QTDE</th>
                         <th>Foto</th>
+                        <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
