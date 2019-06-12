@@ -54,7 +54,7 @@ else
                                 <td>$id</td>
                                 <td>$categoria</td>
                                 <td>$nome</td>
-                                <td  class ='text-right'>R$ $valor</td>
+                                <td  class ='text-left'>R$ $valor</td>
                                 <td>$qtde</td>
                                 <td>$cor</td>
                                 <td><img src='$foto' width='80px'></td>
