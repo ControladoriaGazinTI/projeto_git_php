@@ -1,5 +1,5 @@
 <?php
- //verificar se a sessão esta ativa
+ //verificar se a sessão esta ativa teste
 if (file_exists("verificalogin.php"))
     include "verificalogin.php";
 else

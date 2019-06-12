@@ -97,8 +97,9 @@ if (isset($p[2])) {
                     <div class="form-group col-md-6">
                         <label>Valor do produto:</label>
                         <input 
-                            type            = "number" 
+                            type            = "text" 
                             name            = "valor" 
+                            id              = "valor"
                             class           = "form-control" 
                             required        = ""
                             value           = "<?=$valor;?>"
@@ -175,9 +176,18 @@ if (isset($p[2])) {
 	$(document).ready(function() {
 		//aplicar o summernote
 		$("#descricao").summernote({
-			height: 50,
+			height: 200,
             lang: 'pt-BR',
             theme: 'monokai'
 		});
     })
+    </script>
+     <script type="text/javascript">
+        $(document).ready(function() {
+            //aplica a mascara de valor no campo
+            $("#valor").maskMoney({
+                thousands: ".",
+                decimal: ","
+            });
+        })
     </script>

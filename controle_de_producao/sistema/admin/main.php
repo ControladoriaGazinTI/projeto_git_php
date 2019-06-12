@@ -45,18 +45,8 @@ if (!isset($pagina)) {
                             </a>
                         </li>
                         <li>
-                            <a class="profile-dropdown" href="cadastros/pedido">
-                                <span class="sidebar-normal">Cadastrar pedido</span>
-                            </a>
-                        </li>
-                        <li>
                             <a class="profile-dropdown" href="cadastros/peca">
                                 <span class="sidebar-normal">Cadastrar peças</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="profile-dropdown" href="">
-                                <span class="sidebar-normal">Cadastrar produção</span>
                             </a>
                         </li>
                         <li>
@@ -101,6 +91,12 @@ if (!isset($pagina)) {
                         <p>Produtos</p>
                     </a>
                 </li>
+                <li>
+                    <a href="listar/produto">
+                        <i class="pe-7s-cart"></i>
+                        <p>Peças</p>
+                    </a>
+                </li>
                
             </ul>
         </div>
@@ -119,16 +115,14 @@ if (!isset($pagina)) {
                     </button>
                     <a class="navbar-brand" href="#">C.D.P</a>
                 </div>
-                <div class="navbar navbar-collapse">
+                <div class="navbar navbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <p>
-                                    Usuário
-                                    <b class="caret"></b>
-                                </p>
-
-                            </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <p>
+                                        Usuário
+                                    </p>
+                                </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Action</a></li>
                                 <li><a href="#">Another action</a></li>

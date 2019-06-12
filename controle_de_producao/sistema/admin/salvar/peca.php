@@ -22,6 +22,7 @@ if($_POST){
     }
 }
 if(empty($id)){
+    $foto = time();
     $sql      = "INSERT INTO peca VALUES (NULL,?,?,?)";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(1,$nome);
@@ -41,4 +42,34 @@ if(empty($id)){
     $consulta->bindParam(2,$qtde); 
     $consulta->bindParam(3,$foto); 
     $consulta->bindParam(4,$id); 
+}
+if ( $consulta->execute() ) {
+
+    //se a capa não estiver vazio - copiar
+    if ( !empty ( $_FILES["foto"]["name"] ) ) {
+        echo $_FILES["foto"]["name"];
+        //copiar o arquivo para a pasta
+
+        if ( !copy( $_FILES["foto"]["tmp_name"], 
+            "../fotos/".$_FILES["foto"]["name"] )) {
+            $msg = "Erro ao copiar foto";
+            mensagem( $msg );
+        }
+        //echo $capa;
+        $pastaFotos = "../fotos/";
+        $imagem = $_FILES["foto"]["name"];
+        redimensionarImagem($pastaFotos,$imagem,$foto);
+    }
+    
+    //salvar no banco
+    $pdo->commit();
+    $msg = "Registro inserido com sucesso!";
+    sucesso( $msg, "listar/peca" );
+
+} else {
+    //erro do sql
+    echo $consulta->errorInfo()[2];
+    exit;
+    $msg = "Erro ao salvar quadrinho";
+    mensagem( $msg );
 }
