@@ -1,3 +1,13 @@
+<?php
+	//iniciar a sessao
+session_start();
+//mostrar todos os erros
+ini_set("display_error", 1);
+ini_set("display_startup_errors", 1);
+error_reporting(E_ALL);
+//incluir  banco e funções
+include "../config/conexao.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,19 +72,7 @@
         $objeto_resutado = new Resultado;
         $objeto_especialista = new Especialista;
         $objeto_tratamento = new Tratamento;
-        if (isset($_POST["enviar"])) {
-          $objeto->setNome($_POST["nome"]);
-          $objeto->setDataNasc($_POST["data_nasc"]);
-          $objeto->setSexo($_POST["sexo"]);
-          $objeto->setCpf($_POST["cpf"]);
-          $objeto->setAltura($_POST["altura"]);
-          $objeto->setPeso($_POST["peso"]);
-          $objeto->calcular();
-          $objeto_resutado->setImc($objeto->getResultado());
-          $objeto_resutado->setData($_POST["data_teste"]);
-          $objeto_resutado->setIdUsuario($objeto);
-
-        }
+      
        
         $objeto_especialista->setNome("Dr.Felipe Henning Gaia Duarte");
         $objeto_especialista->setCidade("Umuarama");
@@ -92,7 +90,7 @@
         print_r($objeto_resutado);
         ?>
         </pre>
-        <form method="post" class="form-group">
+        <form method="post" class="form-group" action="../salvar/usuario.php">
           <div  class="form-group">
             <label>Nome:</label>
             <input type="text" name="nome" class="form-control">
@@ -129,7 +127,7 @@
             <label>Resultado IMC:</label>
             <input type="text" name="resultado" value="<?= $objeto->getResultado(); ?> " class="form-control">
           </div>
-          <button name="enviar" type="submit" class="btn btn-success">Enviar</button>
+          <button  type="submit" class="btn btn-success">Enviar</button>
         </form>
         </div>
       </div>
