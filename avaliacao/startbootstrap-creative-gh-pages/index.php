@@ -61,75 +61,48 @@ include "../config/conexao.php";
   <header class="masthead">
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
-        <div class="form-row">
-        <pre>
-        <?php
-        require_once 'Usuario.php';
-        require_once 'Resultado.php';
-        require_once 'Especialista.php';
-        require_once 'Tratamento.php';
-        $objeto = new Usuario;
-        $objeto_resutado = new Resultado;
-        $objeto_especialista = new Especialista;
-        $objeto_tratamento = new Tratamento;
-      
-       
-        $objeto_especialista->setNome("Dr.Felipe Henning Gaia Duarte");
-        $objeto_especialista->setCidade("Umuarama");
-        $objeto_especialista->setEstado("Paraná");
-        $objeto_especialista->setRua("Pedro neto da silva");
-        $objeto_especialista->setContato("(44)99756-4548");
-        $objeto_especialista->setEmail("Felipe.henning@gmail.com");
-
-        $objeto_tratamento->setIdEspecialista($objeto_especialista);
-        $objeto_tratamento->setExercicio("natação em ritmo leve.");
-        $objeto_tratamento->setTipoTratamento(1);
-        $objeto_tratamento->setMedicamento("dipirona");
-        $objeto_tratamento->setAlimentacao("teste");
-
-        print_r($objeto_resutado);
-        ?>
-        </pre>
-        <form method="post" class="form-group" action="../salvar/usuario.php">
-          <div  class="form-group">
-            <label>Nome:</label>
-            <input type="text" name="nome" class="form-control">
-          </div>
-          <div  class="form-group">
-            <label>Data de nascimento:</label>
-            <input type="date" name="data_nasc" class="form-control">
-          </div>
-          <div  class="form-group">
-            <label>Data do teste:</label>
-            <input type="date" name="data_teste" class="form-control">
-          </div>
-          <div class="form-group">
-            <label>Sexo:</label>
-            <select name="sexo" class="form-control">
-              <option value="0"></option>
-              <option value="1">Masculino</option>
-              <option value="2">Feminino</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>CPF:</label>
-            <input type="text" name="cpf" onkeypress="$(this).mask('000.000.000-00')" class="form-control">
-          </div>
-          <div class="form-group">
-            <label>Altura:</label>
-            <input type="text" name="altura" class="form-control">
-          </div>
-          <div class="form-group">
-            <label>Peso:</label>
-            <input type="text" name="peso" class="form-control">
-          </div>
-          <div class="form-group">
-            <label>Resultado IMC:</label>
-            <input type="text" name="resultado" value="<?= $objeto->getResultado(); ?> " class="form-control">
-          </div>
-          <button  type="submit" class="btn btn-success">Enviar</button>
-        </form>
-        </div>
+      <form method="post" action="../salvar/usuario.php">
+              <div class="row">
+                <div  class="form-group col-6">
+                  <label>Nome:</label>
+                  <input type="text" name="nome" class="form-control">
+                </div>
+                <div  class="form-group col-6">
+                  <label>Data de nascimento:</label>
+                  <input type="date" name="data_nasc" class="form-control">
+                </div>
+                <div  class="form-group col-6">
+                  <label>Data do teste:</label>
+                  <input type="date" name="data_teste" class="form-control">
+                </div>
+                <div class="form-group col-6">
+                  <label>Sexo:</label>
+                  <select name="sexo" class="form-control">
+                    <option value="0"></option>
+                    <option value="1">Masculino</option>
+                    <option value="2">Feminino</option>
+                  </select>
+                </div>
+                <div class="form-group col-12">
+                  <label>CPF:</label>
+                  <input type="text" name="cpf" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label>Altura:</label>
+                  <input type="text" name="altura" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label>Peso:</label>
+                  <input type="text" name="peso" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label>Resultado IMC:</label>
+                  <input type="text" name="resultado" class="form-control">
+                </div>
+              </div>
+              <button  type="submit" class="btn btn-success ">Enviar</button>
+           </form>
+        </div>  
       </div>
     </div>
   </header>
