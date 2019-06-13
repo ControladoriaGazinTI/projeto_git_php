@@ -56,6 +56,8 @@
         <?php
         require_once 'Usuario.php';
         require_once 'Resultado.php';
+        require_once 'Especialista.php';
+        require_once 'Tratamento.php';
         $objeto = new Usuario;
         $objeto_resutado = new Resultado;
         $objeto_especialista = new Especialista;
@@ -71,8 +73,9 @@
           $objeto_resutado->setImc($objeto->getResultado());
           $objeto_resutado->setData($_POST["data_teste"]);
           $objeto_resutado->setIdUsuario($objeto);
-          print_r($objeto_resutado);
+
         }
+       
         $objeto_especialista->setNome("Dr.Felipe Henning Gaia Duarte");
         $objeto_especialista->setCidade("Umuarama");
         $objeto_especialista->setEstado("Paraná");
@@ -82,18 +85,11 @@
 
         $objeto_tratamento->setIdEspecialista($objeto_especialista);
         $objeto_tratamento->setExercicio("natação em ritmo leve.");
-        $objeto_tratamento->setAlimentacao("
-               O segundo passo é começar uma dieta “rica em nutrientes”. Há pessoas que perdem mais de 50 quilos e não recuperam. Essa mudança na dieta é o fator mais importante de seu sucesso.
-
-        Em termos muito simples, isso quer dizer comer grandes (quase ilimitadas) quantidades de certos vegetais, verduras, castanhas, sementes e outros alimentos vegetais. E isso envolve comer algumas frutas. Isso não quer dizer se tornar vegetariano ou vegano, mas quer dizer se tornar um “nutririano”. Uma pessoa nutririana é uma pessoa cuja preferência está em alimentos altamente nutritivos.
-        
-        A grande questão para a maioria das pessoas é “como eu faço isso?” A resposta é que é mais fácil do que você pensa, e há muitos atalhos que te levarão até lá. O atalho mais importante é se comprometer com essa direção. Sim, se você está em uma situação séria de saúde, muito acima do peso, você deve fazer essa mudança imediatamente.
-        
-        Mas se o risco maior é não fazer alguma coisa, comece devagar. Adicione um vegetal por dia à sua dieta. Se você gosta de bebidas e vitaminas, um pacote ou colher de vegetais em pó é um ótimo primeiro passo. Descobrimos que uma vez que uma pessoa começa a ter um gosto do sucesso usando essa abordagem, ela continua nesse caminho.
-        
-        ");
         $objeto_tratamento->setTipoTratamento(1);
-        $objeto_tratamento->getMedicamento("dipirona");
+        $objeto_tratamento->setMedicamento("dipirona");
+        $objeto_tratamento->setAlimentacao("teste");
+
+        print_r($objeto_resutado);
         ?>
         </pre>
         <form method="post" class="form-group">
@@ -191,125 +187,7 @@
       </div>
     </div>
 
-  </section>
-
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <div class="container-fluid p-0">
-      <div class="row no-gutters">
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
-            <div class="portfolio-box-caption p-3">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action Section -->
-  <section class="page-section bg-dark text-white">
-    <div class="container text-center">
-      <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-      <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">Download Now!</a>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="page-section" id="contact">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h2 class="mt-0">Let's Get In Touch!</h2>
-          <hr class="divider my-4">
-          <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-          <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-          <div>+1 (202) 555-0149</div>
-        </div>
-        <div class="col-lg-4 mr-auto text-center">
-          <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-          <!-- Make sure to change the email address in anchor text AND the link below! -->
-          <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
   <!-- Footer -->
   <footer class="bg-light py-5">
