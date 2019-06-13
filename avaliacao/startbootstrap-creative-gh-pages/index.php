@@ -58,6 +58,8 @@
         require_once 'Resultado.php';
         $objeto = new Usuario;
         $objeto_resutado = new Resultado;
+        $objeto_especialista = new Especialista;
+        $objeto_tratamento = new Tratamento;
         if (isset($_POST["enviar"])) {
           $objeto->setNome($_POST["nome"]);
           $objeto->setDataNasc($_POST["data_nasc"]);
@@ -71,6 +73,27 @@
           $objeto_resutado->setIdUsuario($objeto);
           print_r($objeto_resutado);
         }
+        $objeto_especialista->setNome("Dr.Felipe Henning Gaia Duarte");
+        $objeto_especialista->setCidade("Umuarama");
+        $objeto_especialista->setEstado("Paraná");
+        $objeto_especialista->setRua("Pedro neto da silva");
+        $objeto_especialista->setContato("(44)99756-4548");
+        $objeto_especialista->setEmail("Felipe.henning@gmail.com");
+
+        $objeto_tratamento->setIdEspecialista($objeto_especialista);
+        $objeto_tratamento->setExercicio("natação em ritmo leve.");
+        $objeto_tratamento->setAlimentacao("
+               O segundo passo é começar uma dieta “rica em nutrientes”. Há pessoas que perdem mais de 50 quilos e não recuperam. Essa mudança na dieta é o fator mais importante de seu sucesso.
+
+        Em termos muito simples, isso quer dizer comer grandes (quase ilimitadas) quantidades de certos vegetais, verduras, castanhas, sementes e outros alimentos vegetais. E isso envolve comer algumas frutas. Isso não quer dizer se tornar vegetariano ou vegano, mas quer dizer se tornar um “nutririano”. Uma pessoa nutririana é uma pessoa cuja preferência está em alimentos altamente nutritivos.
+        
+        A grande questão para a maioria das pessoas é “como eu faço isso?” A resposta é que é mais fácil do que você pensa, e há muitos atalhos que te levarão até lá. O atalho mais importante é se comprometer com essa direção. Sim, se você está em uma situação séria de saúde, muito acima do peso, você deve fazer essa mudança imediatamente.
+        
+        Mas se o risco maior é não fazer alguma coisa, comece devagar. Adicione um vegetal por dia à sua dieta. Se você gosta de bebidas e vitaminas, um pacote ou colher de vegetais em pó é um ótimo primeiro passo. Descobrimos que uma vez que uma pessoa começa a ter um gosto do sucesso usando essa abordagem, ela continua nesse caminho.
+        
+        ");
+        $objeto_tratamento->setTipoTratamento(1);
+        $objeto_tratamento->getMedicamento("dipirona");
         ?>
         </pre>
         <form method="post" class="form-group">
