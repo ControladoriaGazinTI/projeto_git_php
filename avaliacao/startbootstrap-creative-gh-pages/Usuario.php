@@ -1,4 +1,5 @@
 <?php
+    
     class Usuario{
         private $id;
         private $nome;
@@ -72,6 +73,32 @@
         public function calcular(){
             $this->setResultado($this->getAltura() * $this->getAltura());
             $this->setResultado($this->getPeso() / $this->getResultado());
+        }
+        public function salvarbanco(){
+            include "../config/conexao.php";
+            include "../config/funcoes.php";
+            if(empty($id)){
+                $sql = "INSERT INTO usuario 
+                (id,nome,data_nasc,sexo,cpf,altura,peso) 
+                VALUES 
+                (NULL,:nome,:data_nasc,:sexo,:cpf,:altura,:peso)";
+                $consulta = $pdo->prepare($sql);
+                $consulta->bindValue(":nome",$this->getNome());
+                $consulta->bindValue(":data_nasc",$this->getDataNasc());
+                $consulta->bindValue(":sexo",$this->getSexo());
+                $consulta->bindValue(":cpf",$this->getCpf());
+                $consulta->bindValue(":altura",$this->getAltura());
+                $consulta->bindValue(":peso",$this->getPeso());
+            }
+            if($consulta->execute()){
+                $msg = "Registro inserido com sucesso!";
+		    	sucesso( $msg, "index.php" );
+            }else{
+                    echo $consulta->errorInfo()[2];
+                    exit;
+                    $msg = "Erro ao salvar quadrinho";
+                    mensagem( $msg );
+            }
         }
     }
 ?>

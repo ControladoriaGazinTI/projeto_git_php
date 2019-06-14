@@ -56,12 +56,27 @@ include "../config/conexao.php";
       </div>
     </div>
   </nav>
-
+  <?php
+     require_once 'Usuario.php';
+     $usuario = new Usuario;
+     if(isset($_POST["enviar"])){
+     $usuario->setNome($_POST["nome"]);
+     $usuario->setDataNasc($_POST["data_nasc"]);
+     $usuario->setSexo($_POST["sexo"]);
+     $usuario->setCpf($_POST["cpf"]);
+     $usuario->setAltura($_POST["altura"]);
+     $usuario->setPeso($_POST["peso"]);
+     $usuario->setResultado($_POST["resultado"]);
+     $usuario->calcular();
+     $usuario->salvarbanco();
+     print_r($usuario);
+    }
+  ?>
   <!-- Masthead -->
   <header class="masthead">
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
-      <form method="post" action="../salvar/usuario.php">
+      <form method="post">
               <div class="row">
                 <div  class="form-group col-6">
                   <label>Nome:</label>
@@ -89,18 +104,18 @@ include "../config/conexao.php";
                 </div>
                 <div class="form-group col-4">
                   <label>Altura:</label>
-                  <input type="text" name="altura" class="form-control">
+                  <input type="text" name="altura" class="form-control" required >
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-4 ">
                   <label>Peso:</label>
-                  <input type="text" name="peso" class="form-control">
+                  <input type="text" name="peso" class="form-control" required >
                 </div>
                 <div class="form-group col-4">
                   <label>Resultado IMC:</label>
                   <input type="text" name="resultado" class="form-control">
                 </div>
               </div>
-              <button  type="submit" class="btn btn-success ">Enviar</button>
+              <button  type="submit" name="enviar" class="btn btn-success ">Enviar</button>
            </form>
         </div>  
       </div>
