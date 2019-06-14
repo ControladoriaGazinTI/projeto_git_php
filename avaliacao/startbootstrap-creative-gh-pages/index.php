@@ -58,8 +58,8 @@ include "../config/conexao.php";
   </nav>
   <pre>
   <?php
-     require_once 'Usuario.php';
-     require_once 'Resultado.php';
+     require_once 'class/Usuario.php';
+     require_once 'class/Resultado.php';
      $usuario = new Usuario;
      $resultado = new Resultado;
      if(isset($_POST["enviar"])){
