@@ -3,10 +3,8 @@ if (!isset($pagina)) {
     header("location: index.php");
 }
 ?>
-
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">Inicio</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,72 +22,14 @@ if (!isset($pagina)) {
       </div>
     </div>
   </nav>
-  <pre>
-  <?php
-     require_once 'Usuario.php';
-     require_once 'Resultado.php';
-     $usuario = new Usuario;
-     $resultado = new Resultado;
-     if(isset($_POST["enviar"])){
-     $resultado->setNome($_POST["nome"]);
-     $resultado->setDataNasc($_POST["data_nasc"]);
-     $resultado->setSexo($_POST["sexo"]);
-     $resultado->setCpf($_POST["cpf"]);
-     $resultado->setAltura($_POST["altura"]);
-     $resultado->setPeso($_POST["peso"]);
-
-     $resultado->salvarUsuario();
-     $resultado->calcularImc();
-     
-     print_r($resultado);
-    }
-  ?>
-  </pre>
   <!-- Masthead -->
   <header class="masthead">
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
-      <form method="post">
-              <div class="row">
-                <div  class="form-group col-6">
-                  <label>Nome:</label>
-                  <input type="text" name="nome" class="form-control">
-                </div>
-                <div  class="form-group col-6">
-                  <label>Data de nascimento:</label>
-                  <input type="date" name="data_nasc" class="form-control">
-                </div>
-                <div  class="form-group col-6">
-                  <label>Data do teste:</label>
-                  <input type="date" name="data_teste" class="form-control">
-                </div>
-                <div class="form-group col-6">
-                  <label>Sexo:</label>
-                  <select name="sexo" class="form-control">
-                    <option value="0"></option>
-                    <option value="1">Masculino</option>
-                    <option value="2">Feminino</option>
-                  </select>
-                </div>
-                <div class="form-group col-12">
-                  <label>CPF:</label>
-                  <input type="text" name="cpf" class="form-control">
-                </div>
-                <div class="form-group col-4">
-                  <label>Altura:</label>
-                  <input type="text" name="altura" class="form-control" required >
-                </div>
-                <div class="form-group col-4 ">
-                  <label>Peso:</label>
-                  <input type="text" name="peso" class="form-control" required >
-                </div>
-                <div class="form-group col-4">
-                  <label>Resultado IMC:</label>
-                  <input type="text" class="form-control">
-                </div>
-              </div>
-              <button  type="submit" name="enviar" class="btn btn-success ">Enviar</button>
-           </form>
+                <?php
+                    if (file_exists($pagina)) include $pagina;
+                    else include "../paginas/erro.php";
+                  ?>
         </div>  
       </div>
     </div>
