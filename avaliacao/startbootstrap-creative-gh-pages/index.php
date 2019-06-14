@@ -56,22 +56,27 @@ include "../config/conexao.php";
       </div>
     </div>
   </nav>
+  <pre>
   <?php
      require_once 'Usuario.php';
+     require_once 'Resultado.php';
      $usuario = new Usuario;
+     $resultado = new Resultado;
      if(isset($_POST["enviar"])){
-     $usuario->setNome($_POST["nome"]);
-     $usuario->setDataNasc($_POST["data_nasc"]);
-     $usuario->setSexo($_POST["sexo"]);
-     $usuario->setCpf($_POST["cpf"]);
-     $usuario->setAltura($_POST["altura"]);
-     $usuario->setPeso($_POST["peso"]);
-     $usuario->setResultado($_POST["resultado"]);
-     $usuario->calcular();
-     $usuario->salvarbanco();
-     print_r($usuario);
+     $resultado->setNome($_POST["nome"]);
+     $resultado->setDataNasc($_POST["data_nasc"]);
+     $resultado->setSexo($_POST["sexo"]);
+     $resultado->setCpf($_POST["cpf"]);
+     $resultado->setAltura($_POST["altura"]);
+     $resultado->setPeso($_POST["peso"]);
+
+     $resultado->salvarUsuario();
+     $resultado->calcularImc();
+     
+     print_r($resultado);
     }
   ?>
+  </pre>
   <!-- Masthead -->
   <header class="masthead">
     <div class="container h-100">
@@ -112,7 +117,7 @@ include "../config/conexao.php";
                 </div>
                 <div class="form-group col-4">
                   <label>Resultado IMC:</label>
-                  <input type="text" name="resultado" class="form-control">
+                  <input type="text" class="form-control">
                 </div>
               </div>
               <button  type="submit" name="enviar" class="btn btn-success ">Enviar</button>

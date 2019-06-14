@@ -1,16 +1,15 @@
 <?php
-    require_once 'Tratamento.php';
     require_once 'Usuario.php';
-    class Resultado{
+    class Resultado extends Usuario{
         private $data;
         private $imc;
         private $classificacao;
-        private $objetoUsuario; 
+        private $idUsuario; 
         private $idtratamento ;
         
         public function __construct()
         {
-            
+
         }
 
         public function getData(){
@@ -26,7 +25,7 @@
             return $this->idtratamento;
         }
         public function getIdUsuario(){
-            return $this->objetoUsuario;
+            return $this->idUsuario;
         }
         public function setData($data){
             $this->data = $data;
@@ -34,6 +33,8 @@
         public function setImc($imc){
             $this->imc = $imc;
             $this->classificacao();
+            $this->setData(date('d/m/Y'));
+            $this->setIdUsuario($this->getId());
         }
         public function setClassificacao($classificacao){
             $this->classificacao = $classificacao;
@@ -42,7 +43,13 @@
             $this->idtratamento = $tratamento;
         }
         public function setIdUsuario($objeto){
-            $this->objetoUsuario = $objeto;
+            $this->idUsuario = $objeto;
+        }
+        public function calcularImc(){
+            $calculo = $this->getAltura() * $this->getAltura();
+            $calculo = $this->getPeso() / $calculo;
+            $this->setImc($calculo);
+
         }
         public function classificacao(){
             if($this->getImc() < 0){
@@ -62,6 +69,9 @@
             }else{
                 $this->setClassificacao("IMC inválido");
             }
+        }
+        public function pegarId(){
+            $sql = "SELECT id from usuario";
         }
     }
 ?>
