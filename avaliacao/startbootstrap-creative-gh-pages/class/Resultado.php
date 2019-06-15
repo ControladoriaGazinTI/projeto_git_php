@@ -46,8 +46,8 @@
             $this->idUsuario = $objeto;
         }
         public function calcularImc(){
-            $calculo = $this->getAltura() * $this->getAltura();
-            $calculo = $this->getPeso() / $calculo;
+           $calculo = $this->getAltura() * $this->getAltura();
+           $calculo = $this->getPeso() / $calculo;
             $this->setImc($calculo);
 
         }
@@ -69,9 +69,6 @@
             }else{
                 $this->setClassificacao("IMC inválido");
             }
-        }
-        public function pegarId(){
-            $sql = "SELECT id from usuario";
         }
     }
 ?>

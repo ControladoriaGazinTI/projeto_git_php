@@ -1,4 +1,24 @@
-<form method="post">
+<pre>
+  <?php
+     require_once 'class/Usuario.php';
+     require_once 'class/Resultado.php';
+     $usuario = new Usuario;
+     $resultado = new Resultado;
+     if(isset($_POST["enviar"])){
+     $resultado->setNome($_POST["nome"]);
+     $resultado->setDataNasc($_POST["data_nasc"]);
+     $resultado->setSexo($_POST["sexo"]);
+     $resultado->setCpf($_POST["cpf"]);
+     $resultado->setAltura($_POST["altura"]);
+     $resultado->setPeso($_POST["peso"]);
+     $resultado->salvarUsuario();
+     $resultado->calcularImc();
+     
+     print_r($resultado);
+    }
+  ?>
+  </pre>
+<form method="post" >
     <div class="row">
         <div class="form-group col-6">
             <label>Nome:</label>

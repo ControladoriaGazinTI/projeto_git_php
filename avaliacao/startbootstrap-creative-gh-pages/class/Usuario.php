@@ -58,8 +58,8 @@
         }
 
         public function salvarUsuario(){
-            include "../config/conexao.php";
-            include "../config/funcoes.php";
+            include "config/conexao.php";
+            include "config/funcoes.php";
 
             if(empty($id)){
                 $pdo->beginTransaction();

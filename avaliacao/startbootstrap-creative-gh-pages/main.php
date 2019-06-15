@@ -13,7 +13,7 @@ if (!isset($pagina)) {
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">Login</a>
+            <a class="nav-link js-scroll-trigger" href="cadastros/usuario">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#services">sobre</a>
@@ -28,7 +28,8 @@ if (!isset($pagina)) {
       <div class="row h-100 align-items-center justify-content-center text-center">
                 <?php
                     if (file_exists($pagina)) include $pagina;
-                    else include "../paginas/erro.php";
+                    else include "paginas/erro.php
+                    ";
                   ?>
         </div>  
       </div>
@@ -95,13 +96,4 @@ if (!isset($pagina)) {
     </div>
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="js/creative.min.js"></script>
+  
