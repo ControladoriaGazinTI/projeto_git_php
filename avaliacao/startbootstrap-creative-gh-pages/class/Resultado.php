@@ -70,5 +70,37 @@
                 $this->setClassificacao("IMC inválido");
             }
         }
+        public function salvarUsuario(){
+            include "config/conexao.php";
+            include "config/funcoes.php";
+
+            if(empty($id)){
+                $pdo->beginTransaction();
+                $sql = "INSERT INTO usuario 
+                (id,nome,data_nasc,sexo,cpf,altura,peso) 
+                VALUES 
+                (NULL,:nome,:data_nasc,:sexo,:cpf,:altura,:peso)";
+               
+                $consulta = $pdo->prepare($sql);
+                $consulta->bindValue(":nome",$this->getNome());
+                $consulta->bindValue(":data_nasc",$this->getDataNasc());
+                $consulta->bindValue(":sexo",$this->getSexo());
+                $consulta->bindValue(":cpf",$this->getCpf());
+                $consulta->bindValue(":altura",$this->getAltura());
+                $consulta->bindValue(":peso",$this->getPeso());
+                
+                // printf ("New Record has id %d.\n", $consulta->insert_id);
+            }
+            
+            if($consulta->execute()){
+               $this->setId($pdo->lastInsertId());
+               $pdo->commit();
+            }else{
+                    echo $consulta->errorInfo()[2];
+                    exit;
+                    $msg = "Erro ao salvar quadrinho";
+                    mensagem( $msg );
+                    $pdo->rollBack();
+            }
+        }
     }
-?>
