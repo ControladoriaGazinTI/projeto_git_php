@@ -78,3 +78,4 @@ class Especialista
         $this->senha = $senha;
     }
 }
+

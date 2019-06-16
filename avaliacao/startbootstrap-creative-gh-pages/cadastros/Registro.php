@@ -1,4 +1,5 @@
-    <?php
+   <pre>
+   <?php
     require_once 'class/Tratamento.php';
     $tratamento = new Tratamento;
     if (isset($_POST["enviar"])) {
@@ -14,7 +15,7 @@
         print_r($tratamento);
     }
     ?>
-
+   </pre>
     <div class="card text-center">
         <div class="card-header">
             Especialista

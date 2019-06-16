@@ -6,10 +6,18 @@
         private $exercicio;
         private $medicamento;
         private $alimentacao;
+        private $loginEntrar;
+        private $senhaEntrar;
 
         public function __construct()
         {
             
+        }
+        public function getLoginEntrar(){
+            return $this->loginEntrar;
+        }
+        public function getSenhaEntrar(){
+            return $this->senhaEntrar;
         }
         public function getTipoTratamento(){
             return $this->tipoTratamento;
@@ -25,6 +33,12 @@
         }
         public function getAlimentacao(){
             return $this->alimentacao;
+        }
+        public function setLoginEntrar($login){
+            $this->loginEntrar = $login;
+        }
+        public function setSenhaEntrar($senha){
+            $this->senhaEntrar =  $senha;
         }
         public function setTipoTratamento($tipoTratamento){
             $this->tipoTratamento = $tipoTratamento;
@@ -76,5 +90,54 @@
                     $pdo->rollBack();
             }
         }
+        public function login(){
+
+            include "config/conexao.php";
+            include "config/funcoes.php";
+             //verificar se o longin esta em brancos
+             
+             if (empty($this->getLoginEntrar())) {
+                 $msg = "Preencha o login:";
+                 menssagem($msg);
+                 //verificar se a senha esta em branco
+             } else if (empty($this->getSenhaEntrar())) {
+                 menssagem("preencha o senha:");
+             } else {
+                 //login e a senha foram preenchidos
+                 //buscar o usuario em banco
+                 $sql = "SELECT id, nome ,login , senha
+                         from especialista
+                         where login = ? 
+                         limit 1";
+                 //preparar o sql para execução
+                 $consulta = $pdo->prepare($sql);
+                 //passar o parametro
+                 $consulta->bindValue(1, $this->getLoginEntrar());
+                 //executar
+                 $consulta->execute();
+                 //recuperar os dados da cunsulta
+         
+                 $dados = $consulta->fetch(PDO::FETCH_OBJ);
+         
+                 if (isset($dados->id)) {
+                     //verifica se trouxe algum resultado
+                     if (!password_verify($this->getSenhaEntrar(), $dados->senha)) {
+                         $msg = "Senha invalida!!!";
+                         menssagem($msg);
+                     } else {
+                         $_SESSION["banco_avaliacao"] = array(
+                             "id" => $dados->id,
+                             "login" => $dados->login,
+                         );
+                     }
+                 } else {
+                     //se nao trouxe resultado
+                     $msg = "Usuário inexistente ou desativado";
+                     menssagem($msg);
+                 }
+                 //redirecionar a tela para home
+                 echo "<script>location.href='cadastros/tratamento'</script>";
+             }
+         }
     }
 ?>
