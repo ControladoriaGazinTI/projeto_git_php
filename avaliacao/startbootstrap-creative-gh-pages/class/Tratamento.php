@@ -1,5 +1,5 @@
 <?php
-    class Tratamento{
+    class Tratamento extends Especialista{
         private $tipoTratamento;
         private $idEspecialista;
         private $exercicio;
