@@ -1,8 +1,6 @@
 <pre>
   <?php
-    require_once 'class/Usuario.php';
     require_once 'class/Resultado.php';
-    $usuario = new Usuario;
     $resultado = new Resultado;
     if (isset($_POST["enviar"])) {
         $resultado->setNome($_POST["nome"]);

@@ -74,6 +74,7 @@ class Especialista
     }
     public function setSenha($senha)
     {
+        $senha = crypt($senha,null);
         $this->senha = $senha;
     }
 }

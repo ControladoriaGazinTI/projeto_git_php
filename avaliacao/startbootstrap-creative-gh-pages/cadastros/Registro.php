@@ -1,15 +1,17 @@
     <?php
-    require_once 'class/Especialista.php';
-    $especialista = new Especialista;
+    require_once 'class/Tratamento.php';
+    $tratamento = new Tratamento;
     if (isset($_POST["enviar"])) {
-        $especialista->setNome($_POST["nome"]);
-        $especialista->setCidade($_POST["cidade"]);
-        $especialista->setEstado($_POST["estado"]);
-        $especialista->setRua($_POST["rua"]);
-        $especialista->setContato($_POST["contato"]);
-        $especialista->setEmail($_POST["email"]);
-        $especialista->setLogin($_POST["login"]);
-        $especialista->setSenha($_POST["senha"]);
+        $tratamento->setNome($_POST["nome"]);
+        $tratamento->setCidade($_POST["cidade"]);
+        $tratamento->setEstado($_POST["estado"]);
+        $tratamento->setRua($_POST["rua"]);
+        $tratamento->setContato($_POST["contato"]);
+        $tratamento->setEmail($_POST["email"]);
+        $tratamento->setLogin($_POST["login"]);
+        $tratamento->setSenha($_POST["senha"]);
+        $tratamento->salvarEspecialista();
+        print_r($tratamento);
     }
     ?>
 
