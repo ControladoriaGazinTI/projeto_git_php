@@ -1,7 +1,6 @@
    <pre>
    <?php
-    require_once 'class/Tratamento.php';
-    $tratamento = new Tratamento;
+  
     if (isset($_POST["enviar"])) {
         $tratamento->setNome($_POST["nome"]);
         $tratamento->setCidade($_POST["cidade"]);

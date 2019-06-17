@@ -1,6 +1,5 @@
 <?php
-require_once 'class/Tratamento.php';
-$tratamento = new Tratamento;
+
 if (isset($_POST["enviar"])) {
     $tratamento->setExercicio($_POST["exercicio"]);
     $tratamento->setAlimentacao($_POST["alimentacao"]);

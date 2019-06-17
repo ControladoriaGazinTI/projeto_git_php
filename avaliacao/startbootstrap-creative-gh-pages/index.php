@@ -7,6 +7,8 @@ ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 //incluir  banco e funções
 include "config/conexao.php";
+require_once 'class/Tratamento.php';
+$tratamento = new Tratamento;
 ?>
 <!DOCTYPE html>
 <html lang="en">
