@@ -1,7 +1,7 @@
 <?php
     
     $tratamento = new Tratamento;
-    if(isset($_POST["enviar"])){
+    if(isset($_POST["enviaru"])){
         $tratamento->setLoginEntrar($_POST["login"]);
         $tratamento->setSenhaEntrar($_POST["senha"]);
         $tratamento->login();
@@ -23,7 +23,7 @@
                 <label>Senha:</label>
                 <input type="password" class="form-control" placeholder="Senha" name="senha">
             </div>
-            <button type="submit" class="btn btn-success" name="enviar">Entrar</button>
+            <button type="submit" class="btn btn-success" name="enviaru">Entrar</button>
             <button class="btn btn-success">
                 <a href="cadastros/Registro" class="text-white">Regitrar</a>
             </button>

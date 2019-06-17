@@ -1,7 +1,7 @@
    <pre>
    <?php
   
-    if (isset($_POST["enviar"])) {
+    if (isset($_POST["enviarr"])) {
         $tratamento->setNome($_POST["nome"]);
         $tratamento->setCidade($_POST["cidade"]);
         $tratamento->setEstado($_POST["estado"]);
@@ -53,7 +53,7 @@
                     <label>Senha:</label>
                     <input type="password" class="form-control" placeholder="Senha" name="senha" required>
                 </div>
-                <button type="submit" class="btn btn-success" name="enviar">Cadastrar</button>
+                <button type="submit" class="btn btn-success" name="enviarr">Cadastrar</button>
             </form>
         </div>
         <div class="card-footer text-muted">

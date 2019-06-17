@@ -1,14 +1,16 @@
 <?php
 
-if (isset($_POST["enviar"])) {
+if (isset($_POST["enviart"])) {
     $tratamento->setExercicio($_POST["exercicio"]);
     $tratamento->setAlimentacao($_POST["alimentacao"]);
     $tratamento->setMedicamento($_POST["medicamento"]);
     $tratamento->setTipoTratamento($_POST["tipo_tratamento"]);
+    $tratamento->setIdEspecialista($_SESSION["banco_avaliacao"]["id"]);
+    $tratamento->salvarTratamento();
     print_r($tratamento);
 }
 ?>
-<form action="" method="post">
+<form method="post">
     <div class="form-group">
         <label>Tipo do tratamento:</label>
         <select name="tipo_tratamento" id="" class="form-control">
@@ -31,5 +33,5 @@ if (isset($_POST["enviar"])) {
         <label for="">Medicamento:</label>
         <textarea name="medicamento" id="" cols="20" rows="5" class="form-control"></textarea>
     </div>
-    <button type="submit" class="btn btn-success" name="enviar">Cadastrar</button>
+    <button type="submit" class="btn btn-success" name="enviart">Cadastrar</button>
 </form>
