@@ -1,3 +1,4 @@
+<pre>
 <?php
     
     $tratamento = new Tratamento;
@@ -8,7 +9,7 @@
         print_r($tratamento);
     }
 ?>
-
+</pre>
 <div class="card text-center">
     <div class="card-header">
         Especialista

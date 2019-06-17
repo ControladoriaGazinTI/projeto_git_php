@@ -1,3 +1,4 @@
+<pre>
 <?php
 
 if (isset($_POST["enviart"])) {
@@ -10,6 +11,7 @@ if (isset($_POST["enviart"])) {
     print_r($tratamento);
 }
 ?>
+</pre>
 <form method="post">
     <div class="form-group">
         <label>Tipo do tratamento:</label>

@@ -4,6 +4,7 @@ class Tratamento extends Especialista
 {
     private $tipoTratamento;
     private $idEspecialista;
+    private $id;
     private $exercicio;
     private $medicamento;
     private $alimentacao;
@@ -12,6 +13,10 @@ class Tratamento extends Especialista
 
     public function __construct()
     { }
+    public function GetId()
+    {
+        return $this->id;
+    }
     public function getLoginEntrar()
     {
         return $this->loginEntrar;
@@ -67,6 +72,10 @@ class Tratamento extends Especialista
     public function setAlimentacao($alimentacao)
     {
         $this->alimentacao = $alimentacao;
+    }
+    public function setId($tratamento)
+    {
+        $this->id = $tratamento;
     }
     public function salvarEspecialista()
     {
@@ -174,6 +183,7 @@ class Tratamento extends Especialista
         }
 
         if ($consulta->execute()) {
+            $this->setId($pdo->lastInsertId());
             $pdo->commit();
         } else {
             $msg = "Erro ao salvar quadrinho";

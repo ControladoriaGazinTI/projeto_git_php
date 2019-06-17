@@ -66,16 +66,21 @@ class Resultado extends Usuario
             $this->setClassificacao("IMC inválido");
         } elseif ($this->getImc() < 18.5) {
             $this->setClassificacao("Abaixo do Peso.");
+            $this->setIdTratamento(1);
         } elseif ($this->getImc() < 25) {
             $this->setClassificacao("Peso ideal!!!Parabéns.");
         } elseif ($this->getImc() < 30) {
             $this->setClassificacao("Levemente acima do Peso.");
+            $this->setIdTratamento(2);
         } elseif ($this->getImc() < 35) {
             $this->setClassificacao("Obesidade grau 1.");
+            $this->setIdTratamento(3);
         } elseif ($this->getImc() < 40) {
             $this->setClassificacao("Obesidade grau 2 (severa).");
+            $this->setIdTratamento(4);
         } elseif ($this->getImc() < 60) {
             $this->setClassificacao("Obesidade grau 3 (mórbida) ");
+            $this->setIdTratamento(5);
         } else {
             $this->setClassificacao("IMC inválido");
         }
@@ -105,10 +110,17 @@ class Resultado extends Usuario
 
         if ($consulta->execute()) {
             $this->setId($pdo->lastInsertId());
+            $insert = "INSERT INTO resultado
+            (id,imc,data,classificacao,idusuario,idtratamento)
+            VALUES 
+            (NULL,:imc,:data,:classificacao,:idusuario,:idtratamento";
+            $consulta = $pdo->prepare($insert);
+            $consulta->bindValue(":imc", $this->getImc());
+            $consulta->bindValue(":data", $this->getData());
+            $consulta->bindValue(":classificacao", $this->getClassificacao());
+            $consulta->bindValue(":idusuario", $this->getIdUsuario());
+            $consulta->bindValue(":idtratamento", $this->getIdTratamento());
             $pdo->commit();
-            $msg  = "IMC calculado com sucesso!!";
-
-            sucesso($msg, $link);
         } else {
             echo $consulta->errorInfo()[2];
             exit;
