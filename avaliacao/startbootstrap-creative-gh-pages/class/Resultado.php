@@ -55,7 +55,7 @@ class Resultado extends Usuario
     }
     public function calcularImc()
     {
-        $calculo = 0.0;  
+        $calculo = 0.0;
         $calculo = $this->getAltura() * $this->getAltura();
         $calculo = $this->getPeso() / $calculo;
         $this->setImc($calculo);
@@ -64,11 +64,13 @@ class Resultado extends Usuario
     {
         if ($this->getImc() < 0) {
             $this->setClassificacao("IMC inválido");
+            $this->setIdTratamento(0);
         } elseif ($this->getImc() < 18.5) {
             $this->setClassificacao("Abaixo do Peso.");
             $this->setIdTratamento(1);
         } elseif ($this->getImc() < 25) {
             $this->setClassificacao("Peso ideal!!!Parabéns.");
+            $this->setIdTratamento(6);
         } elseif ($this->getImc() < 30) {
             $this->setClassificacao("Levemente acima do Peso.");
             $this->setIdTratamento(2);
@@ -87,11 +89,7 @@ class Resultado extends Usuario
     }
     public function salvarUsuario()
     {
-        var_dump($this->getImc());
-                var_dump($this->getData());
-                var_dump($this->getClassificacao());
-                var_dump($this->getIdUsuario());
-                var_dump($this->getIdTratamento());
+
         include "config/conexao.php";
         include "config/funcoes.php";
         if (empty($id)) {
@@ -104,21 +102,22 @@ class Resultado extends Usuario
             $consulta->bindValue(4, $this->getCpf());
             $consulta->bindValue(5, $this->getAltura());
             $consulta->bindValue(6, $this->getPeso());
-          
-            if($consulta->execute()){
+
+            if ($consulta->execute()) {
                 $this->setIdUsuario($pdo->lastInsertId());
                 $sqli = "INSERT INTO resultado VALUES (NULL,?,?,?,?,?)";
                 $teste = $pdo->prepare($sqli);
-                $teste->bindValue(1,$this->getImc());
-                $teste->bindValue(2,$this->getData());
-                $teste->bindValue(3,$this->getClassificacao());
-                $teste->bindValue(4,$this->getIdUsuario());
-                $teste->bindValue(5,$this->getIdTratamento());
+                $teste->bindValue(1, $this->getImc());
+                $teste->bindValue(2, $this->getData());
+                $teste->bindValue(3, $this->getClassificacao());
+                $teste->bindValue(4, $this->getIdUsuario());
+                $teste->bindValue(5, $this->getIdTratamento());
             }
-            if($teste->execute()){
+            if ($teste->execute()) {
                 echo "funcionou";
+                var_dump($this->getIdUsuario());
                 $pdo->commit();
-            }else {
+            } else {
                 var_dump($this->getImc());
                 var_dump($this->getData());
                 var_dump($this->getClassificacao());
