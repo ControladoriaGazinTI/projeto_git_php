@@ -115,7 +115,6 @@ class Resultado extends Usuario
             }
             if ($teste->execute()) {
                 echo "funcionou";
-                var_dump($this->getIdUsuario());
                 $pdo->commit();
             } else {
                 var_dump($this->getImc());
@@ -123,7 +122,49 @@ class Resultado extends Usuario
                 var_dump($this->getClassificacao());
                 var_dump($this->getIdUsuario());
                 var_dump($this->getIdTratamento());
+                $pdo->rollback();
             }
         }
+    }
+    public function listar()
+    {
+        include "config/conexao.php";
+        echo "
+                <table class='table table-hover table-striped text-white'>
+                <thead>
+                    <tr>
+                        <th>IMC:</th>
+                        <th>Data do teste:</th>
+                        <th>Classificação:</th>
+                        <th>Usuario:</th>
+                        <th>Tratamento:</th>
+                    </tr>
+                </thead>
+                <tbody>
+             ";
+        $sql = "SELECT * FROM resultado WHERE idusuario = ? LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindValue(1, $this->getIdUsuario());
+        $consulta->execute();
+        //laço de repetição para separar  as Linhas
+        $linha = $consulta->fetch(PDO::FETCH_OBJ);
+        //separar os dados 
+        $imc            = $linha->imc;
+        $data           = $linha->data;
+        $classificacao  = $linha->classificacao;
+        $idusuario      = $linha->idusuario;
+        $idtratamento   = $linha->idtratamento;
+        //montar linhas e colunas das tabelas
+        echo "
+                                <tr>
+                                    <td>$imc</td>
+                                    <td>$data</td>
+                                    <td>$classificacao</td>
+                                    <td>$idusuario</td>
+                                    <td>$idtratamento</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    ";
     }
 }

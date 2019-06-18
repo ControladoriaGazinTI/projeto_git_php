@@ -8,6 +8,8 @@ error_reporting(E_ALL);
 //incluir  banco e funções
 include "config/conexao.php";
 require_once 'class/Tratamento.php';
+require_once 'class/Resultado.php';
+$resultado = new Resultado;
 $tratamento = new Tratamento;
 ?>
 <!DOCTYPE html>

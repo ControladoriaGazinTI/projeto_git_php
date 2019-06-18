@@ -1,21 +1,17 @@
-<pre>
-  <?php
-    require_once 'class/Resultado.php';
-    $resultado = new Resultado;
-    if (isset($_POST["enviar"])) {
-        $resultado->setNome($_POST["nome"]);
-        $resultado->setDataNasc($_POST["data_nasc"]);
-        $resultado->setSexo($_POST["sexo"]);
-        $resultado->setCpf($_POST["cpf"]);
-        $resultado->setAltura($_POST["altura"]);
-        $resultado->setPeso($_POST["peso"]);
-        $resultado->calcularImc();
-        $resultado->salvarUsuario();
-        print_r($resultado);
-    }
-    ?>
-  </pre>
-<form method="post">
+<?php
+if (isset($_POST["enviar"])) {
+    $resultado->setNome($_POST["nome"]);
+    $resultado->setDataNasc($_POST["data_nasc"]);
+    $resultado->setSexo($_POST["sexo"]);
+    $resultado->setCpf($_POST["cpf"]);
+    $resultado->setAltura($_POST["altura"]);
+    $resultado->setPeso($_POST["peso"]);
+    $resultado->calcularImc();
+    $resultado->salvarUsuario();
+    $resultado->listar();
+}
+?>
+<form method="post" class="text-white">
     <div class="row">
         <div class="form-group col-6">
             <label>Nome:</label>
