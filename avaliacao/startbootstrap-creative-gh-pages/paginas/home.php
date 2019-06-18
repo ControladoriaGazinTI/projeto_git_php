@@ -9,9 +9,8 @@
         $resultado->setCpf($_POST["cpf"]);
         $resultado->setAltura($_POST["altura"]);
         $resultado->setPeso($_POST["peso"]);
-        $resultado->salvarUsuario();
         $resultado->calcularImc();
-
+        $resultado->salvarUsuario();
         print_r($resultado);
     }
     ?>

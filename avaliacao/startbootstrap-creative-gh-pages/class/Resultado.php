@@ -40,7 +40,6 @@ class Resultado extends Usuario
         $this->imc = $imc;
         $this->classificacao();
         $this->setData(date('d/m/Y'));
-        $this->setIdUsuario($this->getId());
     }
     public function setClassificacao($classificacao)
     {
@@ -56,6 +55,7 @@ class Resultado extends Usuario
     }
     public function calcularImc()
     {
+        $calculo = 0.0;  
         $calculo = $this->getAltura() * $this->getAltura();
         $calculo = $this->getPeso() / $calculo;
         $this->setImc($calculo);
@@ -87,46 +87,44 @@ class Resultado extends Usuario
     }
     public function salvarUsuario()
     {
+        var_dump($this->getImc());
+                var_dump($this->getData());
+                var_dump($this->getClassificacao());
+                var_dump($this->getIdUsuario());
+                var_dump($this->getIdTratamento());
         include "config/conexao.php";
         include "config/funcoes.php";
-
         if (empty($id)) {
             $pdo->beginTransaction();
-            $sql = "INSERT INTO usuario 
-                (id,nome,data_nasc,sexo,cpf,altura,peso) 
-                VALUES 
-                (NULL,:nome,:data_nasc,:sexo,:cpf,:altura,:peso)";
-
+            $sql = "INSERT INTO usuario VALUES (NULL,?,?,?,?,?,?)";
             $consulta = $pdo->prepare($sql);
-            $consulta->bindValue(":nome", $this->getNome());
-            $consulta->bindValue(":data_nasc", $this->getDataNasc());
-            $consulta->bindValue(":sexo", $this->getSexo());
-            $consulta->bindValue(":cpf", $this->getCpf());
-            $consulta->bindValue(":altura", $this->getAltura());
-            $consulta->bindValue(":peso", $this->getPeso());
-
-            // printf ("New Record has id %d.\n", $consulta->insert_id);
-        }
-
-        if ($consulta->execute()) {
-            $this->setId($pdo->lastInsertId());
-            $insert = "INSERT INTO resultado
-            (id,imc,data,classificacao,idusuario,idtratamento)
-            VALUES 
-            (NULL,:imc,:data,:classificacao,:idusuario,:idtratamento";
-            $consulta = $pdo->prepare($insert);
-            $consulta->bindValue(":imc", $this->getImc());
-            $consulta->bindValue(":data", $this->getData());
-            $consulta->bindValue(":classificacao", $this->getClassificacao());
-            $consulta->bindValue(":idusuario", $this->getIdUsuario());
-            $consulta->bindValue(":idtratamento", $this->getIdTratamento());
-            $pdo->commit();
-        } else {
-            echo $consulta->errorInfo()[2];
-            exit;
-            $msg = "Erro ao salvar quadrinho";
-            mensagem($msg);
-            $pdo->rollBack();
+            $consulta->bindValue(1, $this->getNome());
+            $consulta->bindValue(2, $this->getDataNasc());
+            $consulta->bindValue(3, $this->getSexo());
+            $consulta->bindValue(4, $this->getCpf());
+            $consulta->bindValue(5, $this->getAltura());
+            $consulta->bindValue(6, $this->getPeso());
+          
+            if($consulta->execute()){
+                $this->setIdUsuario($pdo->lastInsertId());
+                $sqli = "INSERT INTO resultado VALUES (NULL,?,?,?,?,?)";
+                $teste = $pdo->prepare($sqli);
+                $teste->bindValue(1,$this->getImc());
+                $teste->bindValue(2,$this->getData());
+                $teste->bindValue(3,$this->getClassificacao());
+                $teste->bindValue(4,$this->getIdUsuario());
+                $teste->bindValue(5,$this->getIdTratamento());
+            }
+            if($teste->execute()){
+                echo "funcionou";
+                $pdo->commit();
+            }else {
+                var_dump($this->getImc());
+                var_dump($this->getData());
+                var_dump($this->getClassificacao());
+                var_dump($this->getIdUsuario());
+                var_dump($this->getIdTratamento());
+            }
         }
     }
 }

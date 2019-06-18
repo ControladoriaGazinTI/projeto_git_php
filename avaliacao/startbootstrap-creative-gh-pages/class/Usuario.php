@@ -1,7 +1,6 @@
 <?php
 class Usuario
 {
-    private $id;
     private $nome;
     private $data_nasc;
     private $sexo;
@@ -12,10 +11,6 @@ class Usuario
     public function __construct()
     { }
 
-    public function getId()
-    {
-        return $this->id;
-    }
     public function getNome()
     {
         return $this->nome;
@@ -41,10 +36,6 @@ class Usuario
         return $this->peso;
     }
 
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
     public function setNome($nome)
     {
         $this->nome = $nome;
