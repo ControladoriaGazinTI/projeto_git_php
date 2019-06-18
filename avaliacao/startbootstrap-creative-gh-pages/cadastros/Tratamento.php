@@ -1,4 +1,3 @@
-<pre>
 <?php
 
 if (isset($_POST["enviart"])) {
@@ -8,10 +7,8 @@ if (isset($_POST["enviart"])) {
     $tratamento->setTipoTratamento($_POST["tipo_tratamento"]);
     $tratamento->setIdEspecialista($_SESSION["banco_avaliacao"]["id"]);
     $tratamento->salvarTratamento();
-    print_r($tratamento);
 }
 ?>
-</pre>
 <form method="post">
     <div class="form-group">
         <label>Tipo do tratamento:</label>

@@ -39,7 +39,7 @@ class Resultado extends Usuario
     {
         $this->imc = $imc;
         $this->classificacao();
-        $this->setData(date('d/m/Y'));
+        $this->setData(date('Y/m/d'));
     }
     public function setClassificacao($classificacao)
     {
@@ -94,7 +94,7 @@ class Resultado extends Usuario
         include "config/funcoes.php";
         if (empty($id)) {
             $pdo->beginTransaction();
-            $sql = "INSERT INTO usuario VALUES (NULL,?,?,?,?,?,?)";
+            $sql = "INSERT  INTO usuario VALUES (NULL,?,?,?,?,?,?)";
             $consulta = $pdo->prepare($sql);
             $consulta->bindValue(1, $this->getNome());
             $consulta->bindValue(2, $this->getDataNasc());
@@ -115,6 +115,7 @@ class Resultado extends Usuario
             }
             if ($teste->execute()) {
                 echo "funcionou";
+                var_dump($this->getClassificacao());
                 $pdo->commit();
             } else {
                 var_dump($this->getImc());
@@ -142,7 +143,7 @@ class Resultado extends Usuario
                 </thead>
                 <tbody>
              ";
-        $sql = "SELECT * FROM resultado WHERE idusuario = ? LIMIT 1";
+        $sql = "SELECT *,date_format(data,'%d/%m/%Y')data FROM resultado WHERE idusuario = ? LIMIT 1";
         $consulta = $pdo->prepare($sql);
         $consulta->bindValue(1, $this->getIdUsuario());
         $consulta->execute();
