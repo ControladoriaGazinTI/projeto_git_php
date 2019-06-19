@@ -1,3 +1,4 @@
+<pre>
 <?php
 
 if (isset($_POST["enviart"])) {
@@ -7,17 +8,21 @@ if (isset($_POST["enviart"])) {
     $tratamento->setTipoTratamento($_POST["tipo_tratamento"]);
     $tratamento->setIdEspecialista($_SESSION["banco_avaliacao"]["id"]);
     $tratamento->salvarTratamento();
+    print_r($tratamento);
 }
 ?>
+</pre>
 <form method="post">
     <div class="form-group">
         <label>Tipo do tratamento:</label>
         <select name="tipo_tratamento" id="" class="form-control">
+            <option value="0"></option>
             <option value="1">A baixo do peso</option>
-            <option value="2">Levemente acima do Peso</option>
-            <option value="3">Obesidade grau I</option>
-            <option value="4">Obesidade grau II (Severa)</option>
-            <option value="5">Obesidade grau III (Morbida)</option>
+            <option value="2">Peso ideal</option>
+            <option value="3">Levemente acima do Peso</option>
+            <option value="4">Obesidade grau I</option>
+            <option value="5">Obesidade grau II (Severa)</option>
+            <option value="6">Obesidade grau III (Morbida)</option>
         </select>
     </div>
     <div class="form-group">

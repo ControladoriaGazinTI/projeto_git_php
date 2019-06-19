@@ -185,10 +185,10 @@ class Tratamento extends Especialista
         }
 
         if ($consulta->execute()) {
-            $this->setId($pdo->lastInsertId());
-            $msg = "Cadastrador com sucesso!!!";
-            sucesso($msg, "cadastros/tratamento");
+            $_SESSION["idtratamento"] = $pdo->lastInsertId();
             $pdo->commit();
+             $msg = "Cadastrador com sucesso!!!";
+            sucesso($msg, "cadastros/tratamento");
         } else {
             $msg = "Erro ao salvar quadrinho";
             mensagem($msg);

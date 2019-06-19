@@ -64,25 +64,18 @@ class Resultado extends Usuario
     {
         if ($this->getImc() < 0) {
             $this->setClassificacao("IMC inválido");
-            $this->setIdTratamento(0);
         } elseif ($this->getImc() < 18.5) {
             $this->setClassificacao("Abaixo do Peso.");
-            $this->setIdTratamento(1);
         } elseif ($this->getImc() < 25) {
             $this->setClassificacao("Peso ideal!!!Parabéns.");
-            $this->setIdTratamento(6);
         } elseif ($this->getImc() < 30) {
             $this->setClassificacao("Levemente acima do Peso.");
-            $this->setIdTratamento(2);
         } elseif ($this->getImc() < 35) {
             $this->setClassificacao("Obesidade grau 1.");
-            $this->setIdTratamento(3);
         } elseif ($this->getImc() < 40) {
             $this->setClassificacao("Obesidade grau 2 (severa).");
-            $this->setIdTratamento(4);
         } elseif ($this->getImc() < 60) {
             $this->setClassificacao("Obesidade grau 3 (mórbida) ");
-            $this->setIdTratamento(5);
         } else {
             $this->setClassificacao("IMC inválido");
         }
@@ -105,24 +98,21 @@ class Resultado extends Usuario
 
             if ($consulta->execute()) {
                 $this->setIdUsuario($pdo->lastInsertId());
-                $sqli = "INSERT INTO resultado VALUES (NULL,?,?,?,?,?)";
+                $sqli = "INSERT INTO resultado VALUES (NULL,?,?,?,?)";
                 $teste = $pdo->prepare($sqli);
                 $teste->bindValue(1, $this->getImc());
                 $teste->bindValue(2, $this->getData());
                 $teste->bindValue(3, $this->getClassificacao());
                 $teste->bindValue(4, $this->getIdUsuario());
-                $teste->bindValue(5, $this->getIdTratamento());
             }
             if ($teste->execute()) {
-                echo "funcionou";
-                var_dump($this->getClassificacao());
+                $_SESSION["idresultado"] = $pdo->lastInsertId();
                 $pdo->commit();
             } else {
                 var_dump($this->getImc());
                 var_dump($this->getData());
                 var_dump($this->getClassificacao());
                 var_dump($this->getIdUsuario());
-                var_dump($this->getIdTratamento());
                 $pdo->rollback();
             }
         }
@@ -138,7 +128,6 @@ class Resultado extends Usuario
                         <th>Data do teste:</th>
                         <th>Classificação:</th>
                         <th>Usuario:</th>
-                        <th>Tratamento:</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -154,7 +143,6 @@ class Resultado extends Usuario
         $data           = $linha->data;
         $classificacao  = $linha->classificacao;
         $idusuario      = $linha->idusuario;
-        $idtratamento   = $linha->idtratamento;
         //montar linhas e colunas das tabelas
         echo "
                                 <tr>
@@ -162,10 +150,22 @@ class Resultado extends Usuario
                                     <td>$data</td>
                                     <td>$classificacao</td>
                                     <td>$idusuario</td>
-                                    <td>$idtratamento</td>
                                 </tr>
                             </tbody>
                         </table>
                     ";
+    }
+    public function salvarTratamento_resultado(){
+        include "config/conexao.php";
+        $pdo->beginTransaction();
+        $sql = "INSERT INTO resultado_tratamento VALUES (?,?)";
+        $insert = $pdo->prepare($sql);
+        $id1 = $_SESSION["idresultado"];
+        $id2 = $_SESSION["idtratamento"];
+        $insert->bindValue(1,$id1);
+        $insert->bindValue(2,$id2);
+        if($insert->execute()){
+            $pdo->commit();
+        }
     }
 }
