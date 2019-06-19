@@ -1,107 +1,86 @@
 <?php
 if (!isset($pagina)) {
-    header("location: index.php");
+  header("location: index.php");
 }
 ?>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Inicio</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto my-2 my-lg-0">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="cadastros/Usuario">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">sobre</a>
-          </li>
-        </ul>
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">Inicio</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto my-2 my-lg-0">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="cadastros/Usuario">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">Impotacia do software</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#teste">Proposta de inovação</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Masthead -->
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center text-center">
+      <?php
+      if (file_exists($pagina)) include $pagina;
+      else include "paginas/erro.php";
+      ?>
+    </div>
+  </div>
+  </div>
+</header>
+
+<!-- About Section -->
+<section class="page-section bg-primary text-justify text-white" id="about">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8  text-justify">
+        <h2 class="text-black mt-0 text-center">IMPORTÂNCIA DO SOFTWARE</h2>
+        <hr class="divider light my-4">
+        <p class="text-black mb-4">A cada dia que passa mais pessoas se mantêm conectadas à internet através de computadores, smartphones ou tablets e a tendência é que esse número cresça ainda mais com o acesso mais facilitado a esses equipamentos. Pesquisas mostram que o número já ultrapassa 40% da população mundial.</p>
+        <p class="text-black mb-4">Com esses dados é impossível ignorar a utilização desse equipamento no dia-a-dia ,ele vai facilitar o usuario encontrar um tratamento e um especialista para cada tipo de resultado dado no sistema.</p>
+
       </div>
     </div>
-  </nav>
-  <!-- Masthead -->
-  <header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center justify-content-center text-center">
-                <?php
-                    if (file_exists($pagina)) include $pagina;
-                    else include "paginas/erro.php";
-                  ?>
-        </div>  
+  </div>
+</section>
+<section class="page-section bg-white" id="teste">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-justify">
+        <h2 class=" text-black mt-0 text-center">DESCRIÇÃO DA PROPOSTA DE INOVAÇÃO</h2>
+        <hr class="divider light my-4">
+        <p class="text-black mb-4 "> Nossa proposta de inovação sobre o cálculo do IMC (Índice de massa corporal), é desenvolver um site onde as pessoas fazem um pré-cadastro do seu nome, sexo, idade, altura e peso. Onde apos esse pré-cadastro ela ja tem o seu IMC calculado e consegue verificar a descrição do seu IMC, como exemplo se está abaixo do peso, peso ideal, levemente acima do peso, obesidade grau I, obesidade grau II e obesidade morbida.</p>
+        <p class="text-black mb-4"> Apos esses passos, ela tem uma aba “Procurar um especialista”, onde a pessoa pode facilmente identificar o melhor especialista para o seu caso, e ganhar um cupom de desconto por usar o site para calcular seu IMC.</p>
+        <p class="text-black mb-4"> A proposta de inovar e empreender, é fazer convenio com especialista nutricional, onde a pessoa que marcar a consulta com o especialista gere uma porcentagem de lucro para nós desenvolvedor do site e da inovação, e para o cliente um cupom de desconto, onde o especialista vai ter mais clientes indicados pelo site, e onde mais clientes vão procurar o site pelo fato de calcular o IMC e indicar o especialista com um cupom de desconto.</p>
+        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <!-- About Section -->
-  <section class="page-section bg-primary" id="about">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h2 class="text-white mt-0">We've got what you need!</h2>
-          <hr class="divider light my-4">
-          <p class="text-white-50 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Footer -->
+<footer class="bg-light py-5">
+  <div class="container">
+    <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
+  </div>
+</footer>
 
-  <!-- Services Section -->
-  <section class="page-section" id="services">
-    <div class="container">
-      <h2 class="text-center mt-0">At Your Service</h2>
-      <hr class="divider my-4">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Sturdy Themes</h3>
-            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Up to Date</h3>
-            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Ready to Publish</h3>
-            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Made with Love</h3>
-            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-      </section>
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-  <!-- Footer -->
-  <footer class="bg-light py-5">
-    <div class="container">
-      <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
-    </div>
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="js/creative.min.js"></script>
+<!-- Custom scripts for this template -->
+<script src="js/creative.min.js"></script>
