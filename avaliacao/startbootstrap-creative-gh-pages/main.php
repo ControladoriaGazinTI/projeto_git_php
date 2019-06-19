@@ -6,7 +6,7 @@ if (!isset($pagina)) {
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">Inicio</a>
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">Início</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -16,7 +16,7 @@ if (!isset($pagina)) {
           <a class="nav-link js-scroll-trigger" href="cadastros/Usuario">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#about">Impotacia do software</a>
+          <a class="nav-link js-scroll-trigger" href="#about">Importância do software</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#teste">Proposta de inovação</a>
@@ -61,7 +61,6 @@ if (!isset($pagina)) {
         <p class="text-black mb-4 "> Nossa proposta de inovação sobre o cálculo do IMC (Índice de massa corporal), é desenvolver um site onde as pessoas fazem um pré-cadastro do seu nome, sexo, idade, altura e peso. Onde apos esse pré-cadastro ela ja tem o seu IMC calculado e consegue verificar a descrição do seu IMC, como exemplo se está abaixo do peso, peso ideal, levemente acima do peso, obesidade grau I, obesidade grau II e obesidade morbida.</p>
         <p class="text-black mb-4"> Apos esses passos, ela tem uma aba “Procurar um especialista”, onde a pessoa pode facilmente identificar o melhor especialista para o seu caso, e ganhar um cupom de desconto por usar o site para calcular seu IMC.</p>
         <p class="text-black mb-4"> A proposta de inovar e empreender, é fazer convenio com especialista nutricional, onde a pessoa que marcar a consulta com o especialista gere uma porcentagem de lucro para nós desenvolvedor do site e da inovação, e para o cliente um cupom de desconto, onde o especialista vai ter mais clientes indicados pelo site, e onde mais clientes vão procurar o site pelo fato de calcular o IMC e indicar o especialista com um cupom de desconto.</p>
-        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
       </div>
     </div>
   </div>
