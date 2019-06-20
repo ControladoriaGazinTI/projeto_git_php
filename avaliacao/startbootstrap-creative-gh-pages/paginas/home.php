@@ -20,16 +20,16 @@
       <div class="row">
           <div class="form-group col-6">
               <label>Nome:</label>
-              <input type="text" name="nome" class="form-control">
+              <input type="text" name="nome" class="form-control" required>
           </div>
           <div class="form-group col-6">
               <label>Data de nascimento:</label>
-              <input type="date" name="data_nasc" class="form-control">
+              <input type="date" name="data_nasc" class="form-control" required>
           </div>
 
           <div class="form-group col-12">
               <label>Sexo:</label>
-              <select name="sexo" class="form-control">
+              <select name="sexo" class="form-control" required>
                   <option value="0"></option>
                   <option value="1">Masculino</option>
                   <option value="2">Feminino</option>
@@ -37,15 +37,15 @@
           </div>
           <div class="form-group col-12">
               <label>CPF:</label>
-              <input type="text" name="cpf" class="form-control">
+              <input type="text" name="cpf" class="form-control" required>
           </div>
           <div class="form-group col-6">
               <label>Altura:</label>
               <input type="text" name="altura" class="form-control" required>
           </div>
           <div class="form-group col-6">
-              <label>Resultado IMC:</label>
-              <input type="text" class="form-control">
+              <label>Peso:</label>
+              <input type="text" class="form-control" name="peso">
           </div>
       </div>
       <button type="submit" name="enviar" class="btn btn-success ">Enviar</button>
