@@ -144,15 +144,29 @@ class Resultado extends Usuario
                 <table class='table table-hover table-striped text-white'>
                 <thead>
                     <tr>
+                        <th>Usuario:</th>
                         <th>IMC:</th>
                         <th>Data do teste:</th>
                         <th>Classificação:</th>
-                        <th>Usuario:</th>
-                    </tr>
+                        <th>Alimentação:</th>
+                        <th>Execicios:</th>
+                        <th>Medicamento:</th>
+                        <th>Especialista:</th>
+                        </tr>
                 </thead>
                 <tbody>
              ";
-        $sql = "SELECT *,date_format(data,'%d/%m/%Y')data FROM resultado WHERE idusuario = ? LIMIT 1";
+        $sql = "SELECT resultado_tratamento.*,
+            resultado.imc,resultado.data,resultado.classificacao,
+            tratamento.exercicio,tratamento.alimentacao,tratamento.medicamento,
+            usuario.nome as nome_usuario,
+            especialista.nome
+            from resultado_tratamento
+            INNER JOIN resultado ON resultado.id = resultado_tratamento.idresultado
+            INNER JOIN tratamento ON tratamento.id = resultado_tratamento.idtratamento
+            INNER JOIN usuario ON usuario.id = resultado.idusuario
+            INNER JOIN especialista ON tratamento.id = tratamento.id
+            WHERE idusuario = ? LIMIT 1";
         $consulta = $pdo->prepare($sql);
         $consulta->bindValue(1, $this->getIdUsuario());
         $consulta->execute();
@@ -162,14 +176,22 @@ class Resultado extends Usuario
         $imc            = $linha->imc;
         $data           = $linha->data;
         $classificacao  = $linha->classificacao;
-        $idusuario      = $linha->idusuario;
+        $alimentacao    = $linha->alimentacao;
+        $exercicio      = $linha->exercicio;
+        $medicamento    = $linha->medicamento;
+        $especialista   = $linha->nome;
+        $nome           = $linha->nome_usuario;
         //montar linhas e colunas das tabelas
         echo "
                                 <tr>
+                                    <td>$nome</td>
                                     <td>$imc</td>
                                     <td>$data</td>
                                     <td>$classificacao</td>
-                                    <td>$idusuario</td>
+                                    <td>$alimentacao</td>
+                                    <td>$exercicio</td>
+                                    <td>$medicamento</td>
+                                    <td>$especialista</td>
                                 </tr>
                             </tbody>
                         </table>

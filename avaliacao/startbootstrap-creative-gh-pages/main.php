@@ -47,7 +47,10 @@ if (!isset($pagina)) {
         <hr class="divider light my-4">
         <p class="text-black mb-4">A cada dia que passa mais pessoas se mantêm conectadas à internet através de computadores, smartphones ou tablets e a tendência é que esse número cresça ainda mais com o acesso mais facilitado a esses equipamentos. Pesquisas mostram que o número já ultrapassa 40% da população mundial.</p>
         <p class="text-black mb-4">Com esses dados é impossível ignorar a utilização desse equipamento no dia-a-dia ,ele vai facilitar o usuario encontrar um tratamento e um especialista para cada tipo de resultado dado no sistema.</p>
-
+        <div class="text-center">
+              <a class="btn btn-light btn-xl js-scroll-trigger m-3" href="https://diariodoporto.com.br/conheca-a-lei-de-inovacao-que-regulamenta-empresas-criativas-no-rio/">Leis de Inovação</a>
+              <a class="btn btn-light btn-xl js-scroll-trigger" href="https://www.significados.com.br/inovacao/">Conceitos de Inovação</a>
+        </div>
       </div>
     </div>
   </div>
