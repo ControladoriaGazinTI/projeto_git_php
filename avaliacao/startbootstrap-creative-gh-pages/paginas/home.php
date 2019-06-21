@@ -16,7 +16,7 @@
     }
     ?>
 
-  <form method="post">
+  <form method="post" class="text-white">
       <div class="row">
           <div class="form-group col-6">
               <label>Nome:</label>
@@ -41,11 +41,11 @@
           </div>
           <div class="form-group col-6">
               <label>Altura:</label>
-              <input type="text" name="altura" class="form-control" required>
+              <input type="text" name="altura" class="form-control" required onkeypress="$(this).mask('0.00')">
           </div>
           <div class="form-group col-6">
               <label>Peso:</label>
-              <input type="text" class="form-control" name="peso">
+              <input type="text" class="form-control" name="peso" onkeypress="$(this).mask('000.00')">
           </div>
       </div>
       <button type="submit" name="enviar" class="btn btn-success ">Enviar</button>
