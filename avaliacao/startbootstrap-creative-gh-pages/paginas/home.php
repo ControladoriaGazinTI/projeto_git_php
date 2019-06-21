@@ -37,7 +37,7 @@
           </div>
           <div class="form-group col-12">
               <label>CPF:</label>
-              <input type="text" name="cpf" class="form-control" required>
+              <input type="text" name="cpf" class="form-control" required onkeypress="$(this).mask('000.000.000-00')">
           </div>
           <div class="form-group col-6">
               <label>Altura:</label>

@@ -162,10 +162,10 @@ class Resultado extends Usuario
             usuario.nome as nome_usuario,
             especialista.nome
             from resultado_tratamento
-            INNER JOIN resultado ON resultado.id = resultado_tratamento.idresultado
-            INNER JOIN tratamento ON tratamento.id = resultado_tratamento.idtratamento
-            INNER JOIN usuario ON usuario.id = resultado.idusuario
-            INNER JOIN especialista ON tratamento.id = tratamento.id
+            INNER JOIN resultado    ON resultado.id     = resultado_tratamento.idresultado
+            INNER JOIN tratamento   ON tratamento.id    = resultado_tratamento.idtratamento
+            INNER JOIN usuario      ON usuario.id       = resultado.idusuario
+            INNER JOIN especialista ON tratamento.id    = tratamento.id
             WHERE idusuario = ? LIMIT 1";
         $consulta = $pdo->prepare($sql);
         $consulta->bindValue(1, $this->getIdUsuario());
