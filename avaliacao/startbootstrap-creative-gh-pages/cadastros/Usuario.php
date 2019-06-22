@@ -1,13 +1,13 @@
 <pre>
 <?php
-    
-    $tratamento = new Tratamento;
-    if(isset($_POST["enviaru"])){
-        $tratamento->setLoginEntrar($_POST["login"]);
-        $tratamento->setSenhaEntrar($_POST["senha"]);
-        $tratamento->login();
-        print_r($tratamento);
-    }
+
+$tratamento = new Tratamento;
+if (isset($_POST["enviaru"])) {
+    $tratamento->setLoginEntrar($_POST["login"]);
+    $tratamento->setSenhaEntrar($_POST["senha"]);
+    $tratamento->login();
+    print_r($tratamento);
+}
 ?>
 </pre>
 <div class="card text-center">
@@ -24,8 +24,8 @@
                 <label>Senha:</label>
                 <input type="password" class="form-control" placeholder="Senha" name="senha">
             </div>
-            <button type="submit" class="btn btn-success" name="enviaru">Entrar</button>
-            <button class="btn btn-success">
+            <button type="submit" class="btn btn-primary" name="enviaru">Entrar</button>
+            <button class="btn btn-primary">
                 <a href="cadastros/Registro" class="text-white">Regitrar</a>
             </button>
         </form>

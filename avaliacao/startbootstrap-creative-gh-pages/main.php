@@ -28,7 +28,7 @@ if (!isset($pagina)) {
 <!-- Masthead -->
 <header class="masthead">
   <div class="container h-100">
-    <div class="row h-100 align-items-center justify-content-center text-center">
+    <div class="row h-100 align-items-center justify-content-center text-center ">
       <?php
       if (file_exists($pagina)) include $pagina;
       else include "paginas/erro.php";
