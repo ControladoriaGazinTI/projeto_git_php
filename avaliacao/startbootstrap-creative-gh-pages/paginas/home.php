@@ -15,38 +15,47 @@
         $resultado->listar();
     }
     ?>
-
-  <form method="post" class="text-white">
-      <div class="row">
-          <div class="form-group col-6">
-              <label>Nome:</label>
-              <input type="text" name="nome" class="form-control" required>
-          </div>
-          <div class="form-group col-6">
-              <label>Data de nascimento:</label>
-              <input type="date" name="data_nasc" class="form-control" required>
-          </div>
-
-          <div class="form-group col-12">
-              <label>Sexo:</label>
-              <select name="sexo" class="form-control" required>
-                  <option value="0"></option>
-                  <option value="1">Masculino</option>
-                  <option value="2">Feminino</option>
-              </select>
-          </div>
-          <div class="form-group col-12">
-              <label>CPF:</label>
-              <input type="text" name="cpf" class="form-control" required onkeypress="$(this).mask('000.000.000-00')">
-          </div>
-          <div class="form-group col-6">
-              <label>Altura:</label>
-              <input type="text" name="altura" class="form-control" required onkeypress="$(this).mask('0.00')">
-          </div>
-          <div class="form-group col-6">
-              <label>Peso:</label>
-              <input type="text" class="form-control" name="peso" onkeypress="$(this).mask('000.00')">
-          </div>
+  <div class="card text-center">
+      <div class="card-header">
+          Calcule seu IMC
       </div>
-      <button type="submit" name="enviar" class="btn btn-success ">Enviar</button>
-  </form>
+      <div class="card-body">
+          <form method="post">
+              <div class="row">
+                  <div class="form-group col-6">
+                      <label>Nome:</label>
+                      <input type="text" name="nome" class="form-control" required>
+                  </div>
+                  <div class="form-group col-6">
+                      <label>Data de nascimento:</label>
+                      <input type="date" name="data_nasc" class="form-control" required>
+                  </div>
+              </div>
+              <div class="form-group ">
+                  <label>Sexo:</label>
+                  <select name="sexo" class="form-control" required>
+                      <option value="0"></option>
+                      <option value="1">Masculino</option>
+                      <option value="2">Feminino</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label>CPF:</label>
+                  <input type="text" name="cpf" class="form-control" required onkeypress="$(this).mask('000.000.000-00')">
+              </div>
+              <div class="row">
+                  <div class="form-group col-6">
+                      <label>Altura:</label>
+                      <input type="text" name="altura" class="form-control" required onkeypress="$(this).mask('0.00')">
+                  </div>
+                  <div class="form-group col-6">
+                      <label>Peso:</label>
+                      <input type="text" class="form-control" name="peso" onkeypress="$(this).mask('000.00')">
+                  </div>
+              </div>
+              <button type="submit" name="enviar" class="btn btn-primary ">Enviar</button>
+          </form>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+  </div>
