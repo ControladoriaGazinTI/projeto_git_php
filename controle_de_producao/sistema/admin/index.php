@@ -52,6 +52,7 @@ include "config/funcoes.php";
     <script type="text/javascript" src="lang/summernote-pt-BR.min.js"></script>
     <script type="text/javascript" src="js/parsley.min.js"></script>
     <script type="text/javascript" src="js/jquery.maskMoney.min.js"></script>
+    <script src="chart/chart.js@2.8.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     
 </head>
@@ -109,6 +110,27 @@ include "config/funcoes.php";
 			}
 		})
 	}
+</script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'minha tabela',
+            backgroundColor: 'rgb(255, 200, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
 </script>
 </body>
 

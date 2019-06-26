@@ -141,7 +141,7 @@ class Resultado extends Usuario
     {
         include "config/conexao.php";
         echo "
-                <table class='table table-hover table-striped text-white'>
+                <table class='table table-hover table-striped table-responsive'>
                 <thead>
                     <tr>
                         <th>Usuario:</th>
@@ -152,7 +152,7 @@ class Resultado extends Usuario
                         <th>Execicios:</th>
                         <th>Medicamento:</th>
                         <th>Especialista:</th>
-                        </tr>
+                    </tr>
                 </thead>
                 <tbody>
              ";
