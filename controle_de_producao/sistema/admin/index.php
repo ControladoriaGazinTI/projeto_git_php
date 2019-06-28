@@ -1,5 +1,5 @@
 <?php
-	//iniciar a sessao
+//iniciar a sessao
 session_start();
 //mostrar todos os erros
 ini_set("display_error", 1);
@@ -8,6 +8,23 @@ error_reporting(E_ALL);
 //incluir  banco e funções
 include "config/conexao.php";
 include "config/funcoes.php";
+
+$sql = "SELECT id FROM funcao";
+$consulta = $pdo->prepare($sql);
+$consulta->execute();
+foreach ($linha = $consulta->fetchALL(PDO::FETCH_OBJ) as $key => $value) {
+    //separar os dados 
+
+}
+print_r($linha);
+
+$array = array();
+$array[1] =  implode(',', array(1, 2, 3, 4, 5));
+$array[2] =  implode(',', array(1, 2, 3, 4, 5));
+$array[4] =  implode(array(4));
+$array[5] =  implode(array(5));
+
+var_dump(implode(',', $array));
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,9 +47,9 @@ include "config/funcoes.php";
     <!--     Fonts and icons     -->
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/summernote.min.css">
-	<link rel="stylesheet" type="text/css" href="css/summernote-lite.css">
+    <link rel="stylesheet" type="text/css" href="css/summernote-lite.css">
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
-   
+
     <!--   Core JS Files   -->
     <script type="text/javascript" src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
@@ -54,84 +71,86 @@ include "config/funcoes.php";
     <script type="text/javascript" src="js/jquery.maskMoney.min.js"></script>
     <script src="chart/chart.js@2.8.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    
+
 </head>
 
 <body>
     <?php
-		//verificar se esta logado
-	if (!isset($_SESSION["banco_tcc"]["id"])) {
-		//incluir o formulario
-		include "paginas/login.php";
-	} else {
-		//ta logado
-		$pagina = "paginas/home";
-		if (isset($_GET["param"])) {
-			$pagina = trim($_GET["param"]);
-		}
-		$p = explode("/", $pagina);
-		//posiçao 0 é pasta
-		//posição 1 é aquivo
-		//posição 2 é id 
-		$pasta = $p[0];
-		$aquivo = $p[1];
+    //verificar se esta logado
+    if (!isset($_SESSION["banco_tcc"]["id"])) {
+        //incluir o formulario
+        include "paginas/login.php";
+    } else {
+        //ta logado
+        $pagina = "paginas/home";
+        if (isset($_GET["param"])) {
+            $pagina = trim($_GET["param"]);
+        }
+        $p = explode("/", $pagina);
+        //posiçao 0 é pasta
+        //posição 1 é aquivo
+        //posição 2 é id 
+        $pasta = $p[0];
+        $aquivo = $p[1];
 
 
-		$pagina = "$pasta/$aquivo.php";
-		//pagina .=".php";
-		include "main.php";
-	}
-	?>
+        $pagina = "$pasta/$aquivo.php";
+        //pagina .=".php";
+        include "main.php";
+    }
+    ?>
     </main>
     <script>
-    $(document).ready(function() {
-    $('.table').DataTable({
-        "language": {
-            "lengthMenu": "Exibir: _MENU_ registros",
-            "zeroRecords": "Nada encontrado desculpe!!!",
-            "info": "Páginação _PAGE_ de _PAGES_",
-            "infoEmpty": "No records available",
-            "infoFiltered": "(filtered from _MAX_ total records)",
-            "search":"buscar"
-            }
+        $(document).ready(function() {
+            $('.table').DataTable({
+                "language": {
+                    "lengthMenu": "Exibir: _MENU_ registros",
+                    "zeroRecords": "Nada encontrado desculpe!!!",
+                    "info": "Páginação _PAGE_ de _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "search": "buscar"
+                }
+            });
         });
-    } );
-</script>
-<script>
-    function validaCpf(cpf) {
-		$.get("validacpf.php",{cpf:cpf},function(dados){
-			//testar
-			//alert(dados);
-			if ( dados != 1 ) {
-				//exibir mensagem
-				alert(dados);
-				//apagar o cpf
-				$("#cpf".val(""));
-			}
-		})
-	}
-</script>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
+    </script>
+    <script>
+        function validaCpf(cpf) {
+            $.get("validacpf.php", {
+                cpf: cpf
+            }, function(dados) {
+                //testar
+                //alert(dados);
+                if (dados != 1) {
+                    //exibir mensagem
+                    alert(dados);
+                    //apagar o cpf
+                    $("#cpf".val(""));
+                }
+            })
+        }
+    </script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
 
-    // The data for our dataset
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'minha tabela',
-            backgroundColor: 'rgb(255, 200, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-    },
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'minha tabela',
+                    backgroundColor: 'rgb(255, 200, 200)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [<?php print_r(implode(',', $array)); ?>]
+                }]
+            },
 
-    // Configuration options go here
-    options: {}
-});
-</script>
+            // Configuration options go here
+            options: {}
+        });
+    </script>
 </body>
 
-</html> 
+</html> 7
