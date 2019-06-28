@@ -9,22 +9,15 @@ error_reporting(E_ALL);
 include "config/conexao.php";
 include "config/funcoes.php";
 
-$sql = "SELECT id FROM funcao";
+$sql = "SELECT * FROM funcionario";
 $consulta = $pdo->prepare($sql);
 $consulta->execute();
-foreach ($linha = $consulta->fetchALL(PDO::FETCH_OBJ) as $key => $value) {
+print_r($consulta);
+foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     //separar os dados 
-
+    $teste[] = $value->id ;
+    $teste1[] = $value->nome;
 }
-print_r($linha);
-
-$array = array();
-$array[1] =  implode(',', array(1, 2, 3, 4, 5));
-$array[2] =  implode(',', array(1, 2, 3, 4, 5));
-$array[4] =  implode(array(4));
-$array[5] =  implode(array(5));
-
-var_dump(implode(',', $array));
 ?>
 <!DOCTYPE html>
 <html>
@@ -134,16 +127,16 @@ var_dump(implode(',', $array));
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
             // The type of chart we want to create
-            type: 'bar',
+            type: 'line',
 
             // The data for our dataset
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'January', 'February', 'March', 'April', 'May'],
+                labels: ['<?php print_r(implode("','",$teste1)); ?>'],
                 datasets: [{
                     label: 'minha tabela',
                     backgroundColor: 'rgb(255, 200, 200)',
                     borderColor: 'rgb(255, 99, 132)',
-                    data: [<?php print_r(implode(',', $array)); ?>]
+                    data: [<?php print_r(implode(',',$teste)); ?>]
                 }]
             },
 
@@ -153,4 +146,4 @@ var_dump(implode(',', $array));
     </script>
 </body>
 
-</html> 7
+</html> 
