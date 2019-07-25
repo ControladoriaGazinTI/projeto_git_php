@@ -59,6 +59,11 @@ if (!isset($pagina)) {
                                 <span class="sidebar-normal">Cadastrar categoria de produto</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="profile-dropdown" href="cadastros/pedido">
+                                <span class="sidebar-normal">Cadastrar Pedido</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <li>

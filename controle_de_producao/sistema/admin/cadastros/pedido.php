@@ -7,93 +7,90 @@
             <form method="POST" action="salvar/pedido">
                 <div class="form-group">
                     <label for="id">ID:</label>
-                    <input type="text" class="form-control" name="id" readonly value="">
+                    <input 
+                        name  = "id" 
+                        type  = "text" 
+                        class = "form-control" 
+                        readonly
+                    >
                 </div>
                 <div class="form-group">
                     <label>Cliente:</label>
-                    <select name="cliente" id="" class="form-control" required="">
+                    <select 
+                        name    = "cliente" 
+                        class   = "form-control" 
+                        required= ""
+                    >
                         <option value="">Selecione um cliente:</option>
                         <?php
-                                                                                        //selecionar os dados do tipo do quadrinhos
-                                                                                        $sql = "SELECT * FROM cliente ORDER BY nome_cli";
-                                                                                        $consulta = $pdo->prepare($sql);
-                                                                                        $consulta->execute();
-                                                                                        //laço de repetição para separar  as Linhas
-                                                                                        while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                                                                            //separar os dados 
-                                                                                            $id = $linha->idcliente;
-                                                                                            $nome  = $linha->nome_cli;
-
-                                                                                            //montar linhas e colunas das tabelas
-                                                                                            echo
-                                                                                                "
-                                       <option value='$id'>$nome</option>   
-                                   ";
-                                                                                        }
-                                                                                        ?>
+                            carregarOpcoes("id","cliente","nome");
+                        ?>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Produto:</label>
-                    <select name="produto" id="" class="form-control" required="">
-                        <option value="">Selecione um cliente:</option>
+                    <select 
+                        name        = "produto" 
+                        class       = "form-control" 
+                        required    = ""
+                    >
+                        <option value="">Selecione um Produto:</option>
                         <?php
-                                                                                        //selecionar os dados do tipo do quadrinhos
-                                                                                        $sql = "SELECT * FROM produto ORDER BY nome";
-                                                                                        $consulta = $pdo->prepare($sql);
-                                                                                        $consulta->execute();
-                                                                                        //laço de repetição para separar  as Linhas
-                                                                                        while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                                                                            //separar os dados 
-                                                                                            $id = $linha->idproduto;
-                                                                                            $nome  = $linha->nome;
-
-                                                                                            //montar linhas e colunas das tabelas
-                                                                                            echo
-                                                                                                "
-                                       <option value='$id'>$nome</option>   
-                                   ";
-                                                                                        }
-                                                                                        ?>
+                            carregarOpcoes("id","produto","nome");
+                        ?>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Prioridade do pedido:</label>
-                    <select name="prioridade" id="" class="form-control" required="">
-                        <option value="">Selecione uma prioridade:</option>
-                        <?php
-                                                                                        //selecionar os dados do tipo do quadrinhos
-                                                                                        $sql = "SELECT * FROM prioridade ORDER BY nome_prio";
-                                                                                        $consulta = $pdo->prepare($sql);
-                                                                                        $consulta->execute();
-                                                                                        //laço de repetição para separar  as Linhas
-                                                                                        while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                                                                            //separar os dados 
-                                                                                            $id = $linha->idprioridade;
-                                                                                            $nome  = $linha->nome_prio;
-
-                                                                                            //montar linhas e colunas das tabelas
-                                                                                            echo
-                                                                                                "
-                                       <option value='$id'>$nome</option>   
-                                   ";
-                                                                                        }
-                                                                                        ?>
+                    <select 
+                        name        = "prioridade" 
+                        class       = "form-control" 
+                        required    = ""
+                    >
+                        <option value= "">Selecione uma prioridade:</option>
+                        <option value= "1">Baixa</option>
+                        <option value= "2">Media</option>
+                        <option value= "3">Alta</option>
+                        ?>
                     </select>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-5">
                         <label for="">Data de lançamento do Pedido:</label>
-                        <input type="date" class="form-control" required="required" name="data_lan">
+                        <input 
+                            name        = "data_lan"
+                            type        = "date" 
+                            class       = "form-control" 
+                            required    = "required" 
+                        >
                     </div>
                     <div class="form-grop col-md-5">
                         <label for="">Data de entrega do pedido:</label>
-                        <input type="date" class="form-control" required="required" name="data_ent">
+                        <input 
+                            name        = "data_ent"
+                            type        = "date" 
+                            class       = "form-control" 
+                            required    = "required" 
+                        >
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="">Quatidade do pedido:</label>
-                    <input type="number" class="form-control" required="required" name="qtde">
+                    <input 
+                        name        = "qtde"
+                        type        = "number" 
+                        class       = "form-control" 
+                        required    = "required" 
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="">Valor:</label>
+                    <input 
+                        name        = "valor"
+                        type        = "number" 
+                        class       = "form-control" 
+                        required    = "required" 
+                    >
                 </div>
         </div>
         <div class="card-footer pd-15">

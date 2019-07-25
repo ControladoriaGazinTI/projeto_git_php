@@ -141,23 +141,30 @@
 	//$tabela nome tabela
 	//$nome do campo que sera mostrado na tela
 	//$pdo conexao com banco de dados
-	function carregarOpcoes($id,$tabela,$campo,$pdo){
-		echo $sql = "SELECT $id AS id , $campo AS nome
-		FROM ? 
-		ORDER BY ?";
+	function carregarOpcoes($id,$tabela,$campo){
+		
+		include 'conexao.php';
+	    $sql = "SELECT $id as id , $campo as campo FROM $tabela  ORDER BY $campo";
 		$consulta = $pdo->prepare($sql);
-		$consulta->bindParam(1, $id);
-		$consulta->bindParam(2, $campo);
-		$consulta->bindParam(3, $tabela);
-		$consulta->bindParam(4, $campo);
-		$consulta->execute();
 
-		while ($dados = $consulta->fetch(POO::FETCH_OBJ)){
-			//recuperar as variaveis 
-			   $id = $dados->id;
-			   $nome = $dados->nome;
-			   echo "<option value='$id'>$nome</option>";
+		if($consulta->execute()){
+
+			while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
+				//separar os dados 
+				$idParametro = $linha->id;
+				$nomeParametro  = $linha->campo;
+				
+				//montar linhas e colunas das tabelas
+				echo 
+					"
+						<option value='$idParametro'>$nomeParametro</option>   
+					";
+			}
+		}else {
+				echo "errorooooooooo";
 		}
+
+		
 	}
 	
 
