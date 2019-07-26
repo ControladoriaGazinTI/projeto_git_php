@@ -6,7 +6,7 @@ if (!isset($pagina)) {
 <!--container-->
 <div class="wrapper">
     <!--começo da div class sidebar-->
-    <div class="sidebar" data-color="red" data-image="assets/img/sidebar-4.jpg">
+    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-4.jpg">
         <!--
 
             Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"

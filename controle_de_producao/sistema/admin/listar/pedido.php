@@ -8,18 +8,21 @@ else
 <div class="col-md-12">
     <div class="card pd-15">
         <div class="header">
-            <h4 class="title">Produto</h4>
+            <h4 class="title">Pedido a serem feitos:</h4>
         </div>
-        <div class="content table-responsive table-full-width">
-            <table class="table table-hover table-striped">
+        <div class="content table-responsive  table-full-width">
+            <table class="table table-hover table-striped ">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nome cliente</th>
-                        <th>Quatidade do Pedido</th>
+                        <th>Login</th>
                         <th>Produto</th>
-                        <th>Prioridade</th>
+                        <th>cliente</th>
+                        <th>Quatidade</th>
+                        <th>Valor</th>
                         <th>Data de entrega</th>
+                        <th>Data de Lançamento</th>
+                        <th>Prioridade</th>
+                        <th>Status</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
@@ -27,36 +30,59 @@ else
                 <?php
                     //selecionar os dados do tipo do quadrinhos
                 $sql =
-               "SELECT pedido.*, date_format(data_entrega,'%d/%m/%Y')data_entrega , nome_cli , nome,nome_prio
-               FROM pedido
-               INNER JOIN cliente ON cliente.idcliente =  pedido.idcliente
-               INNER jOIN produto ON produto.idproduto = pedido.idproduto
-               INNER JOIN prioridade ON prioridade.idprioridade = pedido.idprioridade";
+               "SELECT 
+                    item_pedido.qtde,item_pedido.valor,item_pedido.prioridade
+                    ,pedido.data_entrega,pedido.data_lancamento,pedido.status
+                    ,cliente.nome as nome_cliente
+                    ,produto.nome as nome_produto
+                    ,funcionario.login
+                FROM item_pedido
+                INNER JOIN  pedido on pedido.id = item_pedido.idpedido
+                INNER JOIN  cliente on cliente.id = pedido.idcliente
+                INNER JOIN  produto on produto.id = item_pedido.idproduto
+                INNER JOIN funcionario on funcionario.id = pedido.idfuncionario
+                where pedido.status = 0
+               ";
                 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
                 //laço de repetição para separar  as Linhas
                 while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
                     //separar os dados 
-                    $id            = $linha->idpedido;
-                    $qtde          = $linha->qtde_pedido;
+                    $login         = $linha->login;
+                    $nomeCliente   = $linha->nome_cliente;
+                    $nomeProduto   = $linha->nome_produto;
+                    $qtde          = $linha->qtde;
+                    $valor         = $linha->valor;
                     $dataEnt       = $linha->data_entrega;
-                    $nomeCliente   = $linha->nome_cli;
-                    $nomeProduto   = $linha->nome;
-                    $prioridade    = $linha->nome_prio;
+                    $dataLan       = $linha->data_lancamento;
+                    $prioridade    = $linha->prioridade;
+                    $status        = $linha->status;
                     //montar linhas e colunas das tabelas
+                    $valor = formataValor($valor);
+                    $dataEnt = date('d/m/Y', strtotime($dataEnt));
+                    $dataLan = date('d/m/Y', strtotime($dataLan));
+                    if ($status) {
+                        $status = "Concluido";
+                        $color = "bg-success";
+                    }else{
+                        $status = "Em andamento";
+                        $color = "light";
+                    }
                     echo
                         "
-                            <tr>
-                                <td>$id</td>
+                            <tr class='$color'>
+                                <td>$login</td>
                                 <td>$nomeCliente</td>
-                                <td>$qtde</td>
                                 <td>$nomeProduto</td>
-                                <td>$prioridade</td>
+                                <td>$qtde</td>
+                                <td>$valor</td>
                                 <td>$dataEnt</td>
+                                <td>$dataLan</td>
+                                <td>$prioridade</td>
+                                <td>$status</td>
                                 <td>
-                                    <a href='cadastros/pedido/$id' class='btn btn-success'><i class='pe-7s-pen'></i></a>
-                                    <a href='javascript:excluir($id)' class='btn btn-danger'><i class='pe-7s-trash'></i></a> 
+                                    <a href='javascript:excluir()' class='btn btn-fill btn-success'>Finalizar Pedido</a> 
                                 </td>
                             </tr>
                          ";
