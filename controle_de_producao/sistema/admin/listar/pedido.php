@@ -32,7 +32,7 @@ else
                 $sql =
                "SELECT 
                     item_pedido.qtde,item_pedido.valor,item_pedido.prioridade
-                    ,pedido.data_entrega,pedido.data_lancamento,pedido.status
+                    ,pedido.data_entrega,pedido.data_lancamento,pedido.status,pedido.id
                     ,cliente.nome as nome_cliente
                     ,produto.nome as nome_produto
                     ,funcionario.login
@@ -49,6 +49,7 @@ else
                 //laço de repetição para separar  as Linhas
                 while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
                     //separar os dados 
+                    $id            = $linha->id;
                     $login         = $linha->login;
                     $nomeCliente   = $linha->nome_cliente;
                     $nomeProduto   = $linha->nome_produto;
@@ -82,7 +83,7 @@ else
                                 <td>$prioridade</td>
                                 <td>$status</td>
                                 <td>
-                                    <a href='javascript:excluir()' class='btn btn-fill btn-success'>Finalizar Pedido</a> 
+                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-success'>Finalizar Pedido</a> 
                                 </td>
                             </tr>
                          ";
@@ -97,7 +98,7 @@ else
 <script type="text/javascript">
         //funçao em java script para perguntar se que mesmo exluir
         function excluir(id) {
-            if (confirm("Deseja mesmo excluir? Tem certeza?")) {
+            if (confirm("Deseja Finalizar esse pedido? Tem certeza?")) {
                 location.href = "excluir/pedido/" + id;
             }
         }
