@@ -11,7 +11,7 @@ if(isset($p[2])){
     //var_dump($id);
     //var_dump($p);
     //excluir o quadrinho
-    $sql = "UPDATE pedido SET status = 1 WHERE pedido.id = ?";
+    $sql = "UPDATE item_pedido SET status = 1 WHERE idpedido = ?";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(1,$id);
    
