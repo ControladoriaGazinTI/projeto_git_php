@@ -31,37 +31,42 @@ if (!isset($pagina)) {
                     <ul class="nav">
                         <li>
                             <a class="profile-dropdown" href="cadastros/cliente">
-                                <span class="sidebar-normal">Cadastrar cliente</span>
+                                <span class="sidebar-normal">Cliente</span>
                             </a>
                         </li>
                         <li>
                             <a class="profile-dropdown" href="cadastros/funcionario">
-                                <span class="sidebar-normal">Cadastrar funcionario</span>
+                                <span class="sidebar-normal">Funcionario</span>
                             </a>
                         </li>
                         <li>
                             <a class="profile-dropdown" href="cadastros/funcao">
-                                <span class="sidebar-normal">Cadastrar Função</span>
+                                <span class="sidebar-normal">Função</span>
                             </a>
                         </li>
                         <li>
                             <a class="profile-dropdown" href="cadastros/peca">
-                                <span class="sidebar-normal">Cadastrar peças</span>
+                                <span class="sidebar-normal">Peças</span>
                             </a>
                         </li>
                         <li>
                             <a class="profile-dropdown" href="cadastros/produto">
-                                <span class="sidebar-normal">Cadastrar produto</span>
+                                <span class="sidebar-normal">Produto</span>
                             </a>
                         </li>
                         <li>
                             <a class="profile-dropdown" href="cadastros/categoria">
-                                <span class="sidebar-normal">Cadastrar categoria de produto</span>
+                                <span class="sidebar-normal">Categoria de produto</span>
                             </a>
                         </li>
                         <li>
                             <a class="profile-dropdown" href="cadastros/pedido">
-                                <span class="sidebar-normal">Cadastrar Pedido</span>
+                                <span class="sidebar-normal">Pedido</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="profile-dropdown" href="cadastros/producao">
+                                <span class="sidebar-normal">Produção</span>
                             </a>
                         </li>
                     </ul>
