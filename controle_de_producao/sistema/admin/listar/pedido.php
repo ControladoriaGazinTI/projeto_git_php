@@ -11,7 +11,7 @@ else
             <h4 class="title">Pedido a serem feitos:</h4>
         </div>
         <div class="content table-responsive  table-full-width">
-            <table class="table table-hover table-striped ">
+            <table class="table table-hover  ">
                 <thead>
                     <tr>
                         <th>Login</th>
@@ -41,7 +41,7 @@ else
                 INNER JOIN  cliente on cliente.id = pedido.idcliente
                 INNER JOIN  produto on produto.id = item_pedido.idproduto
                 INNER JOIN funcionario on funcionario.id = pedido.idfuncionario
-                where pedido.status = 0
+                
                ";
                 
                 $consulta = $pdo->prepare($sql);

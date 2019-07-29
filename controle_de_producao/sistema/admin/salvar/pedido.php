@@ -1,6 +1,6 @@
-<pre>
+
 <?php
- //verificar se a sessão esta ativa
+//verificar se a sessão esta ativa
 if (file_exists("verificalogin.php"))
     include "verificalogin.php";
 else
@@ -21,41 +21,82 @@ if ($_POST) {
         //echo "<p>$key $value</p>";
         //$key - nome do campo
         //$value - valor do campo (digitado)
-        if ( isset ( $_POST[$key] ) ) {
-            $$key = trim ( $value );
-        } 
-       
+        if (isset($_POST[$key])) {
+            $$key = trim($value);
+        }
     }
+
+
     if (empty($id)) {
         $pdo->beginTransaction();
         $sql = "INSERT INTO pedido VALUES (NULL,?,?,?,?,?)";
         $consulta = $pdo->prepare($sql);
-        $consulta->bindParam(1,$data_ent);
-        $consulta->bindParam(2,$data_lan);
-        $consulta->bindParam(3,$status);
-        $consulta->bindParam(4,$cliente);
-        $consulta->bindParam(5,$idFuncionario);
+        $consulta->bindParam(1, $data_ent);
+        $consulta->bindParam(2, $data_lan);
+        $consulta->bindParam(3, $status);
+        $consulta->bindParam(4, $cliente);
+        $consulta->bindParam(5, $idFuncionario);
         if ($consulta->execute()) {
-            $pdo->lastInsertId();
-            $sql = "INSERT INTO item_pedido VALUES (?,?,?,?,?)";
+            $last = $pdo->lastInsertId();
+            $sql = "SELECT 
+                qtde 
+                FROM produto
+                WHERE produto.id = ?
+            ";
             $consulta = $pdo->prepare($sql);
-            $consulta->bindValue(1,$pdo->lastInsertId());
-            $consulta->bindParam(2,$produto);
-            $consulta->bindParam(3,$qtde);
-            $consulta->bindParam(4,$valor);
-            $consulta->bindParam(5,$prioridade);
-            if($consulta->execute()){
-                $pdo->commit();
-                sucesso("Cadastrado com sucesso!!!","listar/pedido");
-            }else{
-                $pdo->rollBack();
+            $consulta->bindParam(1, $produto);
+            $consulta->execute();
+            $linha = $consulta->fetch(PDO::FETCH_OBJ);
+            $qtde_pdt_estoque = $linha->qtde;
+            if ($qtde_pdt_estoque > $qtde) {
+                $qtde_pdt_estoque -= $qtde;
+                $status = true;
+                $sql = "UPDATE produto SET qtde = ? WHERE id = ?  ";
+                $consulta = $pdo->prepare($sql);
+                $consulta->bindParam(1,$qtde_pdt_estoque);
+                $consulta->bindParam(2, $produto);
+                if ($consulta->execute()) {
+                    $sql = "INSERT INTO item_pedido VALUES (?,?,?,?,?,?)";
+                    $consulta = $pdo->prepare($sql);
+                    $consulta->bindValue(1, $last);
+                    $consulta->bindParam(2, $produto);
+                    $consulta->bindParam(3, $qtde);
+                    $consulta->bindParam(4, $valor);
+                    $consulta->bindParam(5, $prioridade);
+                    $consulta->bindParam(6, $status);
+                    if ($consulta->execute()) {
+                        $pdo->commit();
+                        sucesso("Cadastrado com sucesso!!!", "listar/pedido");
+                    } else {
+                        $pdo->rollBack();
+                        mensagem("ERRO ao inserir no banco de dados!!!");
+                    }
+                } else {
+                    echo "algum erro!!!";
+                }
+                if ($consulta->execute()) {
+                    $pdo->lastInsertId();
+                    $sql = "INSERT INTO item_pedido VALUES (?,?,?,?,?)";
+                    $consulta = $pdo->prepare($sql);
+                    $consulta->bindValue(1, $pdo->lastInsertId());
+                    $consulta->bindParam(2, $produto);
+                    $consulta->bindParam(3, $qtde);
+                    $consulta->bindParam(4, $valor);
+                    $consulta->bindParam(5, $prioridade);
+                    if ($consulta->execute()) {
+                        $pdo->commit();
+                        sucesso("Cadastrado com sucesso!!!", "listar/pedido");
+                    } else {
+                        $pdo->rollBack();
+                        mensagem("ERRO ao inserir no banco de dados!!!");
+                    }
+                }
+            } else {
+                $pdo->rollback();
                 mensagem("ERRO ao inserir no banco de dados!!!");
             }
-
-        }else {
-            $pdo->rollback();
-            mensagem("ERRO ao inserir no banco de dados!!!");
+        }else{
+            echo "erro";
         }
     }
 }
- 

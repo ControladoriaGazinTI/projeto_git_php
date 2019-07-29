@@ -37,7 +37,7 @@ if ($_POST) {
             //verifica se trouxe algum resultado
             if (!password_verify($senha, $dados->senha)) {
                 $msg = "Senha invalida!!!";
-                menssagem($msg);
+                mensagem($msg);
             } else {
                 $_SESSION["banco_tcc"] = array(
                     "id" => $dados->id,
@@ -47,7 +47,7 @@ if ($_POST) {
         } else {
             //se nao trouxe resultado
             $msg = "Usuário inexistente ou desativado";
-            menssagem($msg);
+            mensagem($msg);
         }
         //redirecionar a tela para home
         echo "<script>location.href='paginas/home'</script>";
