@@ -92,7 +92,9 @@ else
                 ?>
                 </tbody>
             </table>
-
+            <h5>
+                <a href="cadastros/cliente" class="btn btn-fill btn-success"><i class="pe-7s-angle-left"></i>Voltar</a>
+            </h5>
         </div>
     </div>
 </div> 
