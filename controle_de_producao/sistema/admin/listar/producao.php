@@ -65,7 +65,7 @@ else
                         $status = "Concluido";
                         $color = "bg-success";
                     }else{
-                        $status = "Em andamento";
+                        $status = "Em Produção";
                         $color = "light";
                     }
                     echo

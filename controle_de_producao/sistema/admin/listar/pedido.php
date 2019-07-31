@@ -1,5 +1,7 @@
+
+<meta http-equiv="refresh" content="5">
 <?php
- //verificar se a sessão esta ativa
+//verificar se a sessão esta ativa
 if (file_exists("verificalogin.php"))
     include "verificalogin.php";
 else
@@ -27,52 +29,85 @@ else
                     </tr>
                 </thead>
                 <tbody>
-                <?php
+                    <?php
+                    
                     //selecionar os dados do tipo do quadrinhos
-                $sql =
-               "SELECT 
-                    item_pedido.qtde,item_pedido.valor,item_pedido.prioridade
-                    ,pedido.data_entrega,pedido.data_lancamento,pedido.status,pedido.id
+                    $sql =
+                        "SELECT 
+                    item_pedido.qtde,item_pedido.valor,item_pedido.prioridade,item_pedido.status
+                    ,pedido.data_entrega,pedido.data_lancamento,pedido.id
                     ,cliente.nome as nome_cliente
-                    ,produto.nome as nome_produto
+                    ,produto.nome as nome_produto, produto.qtde as qtde_produto, produto.id as idproduto
                     ,funcionario.login
                 FROM item_pedido
                 INNER JOIN  pedido on pedido.id = item_pedido.idpedido
                 INNER JOIN  cliente on cliente.id = pedido.idcliente
                 INNER JOIN  produto on produto.id = item_pedido.idproduto
                 INNER JOIN funcionario on funcionario.id = pedido.idfuncionario
-                WHERE item_pedido.status = 0
-                
+                WHERE item_pedido.status = 0;
                ";
-                
-                $consulta = $pdo->prepare($sql);
-                $consulta->execute();
-                //laço de repetição para separar  as Linhas
-                while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    //separar os dados 
-                    $id            = $linha->id;
-                    $login         = $linha->login;
-                    $nomeCliente   = $linha->nome_cliente;
-                    $nomeProduto   = $linha->nome_produto;
-                    $qtde          = $linha->qtde;
-                    $valor         = $linha->valor;
-                    $dataEnt       = $linha->data_entrega;
-                    $dataLan       = $linha->data_lancamento;
-                    $prioridade    = $linha->prioridade;
-                    $status        = $linha->status;
-                    //montar linhas e colunas das tabelas
-                    $valor = formataValor($valor);
-                    $dataEnt = date('d/m/Y', strtotime($dataEnt));
-                    $dataLan = date('d/m/Y', strtotime($dataLan));
-                    if ($status) {
-                        $status = "Concluido";
-                        $color = "bg-success";
-                    }else{
-                        $status = "Em andamento";
-                        $color = "light";
-                    }
-                    echo
-                        "
+
+                    $consulta = $pdo->prepare($sql);
+                    $consulta->execute();
+                    //laço de repetição para separar  as Linhas
+                    while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
+                        //separar os dados 
+                        $id            = $linha->id;
+                        $idproduto     = $linha->idproduto;
+                        $login         = $linha->login;
+                        $nomeCliente   = $linha->nome_cliente;
+                        $nomeProduto   = $linha->nome_produto;
+                        $qtde_pdt_estoque  = $linha->qtde_produto;
+                        $qtde          = $linha->qtde;
+                        $valor         = $linha->valor;
+                        $dataEnt       = $linha->data_entrega;
+                        $dataLan       = $linha->data_lancamento;
+                        $prioridade    = $linha->prioridade;
+                        $status        = $linha->status;
+                        //montar linhas e colunas das tabelas
+                        $valor = formataValor($valor);
+                        $dataEnt = date('d/m/Y', strtotime($dataEnt));
+                        $dataLan = date('d/m/Y', strtotime($dataLan));
+                        
+                        if ($qtde_pdt_estoque >= $qtde) {
+                            $pdo->beginTransaction();
+                            $conta = $qtde_pdt_estoque - $qtde;  
+                            $status = true;
+                            $sql = "UPDATE produto SET qtde = ? WHERE produto.id = ?";
+                            $update = $pdo->prepare($sql);
+                            $update->bindParam(1,$conta);
+                            $update->bindParam(2,$idproduto);
+                            if($update->execute()){
+                                $sql = "UPDATE item_pedido SET status = ? WHERE item_pedido.idpedido = ? AND item_pedido.idproduto = ?";
+                                $update = $pdo->prepare($sql);
+                                $update->bindParam(1,$status);
+                                $update->bindParam(2,$id);
+                                $update->bindParam(3,$idproduto);
+                                if ($update->execute()) {
+                                    $pdo->commit();
+                                }else {
+                                    $pdo->rollBack();
+                                    print_r($update->errorInfo());
+                                }
+                                
+                            }else{
+                                $pdo->rollBack();
+                                print_r($update->errorInfo());
+                            }
+                        }else {
+                            $conta =  $qtde - $qtde_pdt_estoque;  
+                            echo"Falta para fechar o pedido: ".$conta;
+                        }
+                       
+                        if ($status) {
+                            $status = "Concluido";
+                            $color = "bg-success";
+                        } else {
+                            $status = "Em andamento";
+                            $color = "light";
+                        }
+                        echo
+                            "
                             <tr class='$color'>
                                 <td>$login</td>
                                 <td>$nomeCliente</td>
@@ -88,8 +123,8 @@ else
                                 </td>
                             </tr>
                          ";
-                }
-                ?>
+                    }
+                    ?>
                 </tbody>
             </table>
             <h5>
@@ -97,12 +132,12 @@ else
             </h5>
         </div>
     </div>
-</div> 
+</div>
 <script type="text/javascript">
-        //funçao em java script para perguntar se que mesmo exluir
-        function excluir(id) {
-            if (confirm("Deseja Finalizar esse pedido? Tem certeza?")) {
-                location.href = "excluir/pedido/" + id;
-            }
+    //funçao em java script para perguntar se que mesmo exluir
+    function excluir(id) {
+        if (confirm("Deseja Finalizar esse pedido? Tem certeza?")) {
+            location.href = "excluir/pedido/" + id;
         }
-    </script>
+    }
+</script>
