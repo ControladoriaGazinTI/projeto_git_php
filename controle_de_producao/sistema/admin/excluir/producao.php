@@ -7,6 +7,7 @@ else
 //verificar se esta sendo enviado o id
 if (isset($p[2])) {
     $id = (int) $p[2];
+    $idproduto = (int) $p[3];
     //echo"<pre>";
     //var_dump($id);
     //var_dump($p);
@@ -22,26 +23,44 @@ if (isset($p[2])) {
             ";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(1, $id);
-     if ($consulta->execute()) {
+    if ($consulta->execute()) {
         $linha = $consulta->fetch(PDO::FETCH_OBJ);
         $qtde = $linha->qtde;
         $qtdePerda = $linha->qtde_perda;
         $conta = $qtde - $qtdePerda;
+        $sql = "SELECT qtde  from produto where id = ?";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(1 ,$idproduto);
+        if($consulta->execute()){
+        $linha = $consulta->fetch(PDO::FETCH_OBJ);
+        $qtde = $linha->qtde;
+        $conta = $conta + $qtde;
+        }else {
+            print_r($consulta->errorInfo());
+        }
         $sql = "UPDATE item_producao SET status = 1 WHERE idproducao = ?";
         $consulta = $pdo->prepare($sql);
-        $consulta->bindParam(1,$id);
-        if($consulta->execute()){
-            $pdo->commit();
-            mensagem("Produção finalizada!!");
-        }else {
+        $consulta->bindParam(1, $id);
+        if ($consulta->execute()) {
+            $sql = "UPDATE produto SET qtde = ? WHERE id = ?";
+            $consulta = $pdo->prepare($sql);
+            $consulta->bindParam(1, $conta);
+            $consulta->bindParam(2, $idproduto);
+            if ($consulta->execute()) {
+                $pdo->commit();
+                mensagem("Produção finalizado com sucesso!!!");
+            } else {
+                $pdo->rollback();
+                print_r($consulta->errorInfo());
+            }
+        } else {
             $pdo->rollBack();
             print_r($consulta->errorInfo());
         }
     } else {
-        $msg = "ERRO ao Finalizar o pedido!!!";
-        mensagem($msg);
+        $pdo->rollBack();
+        print_r($consulta->errorInfo());
     }
 } else {
-    $msg = "Ocorreu um erro ao atualizar!!!";
-    mensagem($msg);
+    $msg = "Erro parametro!!!";
 }

@@ -25,7 +25,6 @@ if ($_POST) {
             $$key = trim($value);
         }
     }
-    print_r($idfuncionario);
     if (empty($id)) {
         $pdo->beginTransaction();
         $sql = "INSERT INTO producao VALUES (NULL,?,?,?,?)";
@@ -56,6 +55,11 @@ if ($_POST) {
                 $pdo->rollBack();
                 print_r($insert->errorInfo());
             }
+        }else {
+            $pdo->rollBack();
+            print_r($insert->errorInfo());
         }
+    }else {
+        # code...
     }
 }

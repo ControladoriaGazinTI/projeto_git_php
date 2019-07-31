@@ -34,10 +34,12 @@ else
                     ,item_producao.observacao
                     ,producao.id
                     ,funcionario.nome
+                    ,produto.id as idproduto
                 FROM
                     item_producao
                 INNER JOIN producao on producao.id = item_producao.idproducao
                 INNER JOIN funcionario on funcionario.id = item_producao.idfuncionario  
+                INNER JOIN produto on produto.id = item_producao.idproduto
                 WHERE
                     item_producao.status = 0;
                     ,
@@ -50,6 +52,7 @@ else
                 while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
                     //separar os dados 
                     $id                 = $linha->id;
+                    $idproduto          = $linha->idproduto;
                     $nomeFuncionario    = $linha->nome;
                     $qtde               = $linha->qtde;
                     $qtdePerda          = $linha->qtde_perda;
@@ -75,7 +78,7 @@ else
                                 <td>$observacao</td>
                                 <td>$status</td>
                                 <td>
-                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-success'>Finalizar Produção</a> 
+                                    <a href='javascript:excluir($id,$idproduto)' class='btn btn-fill btn-success'>Finalizar Produção</a> 
                                 </td>
                             </tr>
                          ";
@@ -91,9 +94,9 @@ else
 </div> 
 <script type="text/javascript">
         //funçao em java script para perguntar se que mesmo exluir
-        function excluir(id) {
+        function excluir(id,idproduto) {
             if (confirm("Deseja Finalizar esse pedido? Tem certeza?")) {
-                location.href = "excluir/producao/" + id;
+                location.href = "excluir/producao/" + id + "/" + idproduto;
             }
         }
     </script>
