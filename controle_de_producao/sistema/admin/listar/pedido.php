@@ -1,3 +1,5 @@
+
+<meta http-equiv="refresh" content="5">
 <?php
 //verificar se a sessão esta ativa
 if (file_exists("verificalogin.php"))
