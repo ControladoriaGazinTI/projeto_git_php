@@ -42,7 +42,7 @@ else
                 INNER JOIN  cliente on cliente.id = pedido.idcliente
                 INNER JOIN  produto on produto.id = item_pedido.idproduto
                 INNER JOIN funcionario on funcionario.id = pedido.idfuncionario
-                              
+                WHERE item_pedido.status = 0;
                ";
 
                     $consulta = $pdo->prepare($sql);
@@ -93,7 +93,8 @@ else
                                 print_r($update->errorInfo());
                             }
                         }else {
-                            echo"não tem produto no estoque";
+                            $conta =  $qtde - $qtde_pdt_estoque;  
+                            echo"Falta para fechar o pedido: ".$conta;
                         }
                        
                         if ($status) {
