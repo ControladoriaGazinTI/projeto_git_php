@@ -1,10 +1,10 @@
 <?php
 	//conexao com o banco de dados
 	$conexao = mysqli_connect(
-		"172.16.1.215",
-		"1234",
-		"1234",
-		"1234_hqs"
+		"localhost",
+		"root",
+		"",
+		"banco_sistema"
 	);	
 	//servidor, usuario do banco, senha do usuario, banco de dados
 
@@ -48,7 +48,8 @@
 	<title>HQLandia - <?=$titulo;?></title>
 	<meta charset="utf-8">
 
-	<base href="http://localhost/2019/3si/sistema-full/">
+	<base href="http://<?=$_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME']?>">
+
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">

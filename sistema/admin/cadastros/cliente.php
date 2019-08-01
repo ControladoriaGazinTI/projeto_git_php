@@ -7,7 +7,7 @@
 
 	$id = $nome = $datanascimento = $email = $cpf = $cep = 
 	$endereco = $complemento = $bairro = 
-	$cidade = $estado = $foto = $telefone = $celular = "";
+	$cidade = $estado = $foto = $telefone = $celular = $cidade_id = "";
 
 	//$p[1] -> index.php (id do registro)
 	if ( isset ( $p[2] ) ) {
@@ -149,7 +149,21 @@
 
 			<br>
 			<div class="row">
-				<div class="col-12 col-md-8">
+				<div class="col-12 col-md-2">
+
+					<label for="cidade_id">ID:</label>
+					<input 
+						type										= "text" 
+						name										= "cidade_id" 
+						id											= "cidade_id" 
+						class										= "form-control"
+						required data-parsley-required-message		= "Preencha a cidade"
+						value										= "<?=$cidade_id;?>"
+						readonly
+					>
+
+				</div>
+				<div class="col-12 col-md-4">
 
 					<label for="cidade">Cidade:</label>
 					<input type="text" name="cidade" 
@@ -158,7 +172,7 @@
 					value="<?=$cidade;?>">
 
 				</div>
-				<div class="col-12 col-md-4" id="cidades">
+				<div class="col-12 col-md-6" id="cidades">
 
 					<label for="estado">Estado:</label>
 					<select name="estado" id="estado"
@@ -209,7 +223,15 @@
 			$("#estado").val(dados.uf);
 			$("#cidade").val(dados.localidade);
 			$("#complemento").val(dados.complemento);
+			//buscar a cidade por ajax
 
+			$.get("buscarcidade.php"),{cidade:dados.localidade,estado:dados.uf},function(data){
+				if(data == "Erro"){
+					alert("Nenhuma cidade encontrada");
+				}else{
+					$("#cidade_id").val(data);
+				}
+			}
 		})
 	}
 </script>
