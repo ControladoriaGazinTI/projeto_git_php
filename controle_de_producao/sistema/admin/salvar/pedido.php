@@ -8,7 +8,7 @@ else
 if ($_POST) {
     $id             = "";
     $data_ent       = "";
-    $data_lan       = "";
+    $data_lan       = date('Y/m/d');
     $status         = false;
     $idFuncionario  = $_SESSION["banco_tcc"]["id"];
     $cliente        = "";

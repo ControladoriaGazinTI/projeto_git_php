@@ -56,25 +56,14 @@
                         </select>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="">Data de lançamento do Pedido:</label>
-                        <input 
-                            name        = "data_lan"
-                            type        = "date" 
-                            class       = "form-control" 
-                            required    = "required" 
-                        >
-                    </div>
-                    <div class="form-grop col-md-6">
-                        <label for="">Data de entrega do pedido:</label>
-                        <input 
-                            name        = "data_ent"
-                            type        = "date" 
-                            class       = "form-control" 
-                            required    = "required" 
-                        >
-                    </div>
+                <div class="form-grop">
+                    <label for="">Data de entrega do pedido:</label>
+                    <input 
+                        name        = "data_ent"
+                        type        = "date" 
+                        class       = "form-control" 
+                        required    = "required" 
+                    >
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">

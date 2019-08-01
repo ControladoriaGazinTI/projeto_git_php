@@ -96,15 +96,24 @@ else
                             }
                         }else {
                             $conta =  $qtde - $qtde_pdt_estoque;  
-                            echo"Falta para fechar o pedido: ".$conta;
                         }
                        
                         if ($status) {
                             $status = "Concluido";
                             $color = "bg-success";
                         } else {
-                            $status = "Em andamento";
-                            $color = "light";
+                            $status = "Falta para fechar o pedido: ".$conta;
+                            $info = "text-danger";
+                            $color = "light ";
+                        }
+                        if ($prioridade == "Média") {
+                            $classColor = "bg-warning";
+                        }elseif ($prioridade == "Baixa") {
+                            $classColor = "bg-success";
+                        }elseif ($prioridade == "Alta") {
+                            $classColor = "bg-danger";
+                        }else {
+                            echo "erro";
                         }
                         echo
                             "
@@ -116,10 +125,12 @@ else
                                 <td>$valor</td>
                                 <td>$dataEnt</td>
                                 <td>$dataLan</td>
-                                <td>$prioridade</td>
-                                <td>$status</td>
+                                <td class='$classColor'>$prioridade</td>
+                                <td class='$info'>$status</td>
                                 <td>
-                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-success'>Finalizar Pedido</a> 
+                                    <a href='' class='btn btn-fill btn-success'></a> 
+                                    <a href='cadastros/producao/$id' class='btn btn-fill btn-Primary' style='backgroud-color:blue;'></a> 
+                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'></a> 
                                 </td>
                             </tr>
                          ";
