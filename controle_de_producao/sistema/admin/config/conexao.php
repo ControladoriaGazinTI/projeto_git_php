@@ -4,7 +4,7 @@
     $servidor = "localhost";
     $usuario = "root";
     $senha = "";
-    $banco = "banco_tcc";
+    $banco = "mydb";
 
     try {
         $pdo = new PDO("mysql:host=$servidor;

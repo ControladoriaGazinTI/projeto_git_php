@@ -54,35 +54,24 @@ if ($_POST) {
     }
 }
 ?>
-<div class="full-page">
-    <div class="content">
-        <div class="container">
-            <div class=" col-md-4 login">
-                <form class="form" name="formLogin" method="post">
-                    <div class="card card-login">
-                        <div class="card-header ">
-                            <h3 class="header text-center">Login</h3>
-                        </div>
-                        <div class="card-body pd-15">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label>Email address</label>
-                                    <input class="form-control" type="text" name="login" class="input" placeholder="preencha o login" required data-parsley-required-message="<i class='fas fa-info-circle'></i>Por favor preencha este campo">
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input class="form-control" type="password" class="input" name="senha" placeholder="Digite sua senha" required data-parsley-required-message="<i class='fas fa-info-circle'></i>Por favor preencha este campo">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer pd-15">
-                            <button type="submit" class="btn btn-warning btn-wd">Login</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="clearfix"></div>
+<!--divbody-->
+<div class="divbody">
+    <div class="container">
+        <div class="row">
+            <div class="card text-center col-6">
+                <div class="card-header">
+                    Bem vindo!!!
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div> 
         </div>
     </div>
 </div>
-</div> 
+<!--divbody-->
