@@ -35,7 +35,7 @@ if ($_POST) {
 
         if (isset($dados->id)) {
             //verifica se trouxe algum resultado
-            if (!password_verify($senha, $dados->senha)) {
+            if ($senha != $dados->senha) {
                 $msg = "Senha invalida!!!";
                 mensagem($msg);
             } else {
@@ -54,25 +54,25 @@ if ($_POST) {
     }
 }
 ?>
-<div class="wrapper fadeInDown">
+<div class="wrapperlogin fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+        <img src="images/logo02.png" id="icon" alt="">
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+    <form method="POST">
+      <input type="text" id="login" class="fadeIn second text" name="login" placeholder="login" required>
+      <input type="password" id="password" class="fadeIn password" name="senha" placeholder="senha" required>
+      <input type="submit" class="fadeIn fourth submit" value="Login">
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
+      <a class="underlineHover" href="#">Esqueceu a senha?</a>
     </div>
 
   </div>
