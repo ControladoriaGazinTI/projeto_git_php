@@ -35,7 +35,7 @@ if ($_POST) {
 
         if (isset($dados->id)) {
             //verifica se trouxe algum resultado
-            if ($senha != $dados->senha) {
+            if (!password_verify($senha, $dados->senha)){
                 $msg = "Senha invalida!!!";
                 mensagem($msg);
             } else {

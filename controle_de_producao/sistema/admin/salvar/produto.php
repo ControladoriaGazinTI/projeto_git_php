@@ -92,7 +92,7 @@ else
 			//salvar no banco
 			$pdo->commit();
 			$msg = "Registro inserido com sucesso!";
-			sucesso( $msg, "listar/produto" );
+			
 
 		} else {
 			//erro do sql
