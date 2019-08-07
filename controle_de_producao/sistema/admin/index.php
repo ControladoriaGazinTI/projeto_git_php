@@ -46,8 +46,7 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     <link rel="stylesheet" type="text/css" href="css/summernote-lite.css">
     <!-- dataTables -->
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
-    <!-- icones -->
-    <link rel="stylesheet" type="text/css" href="http://www.w3.org/2000/svg">
+    
 
 
     
@@ -113,8 +112,6 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
 <script type="text/javascript" src="js/summernote.min.js"></script>
 <script type="text/javascript" src="js/summernote-lite.js"></script>
 <script type="text/javascript" src="lang/summernote-pt-BR.min.js"></script>
-<!-- icones -->
-<script type="text/javascript" src="js/jquery-ui.js"></script>
 <script>
     $(document).ready(function() {
         $('.table').DataTable({

@@ -128,9 +128,9 @@ else
                                 <td class='$classColor'>$prioridade</td>
                                 <td class='$info'>$status</td>
                                 <td>
-                                    <a href='' class='btn btn-fill btn-success'></a> 
-                                    <a href='cadastros/producao/$id' class='btn btn-fill btn-Primary' style='backgroud-color:blue;'></a> 
-                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'></a> 
+                                    <a href='cadastros/producao/$id' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a> 
+                                    <a href='' class='btn btn-fill btn-primary'></a> 
+                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 
                                 </td>
                             </tr>
                          ";
