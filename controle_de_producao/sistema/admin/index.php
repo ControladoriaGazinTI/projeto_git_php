@@ -46,7 +46,11 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     <link rel="stylesheet" type="text/css" href="css/summernote-lite.css">
     <!-- dataTables -->
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+    <!-- icones -->
+    <link rel="stylesheet" type="text/css" href="http://www.w3.org/2000/svg">
 
+
+    
     
 
 </head>
@@ -96,10 +100,7 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
 <!-- dataTables -->
 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="js/dataTables.bootstrap4.min.js"></script>
-<!-- summernote -->
-<script type="text/javascript" src="js/summernote.min.js"></script>
-<script type="text/javascript" src="js/summernote-lite.js"></script>
-<script type="text/javascript" src="lang/summernote-pt-BR.min.js"></script>
+
 <!-- parsley -->
 <script type="text/javascript" src="js/parsley.min.js"></script>
 <!-- maskMoney -->
@@ -108,8 +109,12 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
 <script type="text/javascript" src="assets/js/chart.js"></script>
 <!-- mascara cpf -->
 <script type="text/javascript" src="js/jquery.mask.js"></script>
-
-
+<!-- summernote -->
+<script type="text/javascript" src="js/summernote.min.js"></script>
+<script type="text/javascript" src="js/summernote-lite.js"></script>
+<script type="text/javascript" src="lang/summernote-pt-BR.min.js"></script>
+<!-- icones -->
+<script type="text/javascript" src="js/jquery-ui.js"></script>
 <script>
     $(document).ready(function() {
         $('.table').DataTable({
@@ -140,6 +145,24 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
         })
     }
 </script>
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        //aplica a mascara de valor no campo
+        $("#valor").maskMoney({
+            thousands: ".",
+            decimal: ","
+        });
+    })
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//aplicar o summernote
+		$("#descricao").summernote({
+			height: 200,
+            lang: 'pt-BR',
+            theme: 'monokai'
+		});
+    })
+</script>
 
 </html>

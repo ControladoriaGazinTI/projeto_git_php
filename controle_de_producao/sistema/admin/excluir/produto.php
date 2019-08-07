@@ -17,12 +17,12 @@ if(isset($p[2])){
    
     if($consulta->execute()){
         $msg = "Registro excluido com sucesso!!!";
-        menssagem($msg);
+        mensagem($msg);
     }else{
         $msg = "ERRO ao excluir!!!";
-        menssagem($msg);
+        mensagem($msg);
     }
 }else{
     $msg = "Ocorreu um erro ao excluir";
-    menssagem($msg);
+    mensagem($msg);
 }

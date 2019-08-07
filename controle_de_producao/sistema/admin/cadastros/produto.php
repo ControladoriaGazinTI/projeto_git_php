@@ -115,17 +115,8 @@ if (isset($p[2])) {
                             value           = "<?=$qtde ;?>"
                         >
                     </div>
+                    
                 </div>
-                    <div class="form-grop">
-                        <label>Cor:</label>
-                        <select name="cor" class="form-control">
-                            <option value="1">Branco</option>
-                            <option value="2">Preto</option>
-                            <option value="3">Rosa</option>
-                            <option value="4">Azul</option>
-                            <option value="5">Verde</option>
-                        </select>
-                    </div>
             <?php
 				$r = " required data-parsley-required-message=\"Selecione um arquivo\" ";
 				//se o id nao esta vazio esta editando
@@ -136,12 +127,26 @@ if (isset($p[2])) {
 					echo "<input type='hidden' name='foto' value='$foto'>";
                 }
 			?>
-
-			<label for="foto">Foto da Capa (JPG):</label>
-			<input type="file" name="foto"
-			class="form-control"
-			<?=$r;?>
-			accept=".jpg">
+            <div class="row">
+                 <div class="form-grop col-md-6">
+                    <label>Cor:</label>
+                    <select name="cor" class="form-control">
+                        <option value="1">Branco</option>
+                        <option value="2">Preto</option>
+                        <option value="3">Rosa</option>
+                        <option value="4">Azul</option>
+                        <option value="5">Verde</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="foto">Foto do produto (JPG):</label>
+                    <input type="file" name="foto"
+                    class="form-control"
+                    <?=$r;?>
+                    accept=".jpg">
+                </div>
+            </div>
+			
 
 			<?php
 				//mostrar a foto se estiver editando
@@ -172,22 +177,3 @@ if (isset($p[2])) {
         </form>
     </div>
 </div> 
-<script type="text/javascript">
-	$(document).ready(function() {
-		//aplicar o summernote
-		$("#descricao").summernote({
-			height: 200,
-            lang: 'pt-BR',
-            theme: 'monokai'
-		});
-    })
-    </script>
-     <script type="text/javascript">
-        $(document).ready(function() {
-            //aplica a mascara de valor no campo
-            $("#valor").maskMoney({
-                thousands: ".",
-                decimal: ","
-            });
-        })
-    </script>

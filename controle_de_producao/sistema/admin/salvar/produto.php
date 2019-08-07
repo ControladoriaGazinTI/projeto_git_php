@@ -31,7 +31,6 @@ else
     if (empty($id)) {
 
         $foto = time();
-
         $sql = "INSERT INTO produto values (
                                                 null,
                                                     ?,
@@ -73,25 +72,28 @@ else
     //verifica se o comando sera executado corretamente
 	//executar
 		if ( $consulta->execute() ) {
-
+            
 			//se a capa não estiver vazio - copiar
 			if ( !empty ( $_FILES["foto"]["name"] ) ) {
 				//copiar o arquivo para a pasta
-
-				if ( !copy( $_FILES["foto"]["tmp_name"], 
-					"../fotos/".$_FILES["foto"]["name"] )) {
+                 //"Name" é o nome mesmo, por ex: foto.jpg
+                 //tmp_name nome temporario da foto
+                                 //local de origem          //local de destino
+				if ( !copy( $_FILES["foto"]["tmp_name"],"../fotos/".$_FILES["foto"]["name"] )) {
 					$msg = "Erro ao copiar foto";
 					mensagem( $msg );
 				}
 				//echo $capa;
 				$pastaFotos = "../fotos/";
 				$imagem = $_FILES["foto"]["name"];
-				redimensionarImagem($pastaFotos,$imagem,$foto);
+                redimensionarImagem($pastaFotos,$imagem,$foto);
+                
 			}
 			
 			//salvar no banco
 			$pdo->commit();
-			$msg = "Registro inserido com sucesso!";
+            $msg = "Registro inserido com sucesso!";
+            sucesso($msg,"listar/produto");
 			
 
 		} else {

@@ -34,5 +34,5 @@ if ($_POST) {
 } else {
     //erro
     $msg = "erro ao efuetuar requisição";
-    menssagem($msg);
+    mensagem($msg);
 }

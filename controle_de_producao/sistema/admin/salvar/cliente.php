@@ -51,11 +51,11 @@ else
             sucesso($msg,$link);
         }else{
             $msg = "Erro ao inserir!!!";
-            menssagem($msg);
+            mensagem($msg);
         }
     }else{
         //erro
         $msg ="erro ao efuetuar requisição";
-        menssagem($msg);
+        mensagem($msg);
     }
 ?>
