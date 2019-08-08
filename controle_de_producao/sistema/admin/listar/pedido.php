@@ -129,7 +129,7 @@ else
                                 <td class='$info'>$status</td>
                                 <td>
                                     <a href='cadastros/producao/$id' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a> 
-                                    <a href='' class='btn btn-fill btn-primary'></a> 
+                                    <a href='' class='btn btn-fill btn-primary'><i class='nc-caps-small'></i></a> 
                                     <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 
                                 </td>
                             </tr>

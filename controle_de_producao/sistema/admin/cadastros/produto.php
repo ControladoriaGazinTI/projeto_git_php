@@ -138,27 +138,25 @@ if (isset($p[2])) {
                         <option value="5">Verde</option>
                     </select>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 t">
                     <label for="foto">Foto do produto (JPG):</label>
                     <input type="file" name="foto"
                     class="form-control"
                     <?=$r;?>
                     accept=".jpg">
-                </div>
-            </div>
-			
-
-			<?php
+                    <?php
 				//mostrar a foto se estiver editando
 				if ( !empty ( $id ) ) {
 					// 12345 -> ../fotos/12345p.jpg
 					//muda o nome do arquivo
 					$foto = "../fotos/".$foto."p.jpg";
 					//mostra o arquivo dentro do img
-					echo "<br><img src='$foto' width='80px'><br>";
+					echo "<br><img src='$foto' width='80px' class='img-thumbnail'><br>";
 				}
 			?>
-            <div class="form-group">
+                </div>
+            </div>
+			<div class="form-group ">
                 <label for="descricao">Descrição:</label>
                 <textarea 
                     id="descricao"
