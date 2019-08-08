@@ -47,7 +47,6 @@ else
                     $categoria   = $linha->nome_cat;
                     //montar linhas e colunas das tabelas
                     $foto = "../fotos/".$foto."p.jpg";
-
                     echo
                         "
                             <tr>
@@ -57,7 +56,7 @@ else
                                 <td  class ='text-left'>R$ $valor</td>
                                 <td>$qtde</td>
                                 <td>$cor</td>
-                                <td><img src='$foto' width='80px'></td>
+                                <td><img src='$foto' width='80px' class='img-thumbnail'></td>
                                 <td>
                                     <a href='cadastros/produto/$id' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a>
                                     <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 

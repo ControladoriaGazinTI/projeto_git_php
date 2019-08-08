@@ -51,7 +51,7 @@ else
         $consulta->bindParam(6, $cor);
         $consulta->bindParam(7, $idcategoria);
     } else {
-        $foto = time();
+          $foto = time();
         $sql = "UPDATE produto SET nome         = ? 
                                  , qtde         = ?
                                  , valor        = ? 
@@ -87,14 +87,13 @@ else
 				//echo $capa;
 				$pastaFotos = "../fotos/";
 				$imagem = $_FILES["foto"]["name"];
-                redimensionarImagem($pastaFotos,$imagem,$foto);
-                print_r($foto);                
+                redimensionarImagem($pastaFotos,$imagem,$foto);               
 			}
 			
 			//salvar no banco
 			$pdo->commit();
             $msg = "Registro inserido com sucesso!";
-            
+            sucesso($msg,"listar/produto");
 			
 
 		} else {
