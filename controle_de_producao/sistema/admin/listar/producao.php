@@ -11,7 +11,7 @@ else
             <h4 class="title">Producões em andamento:</h4>
         </div>
         <div class="content table-responsive  table-full-width">
-            <table class="table table-hover  ">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Funcionario</th>
@@ -20,6 +20,7 @@ else
                         <th>Prioridade</th>
                         <th>Observacão</th>
                         <th>Status</th>
+                        <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,8 +79,10 @@ else
                                 <td>$observacao</td>
                                 <td>$status</td>
                                 <td>
-                                    <a href='javascript:excluir($id,$idproduto)' class='btn btn-fill btn-success'>Finalizar Produção</a> 
-                                </td>
+                                    <a href='cadastros/pedido/$id/$idproduto' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a> 
+                                    <a href='' class='btn btn-fill btn-primary'><i class='nc-caps-small'></i></a> 
+                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 
+                                 </td>
                             </tr>
                          ";
                 }

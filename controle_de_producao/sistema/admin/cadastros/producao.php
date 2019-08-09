@@ -66,19 +66,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label>Data entrega:</label>
                         <input 
                             name        ="data_ent"
-                            type        ="date"
-                            class       ="form-control"
-                            required
-                        >
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Data Lançamento:</label>
-                        <input
-                            name        ="data_lan" 
                             type        ="date"
                             class       ="form-control"
                             required
@@ -105,22 +96,3 @@
         </form>
     </div>
 </div> 
-<script type="text/javascript">
-	$(document).ready(function() {
-		//aplicar o summernote
-		$("#descricao").summernote({
-			height: 200,
-            lang: 'pt-BR',
-            theme: 'monokai'
-		});
-    })
-    </script>
-     <script type="text/javascript">
-        $(document).ready(function() {
-            //aplica a mascara de valor no campo
-            $("#valor").maskMoney({
-                thousands: ".",
-                decimal: ","
-            });
-        })
-    </script>

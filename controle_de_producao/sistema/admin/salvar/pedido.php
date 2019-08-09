@@ -5,6 +5,7 @@ if (file_exists("verificalogin.php"))
     include "verificalogin.php";
 else
     include "../verificalogin.php";
+    print_r($_POST);
 if ($_POST) {
     $id             = "";
     $data_ent       = "";
@@ -70,7 +71,7 @@ if ($_POST) {
             $consulta->bindParam(6, $status);
             $consulta->execute();
             $pdo->commit();
-            sucesso("Cadastrado com sucesso!!! ".$msg, "listar/pedido");
+           
         } else {
             $pdo->rollBack();
             mensagem("ERRO ao inserir no banco de dados!!!");

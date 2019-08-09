@@ -17,7 +17,7 @@ if ($_POST) {
     $qtde                   = "";
     $qtde_perdas            = "";
     $data_ent               = "";
-    $data_lan               = "";
+    $data_lan               = date('Y/m/d');
     $observacao             = "";
 
     foreach ($_POST as $key => $value) {

@@ -1,3 +1,45 @@
+<?php
+ //verificar se a sessão esta ativa
+if (file_exists("verificalogin.php"))
+    include "verificalogin.php";
+else
+    include "../verificalogin.php";
+    $id                 = "";
+    $cliente            = "";
+    $produto            = "";
+    $prioridade         = "";
+    $data_ent           = "";
+    $qtde               = "";
+    $valor              = "";
+
+    if (isset($p[2])) {
+        $idpedido = (int) $p[2];
+        $idproduto = (int) $p[3];
+
+        $sql = "SELECT 
+        item_pedido.qtde,item_pedido.valor,item_pedido.prioridade
+        ,pedido.data_entrega,pedido.id
+        ,cliente.nome as nome_cliente, cliente.id as idcliente
+        ,produto.nome as nome_produto, produto.id as idproduto
+        FROM item_pedido
+        INNER JOIN  pedido on pedido.id = item_pedido.idpedido
+        INNER JOIN  cliente on cliente.id = pedido.idcliente
+        INNER JOIN  produto on produto.id = item_pedido.idproduto
+        WHERE pedido.id = ?
+        AND   produto.id = ? 
+        LIMIT 1
+        ";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(1,$idpedido);
+        $consulta->bindParam(2,$idproduto);
+        if ($consulta->execute()) {
+           while ($linha =  $consulta->fetch(PDO::FETCH_OBJ)) {
+               # code...
+           }
+        }
+
+    }
+?>
 <div>
     <div class="card stacked-form">
         <div class="card-header pd-15-3-t">

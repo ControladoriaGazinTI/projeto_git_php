@@ -6,6 +6,7 @@ if (file_exists("verificalogin.php"))
     include "verificalogin.php";
 else
     include "../verificalogin.php";
+   
 ?>
 <div class="col-md-12">
     <div class="card pd-15">
@@ -44,7 +45,7 @@ else
                 INNER JOIN  cliente on cliente.id = pedido.idcliente
                 INNER JOIN  produto on produto.id = item_pedido.idproduto
                 INNER JOIN funcionario on funcionario.id = pedido.idfuncionario
-                WHERE item_pedido.status = 0;
+                WHERE item_pedido.status = 0
                ";
 
                     $consulta = $pdo->prepare($sql);
@@ -128,7 +129,7 @@ else
                                 <td class='$classColor'>$prioridade</td>
                                 <td class='$info'>$status</td>
                                 <td>
-                                    <a href='cadastros/producao/$id' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a> 
+                                    <a href='cadastros/pedido/$id/$idproduto' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a> 
                                     <a href='' class='btn btn-fill btn-primary'><i class='nc-caps-small'></i></a> 
                                     <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 
                                 </td>

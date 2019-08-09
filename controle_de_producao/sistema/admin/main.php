@@ -66,7 +66,12 @@ if (!isset($pagina)) {
                         </li>
                         <li>
                             <a class="profile-dropdown" href="cadastros/producao">
-                                <span class="sidebar-normal">Produção</span>
+                                <span class="sidebar-normal">Produção de produto</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="profile-dropdown" href="cadastros/producao">
+                                <span class="sidebar-normal">Produção de Peças</span>
                             </a>
                         </li>
                     </ul>
@@ -102,7 +107,7 @@ if (!isset($pagina)) {
                     </a>
                 </li>
                 <li>
-                    <a href="listar/produto">
+                    <a href="listar/peca">
                         <i class="pe-7s-cart"></i>
                         <p>Peças</p>
                     </a>

@@ -27,10 +27,11 @@ else
 			if ( isset ( $_POST[$key] ) ) {
 				$$key = trim ( $value );
 			} 
-		}
+        }
+        $foto = time();
     if (empty($id)) {
 
-        $foto = time();
+        
         $sql = "INSERT INTO produto values (
                                                 null,
                                                     ?,
@@ -51,7 +52,6 @@ else
         $consulta->bindParam(6, $cor);
         $consulta->bindParam(7, $idcategoria);
     } else {
-          $foto = time();
         $sql = "UPDATE produto SET nome         = ? 
                                  , qtde         = ?
                                  , valor        = ? 

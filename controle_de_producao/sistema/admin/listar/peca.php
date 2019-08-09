@@ -43,7 +43,7 @@ else
                                 <td>$id</td>
                                 <td>$nome</td>
                                 <td>$qtde</td>
-                                <td><img src='$foto' width='80px'></td>
+                                <td><img src='$foto' width='80px' class='img-thumbnail'></td>
                                 <td>
                                     <a href='cadastros/peca/$id' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a>
                                     <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 
