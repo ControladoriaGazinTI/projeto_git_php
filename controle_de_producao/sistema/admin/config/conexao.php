@@ -3,7 +3,7 @@
     //criar conexao com o servidor com PDO
     $servidor = "localhost";
     $usuario = "root";
-    $senha = "";
+    $senha = "password";
     $banco = "mydb";
 
     try {
