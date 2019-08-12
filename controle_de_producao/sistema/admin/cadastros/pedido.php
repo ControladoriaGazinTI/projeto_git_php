@@ -4,14 +4,16 @@ if (file_exists("verificalogin.php"))
     include "verificalogin.php";
 else
     include "../verificalogin.php";
-    $id                 = "";
-    $cliente            = "";
-    $produto            = "";
+    $idcliente          = "";
+    $nome_cliente       = "";
+    $nome_produto       = "";
     $prioridade         = "";
     $data_ent           = "";
     $qtde               = "";
     $valor              = "";
-
+    $idpedido           = "";
+    $idproduto          = "";
+    $barra              = "";
     if (isset($p[2])) {
         $idpedido = (int) $p[2];
         $idproduto = (int) $p[3];
@@ -33,9 +35,18 @@ else
         $consulta->bindParam(1,$idpedido);
         $consulta->bindParam(2,$idproduto);
         if ($consulta->execute()) {
-           while ($linha =  $consulta->fetch(PDO::FETCH_OBJ)) {
-               # code...
-           }
+            $dados = $consulta->fetch(PDO::FETCH_OBJ);
+            $idcliente                = $dados->idcliente;
+            $nome_cliente             = $dados->nome_cliente;
+            $idproduto                = $dados->idproduto;
+            $nome_produto             = $dados->nome_produto;
+            $prioridade               = $dados->prioridade;
+            $data_ent                 = $dados->data_entrega;
+            $qtde                     = $dados->qtde;
+            $valor                    = $dados->valor;
+            $barra                    = "|";
+        }else {
+            print_r($consulta->errorInfo());
         }
 
     }
@@ -48,22 +59,23 @@ else
         <div class="card-body pd-15">
             <form method="POST" action="salvar/pedido">
                 <div class="form-group">
-                    <label for="id">ID:</label>
+                    <label for="id">IDPEDIDO|IDPRODUTO</label>
                     <input 
-                        name  = "id" 
+                        name  = "idpedido" 
                         type  = "text" 
                         class = "form-control" 
                         readonly
+                        value = "<?=$idpedido?><?=$barra;?><?=$idproduto;?>"
                     >
                 </div>
                 <div class="form-group">
                     <label>Cliente:</label>
                     <select 
-                        name    = "cliente" 
+                        name    = "idcliente" 
                         class   = "form-control" 
                         required= ""
                     >
-                        <option value="">Selecione um cliente:</option>
+                        <option value="<?=$idcliente;?>"><?=$nome_cliente;?></option>
                         <?php
                             carregarOpcoes("id","cliente","nome");
                         ?>
@@ -73,11 +85,11 @@ else
                     <div class="form-group col-md-6">
                         <label>Produto:</label>
                         <select 
-                            name        = "produto" 
+                            name        = "idproduto" 
                             class       = "form-control" 
                             required    = ""
                         >
-                            <option value="">Selecione um Produto:</option>
+                            <option value="<?=$idproduto;?>"><?=$nome_produto;?></option>
                             <?php
                                 carregarOpcoes("id","produto","nome");
                             ?>
@@ -90,7 +102,7 @@ else
                             class       = "form-control" 
                             required    = ""
                         >
-                            <option value= "">Selecione uma prioridade:</option>
+                            <option value= "<?=$prioridade;?>"><?=$prioridade;?></option>
                             <option value= "Baixa">Baixa</option>
                             <option value= "Média">Media</option>
                             <option value= "Alta">Alta</option>
@@ -105,25 +117,18 @@ else
                         type        = "date" 
                         class       = "form-control" 
                         required    = "required" 
+                        value       = "<?=$data_ent?>"
                     >
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="">Quatidade do pedido:</label>
                         <input 
                             name        = "qtde"
                             type        = "number" 
                             class       = "form-control" 
                             required    = "required" 
-                        >
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="">Valor:</label>
-                        <input 
-                            name        = "valor"
-                            type        = "number" 
-                            class       = "form-control" 
-                            required    = "required" 
+                            value       = "<?=$qtde;?>"
                         >
                     </div>
                 </div>

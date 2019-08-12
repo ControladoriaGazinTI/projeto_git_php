@@ -20,7 +20,7 @@ else
                         <th>Login</th>
                         <th>Produto</th>
                         <th>cliente</th>
-                        <th>Quatidade</th>
+                        <th>Quantidade</th>
                         <th>Valor</th>
                         <th>Data de entrega</th>
                         <th>Data de Lançamento</th>
@@ -45,10 +45,11 @@ else
                 INNER JOIN  cliente on cliente.id = pedido.idcliente
                 INNER JOIN  produto on produto.id = item_pedido.idproduto
                 INNER JOIN funcionario on funcionario.id = pedido.idfuncionario
-                WHERE item_pedido.status = 0
+                WHERE item_pedido.status = ?
                ";
 
                     $consulta = $pdo->prepare($sql);
+                    $consulta->bindParam(1,$status);
                     $consulta->execute();
                     //laço de repetição para separar  as Linhas
                     while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
@@ -66,7 +67,7 @@ else
                         $prioridade    = $linha->prioridade;
                         $status        = $linha->status;
                         //montar linhas e colunas das tabelas
-                        $valor = formataValor($valor);
+                        $valor         = number_format($valor,2,',','.');
                         $dataEnt = date('d/m/Y', strtotime($dataEnt));
                         $dataLan = date('d/m/Y', strtotime($dataLan));
                         
@@ -120,10 +121,10 @@ else
                             "
                             <tr class='$color'>
                                 <td>$login</td>
-                                <td>$nomeCliente</td>
                                 <td>$nomeProduto</td>
+                                <td>$nomeCliente</td>
                                 <td>$qtde</td>
-                                <td>$valor</td>
+                                <td class ='text-left'>R$ $valor</td>
                                 <td>$dataEnt</td>
                                 <td>$dataLan</td>
                                 <td class='$classColor'>$prioridade</td>
@@ -131,7 +132,7 @@ else
                                 <td>
                                     <a href='cadastros/pedido/$id/$idproduto' class='btn btn-fill btn-success'><i class='pe-7s-pen'></i></a> 
                                     <a href='' class='btn btn-fill btn-primary'><i class='nc-caps-small'></i></a> 
-                                    <a href='javascript:excluir($id)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 
+                                    <a href='javascript:excluir($id,$idproduto)' class='btn btn-fill btn-danger'><i class='pe-7s-trash'></i></a> 
                                 </td>
                             </tr>
                          ";
@@ -141,15 +142,16 @@ else
             </table>
             <h5>
                 <a href="cadastros/cliente" class="btn btn-fill btn-success"><i class="pe-7s-angle-left"></i>Voltar</a>
+                <a type="submit" name="mudar" href="cadastros/cliente" class="btn btn-fill btn-success">Pedidos Finalizados</a>
             </h5>
         </div>
     </div>
 </div>
 <script type="text/javascript">
     //funçao em java script para perguntar se que mesmo exluir
-    function excluir(id) {
+    function excluir(id,idproduto) {
         if (confirm("Deseja Finalizar esse pedido? Tem certeza?")) {
-            location.href = "excluir/pedido/" + id;
+            location.href = "excluir/pedido/" + id + "/" + idproduto;
         }
     }
 </script>

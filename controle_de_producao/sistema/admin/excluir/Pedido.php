@@ -16,8 +16,7 @@ if(isset($p[2])){
     $consulta->bindParam(1,$id);
    
     if($consulta->execute()){
-        $msg = "Pedido finalizado com sucesso!!!";
-        mensagem($msg);
+      
     }else{
         $msg = "ERRO ao Finalizar o pedido!!!";
         mensagem($msg);

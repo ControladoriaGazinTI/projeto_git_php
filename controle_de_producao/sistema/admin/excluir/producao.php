@@ -33,7 +33,7 @@ if (isset($p[2])) {
 
         // fazer consulta na tabela produto para pegar a qtde de
         // produto atualizado e somar com a quantidade que foi produzida
-        $sql = "SELECT qtde  from produto where id = ?";
+        $sql = "SELECT qtde from produto where id = ?";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(1, $idproduto);
         if ($consulta->execute()) {
@@ -57,7 +57,7 @@ if (isset($p[2])) {
             $consulta->bindParam(2, $idproduto);
             if ($consulta->execute()) {
                 $pdo->commit();
-                mensagem("Produção finalizado com sucesso!!!");
+               
             } else {
                 $pdo->rollback();
                 print_r($consulta->errorInfo());
