@@ -8,7 +8,6 @@ else
     include "../verificalogin.php";
    
 ?>
-<div class="col-md-12">
     <div class="card pd-15">
         <div class="header">
             <h4 class="title">Pedido a serem feitos:</h4>
@@ -47,7 +46,7 @@ else
                 INNER JOIN funcionario on funcionario.id = pedido.idfuncionario
                 WHERE item_pedido.status = ?
                ";
-
+                $status = 1;
                     $consulta = $pdo->prepare($sql);
                     $consulta->bindParam(1,$status);
                     $consulta->execute();
@@ -103,6 +102,7 @@ else
                         if ($status) {
                             $status = "Concluido";
                             $color = "bg-success";
+                            $info  = "";
                         } else {
                             $status = "Falta para fechar o pedido: ".$conta;
                             $info = "text-danger";
@@ -146,7 +146,6 @@ else
             </h5>
         </div>
     </div>
-</div>
 <script type="text/javascript">
     //funçao em java script para perguntar se que mesmo exluir
     function excluir(id,idproduto) {
