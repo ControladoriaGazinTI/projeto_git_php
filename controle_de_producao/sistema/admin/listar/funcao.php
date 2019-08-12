@@ -5,7 +5,7 @@ if (file_exists("verificalogin.php"))
 else
     include "../verificalogin.php";
 ?>
-<div class="col-md-12">
+
     <div class="card pd-15">
         <div class="header">
             <h4 class="title">Cliente</h4>
@@ -51,7 +51,6 @@ else
             </h5>
         </div>
     </div>
-</div>
 <script type="text/javascript">
     //funçao em java script para perguntar se que mesmo exluir
     function excluir(id) {
