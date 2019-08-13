@@ -4,7 +4,7 @@ if (file_exists("verificalogin.php"))
     include "verificalogin.php";
 else
     include "../verificalogin.php";
-	$pdo->beginTransaction();
+	
 
 	//se os dados vieram por POST
 	if ( $_POST ) {
@@ -17,6 +17,8 @@ else
         $cor            = "";
         $foto           = "";
         $descricao      = "";
+        $idpeca         = "";
+        $qtde_peca      = "";
 
 
 		//recuperar as variaveis
@@ -30,7 +32,7 @@ else
         }
         $foto = time();
     if (empty($id)) {
-
+        $pdo->beginTransaction();
         
         $sql = "INSERT INTO produto values (
                                                 null,
@@ -51,6 +53,19 @@ else
         $consulta->bindParam(5, $descricao);
         $consulta->bindParam(6, $cor);
         $consulta->bindParam(7, $idcategoria);
+        if ($consulta->execute()) {
+            $idproduto = $pdo->lastInsertId();
+            $sql =  "INSERT INTO item_produto VALUES(?,?,?)";
+            $insert = $pdo->prepare($sql);
+            $insert->bindParam(1,$idpeca);
+            $insert->bindParam(2,$idproduto);
+            $insert->bindParam(3,$qtde_peca);
+            if ($insert->execute()) {
+                $pdo->commit();
+            }else {
+                print_r($insert->errorInfo());
+            }
+        }
     } else {
         $sql = "UPDATE produto SET nome         = ? 
                                  , qtde         = ?
@@ -73,7 +88,7 @@ else
     //verifica se o comando sera executado corretamente
 	//executar
 		if ( $consulta->execute() ) {
-            
+            $pdo->beginTransaction();
 			//se a capa não estiver vazio - copiar
 			if ( !empty ( $_FILES["foto"]["name"] ) ) {
 				//copiar o arquivo para a pasta
@@ -93,7 +108,7 @@ else
 			//salvar no banco
 			$pdo->commit();
             $msg = "Registro inserido com sucesso!";
-            sucesso($msg,"listar/produto");
+            
 			
 
 		} else {

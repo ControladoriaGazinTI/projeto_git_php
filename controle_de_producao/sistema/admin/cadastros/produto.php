@@ -156,6 +156,25 @@ if (isset($p[2])) {
 			?>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Peça</label>
+                   <select name="idpeca" class="form-control">
+                       <?php
+                            carregarOpcoes("id","peca","nome");
+                       ?>
+                   </select>
+                </div>
+                <div class="col-md-6">
+                    <label>qtde_peca</label>
+                    <input
+                        name        ="qtde_peca" 
+                        type        ="text"
+                        class       ="form-control"
+                        required
+                    >
+                </div>
+            </div>
 			<div class="form-group ">
                 <label for="descricao">Descrição:</label>
                 <textarea 
