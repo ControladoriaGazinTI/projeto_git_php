@@ -51,7 +51,6 @@ else
 
     }
 ?>
-<div>
     <div class="card stacked-form">
         <div class="card-header pd-15-3-t">
             <h4 class="card-title">Novo Pedido:</h4>
@@ -132,10 +131,51 @@ else
                         >
                     </div>
                 </div>
-        </div>
+                
+        
+        
         <div class="card-footer pd-15">
             <button type="submit" class="btn btn-fill btn-success">Cadastrar</button>
         </div>
         </form>
+        <?php
+				//verificar se o id nao esta vazio
+				if ( !empty ( $idpedido ) ) {
+			?>
+			<hr>
+			<div id="personagem">
+				<h5>Adicionar Produto:</h5>
+				<form name="formadd" method="post" action="paginas/salvarpersonagem.php" data-parsley-validate 
+				target="iframe">
+
+					<!-- id do quadrinho -->
+					<input type="hidden" name="id" value="<?=$id;?>">
+                    <label for="personagem_id">Selecione um produto:</label>
+					<div class="row">
+						<div class="col-md-11">
+
+							
+							<select name="personagem_id" class="form-control" required data-parsley-required-message="Selecione um personagem">
+								<option value=""></option>
+								<?php
+									//chamar função para mostrar as opções
+									carregarOpcoes("id","produto","nome");
+								?>
+							</select>
+						</div>
+						<div class="col-md-1 text-center">
+							<button type="submit" class="btn btn-fill btn-success ">Inserir</button>
+						</div>
+					</div>
+				</form>
+
+                <iframe name="iframe" width="100%" height="500px" href="https://www.youtube.com/watch?v=6Dykd3rFCzQ"></iframe>
+			</div>
+			<?php
+				//fechando o id
+				}
+			?>     
     </div>
 </div>
+    
+    
