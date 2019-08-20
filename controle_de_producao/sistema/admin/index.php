@@ -47,7 +47,37 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     <!-- dataTables -->
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
     
+    <!--   Core JS Files   -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <!-- Popper -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
+    <!--  Charts Plugin -->
+    <script type="text/javascript" src="assets/js/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script type="text/javascript" src="assets/js/bootstrap-notify.js"></script>
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+    <script type="text/javascript" src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script type="text/javascript" src="assets/js/demo.js"></script>
+    <!-- dataTables -->
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/dataTables.bootstrap4.min.js"></script>
 
+    <!-- parsley -->
+    <script type="text/javascript" src="js/parsley.min.js"></script>
+    <!-- maskMoney -->
+    <script type="text/javascript" src="js/jquery.maskMoney.min.js"></script>
+    <!-- Gráficos -->
+    <script type="text/javascript" src="assets/js/chart.js"></script>
+    <!-- mascara cpf -->
+    <script type="text/javascript" src="js/jquery.mask.js"></script>
+    <!-- summernote -->
+    <script type="text/javascript" src="js/summernote.min.js"></script>
+    <script type="text/javascript" src="js/summernote-lite.js"></script>
+    <script type="text/javascript" src="lang/summernote-pt-BR.min.js"></script>
 
     
     
@@ -81,37 +111,8 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     ?>
 
 </body>
-<!--   Core JS Files   -->
-<script type="text/javascript" src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-<!-- Popper -->
-<script type="text/javascript" src="js/popper.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
-<!--  Charts Plugin -->
-<script type="text/javascript" src="assets/js/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script type="text/javascript" src="assets/js/bootstrap-notify.js"></script>
-<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script type="text/javascript" src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script type="text/javascript" src="assets/js/demo.js"></script>
-<!-- dataTables -->
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/dataTables.bootstrap4.min.js"></script>
 
-<!-- parsley -->
-<script type="text/javascript" src="js/parsley.min.js"></script>
-<!-- maskMoney -->
-<script type="text/javascript" src="js/jquery.maskMoney.min.js"></script>
-<!-- Gráficos -->
-<script type="text/javascript" src="assets/js/chart.js"></script>
-<!-- mascara cpf -->
-<script type="text/javascript" src="js/jquery.mask.js"></script>
-<!-- summernote -->
-<script type="text/javascript" src="js/summernote.min.js"></script>
-<script type="text/javascript" src="js/summernote-lite.js"></script>
-<script type="text/javascript" src="lang/summernote-pt-BR.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('.table').DataTable({
@@ -161,5 +162,3 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
 		});
     })
 </script>
-
-</html>
