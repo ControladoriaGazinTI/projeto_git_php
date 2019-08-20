@@ -46,6 +46,9 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     <link rel="stylesheet" type="text/css" href="css/summernote-lite.css">
     <!-- dataTables -->
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+    <!--teste -->
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    
     
     <!--   Core JS Files   -->
     <script type="text/javascript" src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -65,7 +68,6 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     <!-- dataTables -->
     <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="js/dataTables.bootstrap4.min.js"></script>
-
     <!-- parsley -->
     <script type="text/javascript" src="js/parsley.min.js"></script>
     <!-- maskMoney -->
@@ -78,12 +80,7 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     <script type="text/javascript" src="js/summernote.min.js"></script>
     <script type="text/javascript" src="js/summernote-lite.js"></script>
     <script type="text/javascript" src="lang/summernote-pt-BR.min.js"></script>
-
-    
-    
-
 </head>
-
 <body>
     <?php
     //verificar se esta logado
@@ -111,8 +108,6 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     ?>
 
 </body>
-
-
 <script>
     $(document).ready(function() {
         $('.table').DataTable({
