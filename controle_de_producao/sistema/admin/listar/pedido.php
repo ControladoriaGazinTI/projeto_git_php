@@ -46,7 +46,7 @@ else
                 INNER JOIN funcionario on funcionario.id = pedido.idfuncionario
                 WHERE item_pedido.status = ?
                ";
-                $status = 1;
+                $status = 0;
                     $consulta = $pdo->prepare($sql);
                     $consulta->bindParam(1,$status);
                     $consulta->execute();

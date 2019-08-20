@@ -120,7 +120,7 @@ if (!isset($pagina)) {
                 </li>
                 <li>
                     <a href="listar/producao">
-                        <i class="pe-7s-cart"></i>
+                        <i class="fas fa-bicycle"></i>
                         <p>Produção a serem feitas</p>
                     </a>
                 </li>

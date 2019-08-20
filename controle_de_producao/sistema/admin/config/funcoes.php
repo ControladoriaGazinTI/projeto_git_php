@@ -174,7 +174,20 @@ function carregarOpcoes($id, $tabela, $campo)
 		echo "errorooooooooo";
 	}
 }
-
+function prioridade($prioridade){
+	if ($prioridade == "1") {
+		$classColor = "bg-success";
+		$prioridade = "Baixa";
+	}elseif ($prioridade == "2") {
+		$classColor = "bg-warning";
+		$prioridade = "Média";
+	}elseif ($prioridade == "3") {
+		$classColor = "bg-danger";
+		$prioridade = "Alta";
+	}else {
+		echo "erro";
+	}
+}
 function formataValor($valor)
 {
 	//receber 5.000,00 -> 5000,00

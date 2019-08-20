@@ -10,8 +10,8 @@ if ($_POST) {
     $idfuncionario          = "";
     $idFuncionarioLogado    = $_SESSION["banco_tcc"]["id"];
     $idproducao             = "";
-    $statusProducao         = false;
-    $statusItemProducao     = false;
+    $statusProducao         = 0;
+    $statusItemProducao     = 0;
     $idproduto              = "";
     $prioridade             = "";
     $qtde                   = "";
@@ -41,6 +41,7 @@ if ($_POST) {
             $insert->bindParam(1, $idproduto);
             $insert->bindParam(2, $idproducao);
             $insert->bindParam(3, $idfuncionario);
+            print_r($prioridade);
             $insert->bindParam(4, $prioridade);
             $insert->bindParam(5, $qtde);
             $insert->bindParam(6, $qtde_perdas);

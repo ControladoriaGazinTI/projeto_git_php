@@ -46,7 +46,8 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     <link rel="stylesheet" type="text/css" href="css/summernote-lite.css">
     <!-- dataTables -->
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
-    
+    <!--teste -->
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
 
     

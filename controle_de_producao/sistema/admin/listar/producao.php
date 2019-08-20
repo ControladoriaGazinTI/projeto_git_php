@@ -69,13 +69,25 @@ else
                         $status = "Em Produção";
                         $color = "light";
                     }
+                    if ($prioridade == "1") {
+                        $classColor = "bg-success";
+                        $prioridade = "Baixa";
+                    }elseif ($prioridade == "2") {
+                        $classColor = "bg-warning";
+                        $prioridade = "Média";
+                    }elseif ($prioridade == "3") {
+                        $classColor = "bg-danger";
+                        $prioridade = "Alta";
+                    }else {
+                        echo "erro";
+                    }
                     echo
                         "
                             <tr class='$color'>
                                 <td>$nomeFuncionario</td>
                                 <td>$qtde</td>
                                 <td>$qtdePerda</td>
-                                <td>$prioridade</td>
+                                <td class = '$classColor'>$prioridade</td>
                                 <td>$observacao</td>
                                 <td>$status</td>
                                 <td>

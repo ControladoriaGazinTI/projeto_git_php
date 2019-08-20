@@ -39,9 +39,9 @@
                             required    = ""
                         >
                             <option value= "">Selecione uma prioridade:</option>
-                            <option value= "Baixa">Baixa</option>
-                            <option value= "Média">Media</option>
-                            <option value= "Alta">Alta</option>
+                            <option value= "1">Baixa</option>
+                            <option value= "2">Media</option>
+                            <option value= "3">Alta</option>
                             ?>
                         </select>
                     </div>
