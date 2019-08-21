@@ -39,17 +39,6 @@ if ($_POST) {
         $consulta->bindParam(5, $idfuncionario);
         if ($consulta->execute()) {
             $last = $pdo->lastInsertId();
-
-            $sql = "SELECT qtde,valor FROM produto WHERE produto.id = ?";
-            $consulta = $pdo->prepare($sql);
-            $consulta->bindParam(1, $idproduto);
-            $consulta->execute();
-            $linha = $consulta->fetch(PDO::FETCH_OBJ);
-            $qtde_pdt_estoque = $linha->qtde;
-            $valor            = $linha->valor;
-            
-            $valor           *= $qtde;
-            print_r($valor);
             
             if ($qtde_pdt_estoque >= $qtde) {
                 $qtde_pdt_estoque -= $qtde;

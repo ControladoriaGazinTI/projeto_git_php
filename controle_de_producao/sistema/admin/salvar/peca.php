@@ -47,13 +47,12 @@ if ( $consulta->execute() ) {
 
     //se a capa não estiver vazio - copiar
     if ( !empty ( $_FILES["foto"]["name"] ) ) {
-        echo $_FILES["foto"]["name"];
         //copiar o arquivo para a pasta
-
-        if ( !copy( $_FILES["foto"]["tmp_name"], 
-            "../fotos/".$_FILES["foto"]["name"] )) {
-            $msg = "Erro ao copiar foto";
-            mensagem( $msg );
+        
+        if ( !copy( $_FILES["foto"]["tmp_name"],"../fotos/".$_FILES["foto"]["name"] )) {
+            $errors= error_get_last();
+            echo "COPY ERROR: ".$errors['type'];
+            echo "<br />\n".$errors['message'];
         }
         //echo $capa;
         $pastaFotos = "../fotos/";
@@ -64,7 +63,8 @@ if ( $consulta->execute() ) {
     //salvar no banco
     $pdo->commit();
     $msg = "Registro inserido com sucesso!";
-    sucesso( $msg, "listar/peca" );
+    sucesso($msg,"listar/peca");
+    
 
 } else {
     //erro do sql

@@ -22,7 +22,7 @@ else
         item_pedido.qtde,item_pedido.valor,item_pedido.prioridade
         ,pedido.data_entrega,pedido.id
         ,cliente.nome as nome_cliente, cliente.id as idcliente
-        ,produto.nome as nome_produto, produto.id as idproduto
+        ,produto.nome as nome_produto, produto.id as idproduto,produto.valor as valor_produto
         FROM item_pedido
         INNER JOIN  pedido on pedido.id = item_pedido.idpedido
         INNER JOIN  cliente on cliente.id = pedido.idcliente
@@ -44,6 +44,7 @@ else
             $data_ent                 = $dados->data_entrega;
             $qtde                     = $dados->qtde;
             $valor                    = $dados->valor;
+            $valor_produto            = $dados->valor_produto;
             $barra                    = "|";
         }else {
             print_r($consulta->errorInfo());
@@ -120,14 +121,28 @@ else
                     >
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-12">
-                        <label for="">Quatidade do pedido:</label>
+                    <div class="form-group col-md-6">
+                        <label for="">Quatidade do produto:</label>
                         <input 
                             name        = "qtde"
+                            id          = "qtde"
                             type        = "number" 
                             class       = "form-control" 
                             required    = "required" 
                             value       = "<?=$qtde;?>"
+                            onblur      = "calcular_valor_pedido()"
+                        >
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">Valor</label>
+                        <input 
+                            name        = "valor"
+                            class       = "form-control" 
+                            readonly
+                            id          = "valor"
+                            type        = "text"
+                            class       = "form-control" 
+                            required    = "required" 
                         >
                     </div>
                 </div>
@@ -177,5 +192,12 @@ else
 			?>     
     </div>
 </div>
-    
-    
+<script>
+    function calcular_valor_pedido() {
+    var qtde = parseInt(document.getElementById('qtde').value,10);
+    var valor = 508 ;
+    var resultado = qtde * valor;
+   // document.getElementById('valor').value = resultado;
+    document.getElementById("valor").value = parseFloat(resultado).toFixed(2);
+    }
+</script>

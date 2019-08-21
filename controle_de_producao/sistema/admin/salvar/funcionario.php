@@ -122,6 +122,7 @@ if ($_POST) {
         sucesso($msg,$link);
     }else{
         echo "erroo";
+        print_r($consulta->errorInfo());
     }
 } else {
     //erro
