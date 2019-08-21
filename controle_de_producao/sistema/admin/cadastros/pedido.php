@@ -14,6 +14,8 @@ else
     $idpedido           = "";
     $idproduto          = "";
     $barra              = "";
+
+    
     if (isset($p[2])) {
         $idpedido = (int) $p[2];
         $idproduto = (int) $p[3];
@@ -86,6 +88,7 @@ else
                         <label>Produto:</label>
                         <select 
                             name        = "idproduto" 
+                            id          = "idproduto"
                             class       = "form-control" 
                             required    = ""
                         >
@@ -193,6 +196,7 @@ else
     </div>
 </div>
 <script>
+  
     function calcular_valor_pedido() {
     var qtde = parseInt(document.getElementById('qtde').value,10);
     var valor = 508 ;
@@ -200,4 +204,12 @@ else
    // document.getElementById('valor').value = resultado;
     document.getElementById("valor").value = parseFloat(resultado).toFixed(2);
     }
+</script>
+<script type="text/javascript">
+      $(document).ready(function(){
+        $("#idproduto").change(function(){ 
+            var idproduto = $(this).val(); 
+                            
+        });
+    });
 </script>
