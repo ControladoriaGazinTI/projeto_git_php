@@ -1,3 +1,4 @@
+<pre>
 <?php
 	//iniciar a sessao
 	session_start();
@@ -6,65 +7,74 @@
 		include "verificalogin.php";
 	else
 		include "../verificalogin.php";
-	$id = "";
-	if ( isset ( $_GET["id"] ) ) 
-		$id = trim( $_GET["id"] );
-	if ( isset ( $_POST["id"] ) ) 
-		$id = trim ( $_POST["id"] );
-	//echo $id; 
-	//verificar se o id esta branco
-	if ( empty ( $id ) ) {
-		echo "<script>alert('Erro ao gravar informação');</script>";
-	}
 	//incluir a conexao com o banco de dados
 	include "../config/conexao.php";
 	include "../config/funcoes.php";
 	//verificar se foi enviado algo por post
 	//salvar o registro no banco de dados
+	if ( isset ( $_GET["idpedido"] ) ) 
+		$id = trim( $_GET["idpedido"] );
+
 	if ( $_POST ){
-		$personagem_id = trim ( $_POST["personagem_id"] );
+		print_r($_POST);
+		$idpedido  	   = "";
+		$idproduto 	   = "";
+		$qtde	   	   = "";
+		$valor	   	   = "";
+		$prioridade	   = "";
+		$status		   = 0 ;
+		foreach ($_POST as $key => $value) {
+			//echo "<p>$key $value</p>";
+			//$key - nome do campo
+			//$value - valor do campo (digitado)
+			if (isset($_POST[$key])) {
+				$$key = trim($value);
+			}
+		}
 		//verificar se existe este personagem no quadrinho
-		$sql = "select * from quadrinho_personagem
-			where quadrinho_id = :quadrinho 
-			and personagem_id = :personagem 
+		$sql = "SELECT * FROM item_pedido
+			where idpedido = ?
+			and   idproduto = ?
 			limit 1";
 		$consulta = $pdo->prepare($sql);
-		$consulta->bindValue(":quadrinho", $id);
-		$consulta->bindValue(":personagem", $personagem_id);
+		$consulta->bindValue(1, $idpedido);
+		$consulta->bindValue(2, $idproduto);
 		$consulta->execute();
 		//pegar os dados
 		$dados = $consulta->fetch(PDO::FETCH_OBJ);
 		//verificar se trouxe algum dado
-		if ( !empty($dados->personagem_id ) ) {
+		if ( !empty($dados->idproduto ) ) {
 			mensagem("Já existe um personagem cadastrado neste quadrinho");
 		} else {
 			//gravar o personagem e o quadrinho no banco
-			$sql = "insert into quadrinho_personagem
-				(quadrinho_id, personagem_id) 
-				values (:quadrinho, :personagem)";
+			$sql = "INSERT into item_pedido values (?,?,?,?,?,?)";
 			$consulta = $pdo->prepare($sql);
-			$consulta->bindValue(":quadrinho", $id);
-			$consulta->bindValue(":personagem", $personagem_id);
+			$consulta->bindValue(1, $idpedido);
+			$consulta->bindValue(2, $idproduto);
+			$consulta->bindValue(3, $qtde);
+			$consulta->bindValue(4, $valor);
+			$consulta->bindValue(5, $prioridade);
+			$consulta->bindValue(6, $status);
 			
 			if ( $consulta->execute()) {
-				$link = "salvarpersonagem.php?id=$id";
-				sucesso("Personagem salvo",$link);
+				$link = "salvarProduto.php?idpedido=$idpedido";
+				sucesso("Inserido com sucesso!!!",$link);
 			} else {
-				//$erro = $consulta->errorInfo();
-				//print_r( $erro );
-				$link = "salvarpersonagem.php?id=$id";
-				sucesso("Erro ao inserir personagem",$link);
+				$erro = $consulta->errorInfo();
+				print_r( $erro );
+				$link = "salvarProuduto.php?idpedido=$idpedido";
+		
+				
 			}
 		}
 	}
 	//selecionar todos os personagens deste quadrinho
-	$sql = "select p.nome, qp.quadrinho_id, qp.personagem_id
-		from quadrinho_personagem qp
-		inner join personagem p on ( p.id = qp.personagem_id )
-		where qp.quadrinho_id = :quadrinho 
-		order by p.nome";
+	$sql = "SELECT *
+		from item_pedido
+		where idpedido = ?
+		order by idproduto";
 	$consulta = $pdo->prepare($sql);
-	$consulta->bindValue(":quadrinho",$id,PDO::PARAM_INT);
+	$consulta->bindValue(1,$idpedido,PDO::PARAM_INT);
 	$consulta->execute();
 ?>
 <!DOCTYPE html>
@@ -80,21 +90,31 @@
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
-			<td>ID</td>
-			<td>Nome do Personagem</td>
-			<td>Excluir</td>
+			<td>IDpedido</td>
+			<td>IDproduto</td>
+			<td>qtde</td>
+			<td>valor</td>
+			<td>prioridade</td>
+			<td>status</td>
 		</tr>
 	</thead>
 
 	<?php
 	//mostrar os resultados
 	while ( $dados = $consulta->fetch(PDO::FETCH_OBJ) ) {
-		$nome 			= $dados->nome;
-		$quadrinho_id 	= $dados->quadrinho_id;
-		$personagem_id	= $dados->personagem_id;
+		$idpedido 		= $dados->idpedido;
+		$idproduto 		= $dados->idproduto;
+		$qtde			= $dados->qtde;
+		$valor			= $dados->valor;
+		$prioridade	    = $dados->prioridade;
+		$status		    = $dados->status;
 		echo "<tr>
-			<td>$personagem_id</td>
-			<td>$nome</td>
+			<td>$idpedido</td>
+			<td>$idproduto</td>
+			<td>$qtde</td>
+			<td>$valor</td>
+			<td>$prioridade</td>
+			<td>$status</td>
 			<td>
 				<a href='javascript:excluir($quadrinho_id,$personagem_id)'
 				class='btn btn-danger'>

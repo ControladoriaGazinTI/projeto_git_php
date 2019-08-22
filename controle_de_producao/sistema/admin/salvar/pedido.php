@@ -17,7 +17,7 @@ if ($_POST) {
     $qtde                       = "";
     $valor                      = "";   
     $prioridade                 = "";
-    $statusItemPedido         = 0;
+    $statusItemPedido           = 0;
     foreach ($_POST as $key => $value) {
         //echo "<p>$key $value</p>";
         //$key - nome do campo
@@ -39,32 +39,8 @@ if ($_POST) {
         $consulta->bindParam(5, $idfuncionario);
         if ($consulta->execute()) {
             $last = $pdo->lastInsertId();
-            
-            if ($qtde_pdt_estoque >= $qtde) {
-                $qtde_pdt_estoque -= $qtde;
-                $msg = "pedido Finalizado temos em estoque!!";
-                $status = true;
-                $sql = "UPDATE produto SET qtde = ? WHERE id = ?  ";
-                $consulta = $pdo->prepare($sql);
-                $consulta->bindParam(1, $qtde_pdt_estoque);
-                $consulta->bindParam(2, $idproduto);
-                $consulta->execute();
-            } else {
-                $msg = "Você não tem produto em estoque !!!";
-            }
-           
-            $sql = "INSERT INTO item_pedido VALUES (?,?,?,?,?,?)";
-            $consulta = $pdo->prepare($sql);
-            $consulta->bindValue(1, $last);
-            $consulta->bindParam(2, $idproduto);
-            $consulta->bindParam(3, $qtde);
-            $consulta->bindParam(4, $valor);
-            $consulta->bindParam(5, $prioridade);
-            $consulta->bindParam(6, $status);
-            $consulta->execute();
             $pdo->commit();
-            sucesso("Inserido com sucesso","listar/pedido");
-           
+           sucesso("Inserido com sucesso!!","cadastros/pedido/".$last);
         } else {
             print_r($consulta->errorInfo());
             $pdo->rollBack();
