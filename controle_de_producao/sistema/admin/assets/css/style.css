@@ -18,6 +18,9 @@
 .pd-8 {
     padding: 8px;
 }
+.escondida {
+  display:none;
+}
 
 
 /* STRUCTURE */

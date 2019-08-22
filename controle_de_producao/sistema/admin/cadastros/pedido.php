@@ -54,37 +54,85 @@ else
 
     }
 ?>
-    <div class="card stacked-form">
-        <div class="card-header pd-15-3-t">
-            <h4 class="card-title">Novo Pedido:</h4>
-        </div>
-        <div class="card-body pd-15">
-            <form method="POST" action="salvar/pedido">
-                <div class="form-group">
-                    <label for="id">IDPEDIDO|IDPRODUTO</label>
-                    <input 
-                        name  = "idpedido" 
-                        type  = "text" 
-                        class = "form-control" 
-                        readonly
-                        value = "<?=$idpedido?><?=$barra;?><?=$idproduto;?>"
-                    >
+<div class="card stacked-form">
+    <div class="card-header pd-15-3-t">
+        <h4 class="card-title">Novo Pedido:</h4>
+    </div>
+    <div class="card-body pd-15">
+        <form method="POST" action="salvar/pedido">
+            <div class="form-group">
+                <label for="id">IDPEDIDO</label>
+                <input 
+                    name  = "idpedido" 
+                    type  = "text" 
+                    class = "form-control" 
+                    readonly
+                    value = "<?=$idpedido?>"
+                >
+            </div>
+            <div class="form-group">
+                <label>Cliente:</label>
+                <select 
+                    name    = "idcliente" 
+                    class   = "form-control" 
+                    required= ""
+                >
+                    <option value="<?=$idcliente;?>"><?=$nome_cliente;?></option>
+                    <?php
+                        carregarOpcoes("id","cliente","nome");
+                    ?>
+                </select>
+            </div>
+         
+            <div class="form-grop">
+                <label for="">Data de entrega do pedido:</label>
+                <input 
+                    name        = "data_ent"
+                    type        = "date" 
+                    class       = "form-control" 
+                    required    = "required" 
+                    value       = "<?=$data_ent?>"
+                >
+            </div>
+            <div class="row card-footer pd-15 ">
+                <div class="col-md-2">
+                    <button type="submit" id="receita1" class="btn btn-fill btn-success">Cadastrar</button>
                 </div>
-                <div class="form-group">
-                    <label>Cliente:</label>
-                    <select 
-                        name    = "idcliente" 
-                        class   = "form-control" 
-                        required= ""
-                    >
-                        <option value="<?=$idcliente;?>"><?=$nome_cliente;?></option>
-                        <?php
-                            carregarOpcoes("id","cliente","nome");
-                        ?>
-                    </select>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado">
+                        Abrir modal de demonstração
+                    </button>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Botão para acionar modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form id="formulario"  action="paginas/salvarProduto.php" method = "post" target = "frame">
+                    <div class="form-group col-md-1">
+                        <label for="id">IDPRODUTO</label>
+                        <input 
+                            name  = "idpedido" 
+                            type  = "text" 
+                            class = "form-control" 
+                            readonly
+                            value = "<?=$idproduto;?>"
+                        >
+                    </div>
+                    <div class="form-group col-md-11">
                         <label>Produto:</label>
                         <select 
                             name        = "idproduto" 
@@ -98,7 +146,33 @@ else
                             ?>
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">Quatidade do produto:</label>
+                            <input 
+                                name        = "qtde"
+                                id          = "qtde"
+                                type        = "number" 
+                                class       = "form-control" 
+                                required    = "required" 
+                                value       = "<?=$qtde;?>"
+                                onblur      = "calcular_valor_pedido()"
+                            >
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Valor</label>
+                            <input 
+                                name        = "valor"
+                                class       = "form-control" 
+                                readonly
+                                id          = "valor"
+                                type        = "text"
+                                class       = "form-control" 
+                                required    = "required" 
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
                         <label>Prioridade do pedido:</label>
                         <select 
                             name        = "prioridade" 
@@ -109,91 +183,26 @@ else
                             <option value= "Baixa">Baixa</option>
                             <option value= "Média">Media</option>
                             <option value= "Alta">Alta</option>
-                            ?>
                         </select>
                     </div>
-                </div>
-                <div class="form-grop">
-                    <label for="">Data de entrega do pedido:</label>
-                    <input 
-                        name        = "data_ent"
-                        type        = "date" 
-                        class       = "form-control" 
-                        required    = "required" 
-                        value       = "<?=$data_ent?>"
-                    >
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="">Quatidade do produto:</label>
-                        <input 
-                            name        = "qtde"
-                            id          = "qtde"
-                            type        = "number" 
-                            class       = "form-control" 
-                            required    = "required" 
-                            value       = "<?=$qtde;?>"
-                            onblur      = "calcular_valor_pedido()"
-                        >
+                    <div class="card-footer pd-15">
+                        <button type="submit" id="receita1" class="btn btn-fill btn-success">Cadastrar</button>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="">Valor</label>
-                        <input 
-                            name        = "valor"
-                            class       = "form-control" 
-                            readonly
-                            id          = "valor"
-                            type        = "text"
-                            class       = "form-control" 
-                            required    = "required" 
-                        >
-                    </div>
-                </div>
+                </form>
+                <div id="1" class="escondida"> 
+                <h5 class="h4">Adicionar Produto:</h5>
+                <!-- INICIO DO FORMULÁRIO -->
                 
-        
-        
-        <div class="card-footer pd-15">
-            <button type="submit" class="btn btn-fill btn-success">Cadastrar</button>
-        </div>
-        </form>
-        <?php
-				//verificar se o id nao esta vazio
-				if ( !empty ( $idpedido ) ) {
-			?>
-			<hr>
-			<div id="personagem">
-				<h5>Adicionar Produto:</h5>
-				<form name="formadd" method="post" action="paginas/salvarpersonagem.php" data-parsley-validate 
-				target="iframe">
-
-					<!-- id do quadrinho -->
-					<input type="hidden" name="id" value="<?=$id;?>">
-                    <label for="personagem_id">Selecione um produto:</label>
-					<div class="row">
-						<div class="col-md-11">
-
-							
-							<select name="personagem_id" class="form-control" required data-parsley-required-message="Selecione um personagem">
-								<option value=""></option>
-								<?php
-									//chamar função para mostrar as opções
-									carregarOpcoes("id","produto","nome");
-								?>
-							</select>
-						</div>
-						<div class="col-md-1 text-center">
-							<button type="submit" class="btn btn-fill btn-success ">Inserir</button>
-						</div>
-					</div>
-				</form>
-
-                <iframe name="iframe" width="100%" height="500px" href="https://www.youtube.com/watch?v=6Dykd3rFCzQ"></iframe>
-			</div>
-			<?php
-				//fechando o id
-				}
-			?>     
+                <!-- FIM DO FORMULÁRIO -->
+                <iframe src="" width="100%" height="300px" name="frame"></iframe>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar mudanças</button>
+      </div>
     </div>
+  </div>
 </div>
 <script>
   
@@ -209,7 +218,25 @@ else
       $(document).ready(function(){
         $("#idproduto").change(function(){ 
             var idproduto = $(this).val(); 
-                            
+            console.log(idproduto);       
         });
     });
+</script>
+<script type="text/javascript">
+function abrir() {
+    var main = document.getElementById("central");
+    var iten = main.getElementsByTagName("input");
+    if (iten) {
+        for (var i=0;i<iten.length;i++) {
+            iten[i].onclick = function() {
+                var el = document.getElementById(this.id.substr(7,7));
+                if (el.style.display == "block")
+                    el.style.display = "none";
+                else
+                    el.style.display = "block";
+            }
+        }
+    }
+}
+window.onload=abrir;
 </script>

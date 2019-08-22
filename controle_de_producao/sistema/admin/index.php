@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 include "config/conexao.php";
 include "config/funcoes.php";
 
-$sql = "SELECT * FROM produto";
+$sql = "SELECT * FROM pedido";
 $consulta = $pdo->prepare($sql);
 $consulta->execute();
 $teste1[] = "";
