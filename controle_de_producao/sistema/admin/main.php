@@ -153,7 +153,7 @@ if (!isset($pagina)) {
                         <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <p>
-                                        Usuário
+                                        <?= print_r("bem vindo!!!".$_SESSION["banco_tcc"]["login"]);?>
                                     </p>
                                 </a>
                             <ul class="dropdown-menu">
