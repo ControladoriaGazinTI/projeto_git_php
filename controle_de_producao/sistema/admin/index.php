@@ -142,7 +142,6 @@ foreach ($linha = $consulta->fetchall(PDO::FETCH_OBJ) as $key => $value) {
     $(document).ready(function() {
         //aplica a mascara de valor no campo
         $("#valor").maskMoney({
-            prefix:"R$ ",
             thousands: ".",
             decimal: ","
         });

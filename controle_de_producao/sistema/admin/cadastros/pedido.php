@@ -144,7 +144,7 @@ else
                     <option value= "Alta">Alta</option>
                 </select>
             </div>
-        <iframe src="" width="100%" height="300px" name="frame"></iframe>
+        <iframe src="paginas/salvarProduto.php?idpedido=<?=$idpedido?>" width="100%" height="300px" name="frame"></iframe>
       </div>
       <div class="modal-footer">
         <button type="button" id="idteste" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -1,4 +1,3 @@
-<pre>
 <?php
 	//iniciar a sessao
 	session_start();
@@ -13,10 +12,9 @@
 	//verificar se foi enviado algo por post
 	//salvar o registro no banco de dados
 	if ( isset ( $_GET["idpedido"] ) ) 
-		$id = trim( $_GET["idpedido"] );
+		$idpedido = trim( $_GET["idpedido"] );
 
 	if ( $_POST ){
-		print_r($_POST);
 		$idpedido  	   = "";
 		$idproduto 	   = "";
 		$qtde	   	   = "";
@@ -31,6 +29,7 @@
 				$$key = trim($value);
 			}
 		}
+		 $valor = number_format($valor, 5, '.', ',');
 		//verificar se existe este personagem no quadrinho
 		$sql = "SELECT * FROM item_pedido
 			where idpedido = ?
@@ -44,7 +43,7 @@
 		$dados = $consulta->fetch(PDO::FETCH_OBJ);
 		//verificar se trouxe algum dado
 		if ( !empty($dados->idproduto ) ) {
-			mensagem("Já existe um personagem cadastrado neste quadrinho");
+			mensagem("Já existe um produto cadastrado!!");
 		} else {
 			//gravar o personagem e o quadrinho no banco
 			$sql = "INSERT into item_pedido values (?,?,?,?,?,?)";
@@ -58,7 +57,7 @@
 			
 			if ( $consulta->execute()) {
 				$link = "salvarProduto.php?idpedido=$idpedido";
-				sucesso("Inserido com sucesso!!!",$link);
+				sucesso("inserido com sucesso!!",$link);
 			} else {
 				$erro = $consulta->errorInfo();
 				print_r( $erro );
@@ -74,8 +73,12 @@
 		where idpedido = ?
 		order by idproduto";
 	$consulta = $pdo->prepare($sql);
-	$consulta->bindValue(1,$idpedido,PDO::PARAM_INT);
-	$consulta->execute();
+	$consulta->bindValue(1,$idpedido);
+	if($consulta->execute()){
+
+	}else{
+		print_r($consulta->errorInfo());
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -96,6 +99,7 @@
 			<td>valor</td>
 			<td>prioridade</td>
 			<td>status</td>
+			<td>Excluir</td>
 		</tr>
 	</thead>
 
@@ -106,6 +110,7 @@
 		$idproduto 		= $dados->idproduto;
 		$qtde			= $dados->qtde;
 		$valor			= $dados->valor;
+		$valor = number_format($valor, 2, ',', '.');
 		$prioridade	    = $dados->prioridade;
 		$status		    = $dados->status;
 		echo "<tr>
@@ -116,7 +121,7 @@
 			<td>$prioridade</td>
 			<td>$status</td>
 			<td>
-				<a href='javascript:excluir($quadrinho_id,$personagem_id)'
+				<a href='javascript:excluir($idpedido,$idproduto)'
 				class='btn btn-danger'>
 					<i class='fas fa-trash'></i>
 				</a>
@@ -127,10 +132,10 @@
 </table>
 <script type="text/javascript">
 	//funcao para excluir
-	function excluir(quadrinho_id,personagem_id){
+	function excluir(idpedido,idproduto){
 		if ( confirm ( "Deseja mesmo excluir?" ) ){
 			//enviar para uma página para excluir
-			location.href='../excluir/quadrinho-personagem/'+quadrinho_id+'/'+personagem_id;
+			location.href='../excluir/item_pedido/'+idpedido+'/'+idpedido;
 		}
 	}
 </script>
