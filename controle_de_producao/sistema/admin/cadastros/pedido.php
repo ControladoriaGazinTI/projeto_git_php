@@ -5,18 +5,56 @@ if (file_exists("verificalogin.php"))
 else
     include "../verificalogin.php";
     $idcliente          = "";
+    $idpedido           = "";
+    $idproduto          = "";
     $nome_cliente       = "";
     $nome_produto       = "";
     $prioridade         = "";
-    $data_ent           = "";
+    $data_entrega       = "";
     $qtde               = "";
     $valor              = "";
-    $idpedido           = "";
-    $idproduto          = "";
-    $barra              = "";
     
     if (isset($p[2])) {
         $idpedido = (int) $p[2];
+        if (isset($p[3])) {
+            $idproduto = (int) $p[3];
+        }
+        $sql = "SELECT 
+                    item_pedido.qtde
+                    ,item_pedido.valor
+                    ,item_pedido.prioridade
+                    ,pedido.data_entrega
+                    ,pedido.id as idpedido
+                    ,cliente.nome as nome_cliente
+                    ,cliente.id as idcliente
+                    ,produto.nome as nome_produto
+                    ,produto.id as idproduto
+                FROM item_pedido
+                INNER JOIN  pedido  on pedido.id  = item_pedido.idpedido
+                INNER JOIN  cliente on cliente.id = pedido.idcliente
+                INNER JOIN  produto on produto.id = item_pedido.idproduto
+                WHERE item_pedido.idpedido  = ?
+                AND   item_pedido.idproduto = ?
+                ";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(1,$idpedido);
+        $consulta->bindParam(2,$idproduto);
+        if ($consulta->execute()) {
+            while ($linha = $consulta->fetch(PDO::FETCH_OBJ)) {
+                $idpedido       = $linha->idpedido;
+                $idproduto      = $linha->idproduto;
+                $idcliente      = $linha->idcliente;
+                $nome_cliente   = $linha->nome_cliente;
+                $nome_produto   = $linha->nome_produto;
+                $qtde           = $linha->qtde;
+                $valor          = $linha->valor;
+                $data_entrega   = $linha->data_entrega;
+                $prioridade     = $linha->prioridade;
+            }
+        }else{
+            print_r($consulta->errorInfo());
+        }
+
     }
 ?>
 <div class="card stacked-form">
@@ -55,7 +93,7 @@ else
                     type        = "date" 
                     class       = "form-control" 
                     required    = "required" 
-                    value       = "<?=$data_ent?>"
+                    value       = "<?=$data_entrega?>"
                 >
             </div>
             <div class="row card-footer pd-15 ">
@@ -133,6 +171,7 @@ else
                         type        = "text"
                         class       = "form-control" 
                         required    = "required" 
+                        value       = "<?=$valor;?>"
                     >
                 </div>
             </div>
