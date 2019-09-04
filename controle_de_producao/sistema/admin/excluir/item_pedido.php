@@ -19,6 +19,7 @@
 	if ( ( empty ( $idpedido ) ) or ( empty ( $idproduto ) ) ) {
 		mensagem("Erro ao excluir");
 	} else {
+		$pdo->beginTransaction();
 		$sql = "DELETE from item_pedido
 		where idpedido = ?
 		and   idproduto = ? 
@@ -27,9 +28,11 @@
 		$consulta->bindValue(1,$idpedido);
 		$consulta->bindValue(2,$idproduto);
 		if ( $consulta->execute() ){
+			$pdo->commit();
 			$link = "paginas/salvarProduto.php?idpedido=$idpedido";
 			sucesso("Registro excluido",$link);
 		} else {
-			mensagem("Erro ao excluir");
+			$pdo->rollBack();
+			print_r($consulta->errorInfo());
 		}
 	}

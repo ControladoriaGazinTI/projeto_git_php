@@ -19,8 +19,7 @@ if(isset($p[2])){
         $msg = "Registro excluido com sucesso!!!";
         mensagem($msg);
     }else{
-        $msg = "ERRO ao excluir!!! esta usando em outra tabela";
-        mensagem($msg);
+        print_r($consulta->errorInfo());
     }
 }else{
     $msg = "Ocorreu um erro ao excluir";

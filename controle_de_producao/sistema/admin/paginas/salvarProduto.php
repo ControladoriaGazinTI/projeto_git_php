@@ -29,7 +29,7 @@
 				$$key = trim($value);
 			}
 		}
-		 $valor = number_format($valor, 5, '.', ',');
+		 $valor = number_format($valor, 2, '.' , ',');
 		//verificar se existe este personagem no quadrinho
 		$sql = "SELECT * FROM item_pedido
 			where idpedido = ?
@@ -51,6 +51,7 @@
 			$consulta->bindValue(1, $idpedido);
 			$consulta->bindValue(2, $idproduto);
 			$consulta->bindValue(3, $qtde);
+			print_r($valor);
 			$consulta->bindValue(4, $valor);
 			$consulta->bindValue(5, $prioridade);
 			$consulta->bindValue(6, $status);
@@ -135,7 +136,7 @@
 	function excluir(idpedido,idproduto){
 		if ( confirm ( "Deseja mesmo excluir?" ) ){
 			//enviar para uma página para excluir
-			location.href='../excluir/item_pedido/'+idpedido+'/'+idpedido;
+			location.href='../excluir/item_pedido/'+idpedido+'/'+idproduto;
 		}
 	}
 </script>
