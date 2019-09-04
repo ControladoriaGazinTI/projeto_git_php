@@ -6,19 +6,11 @@ if (file_exists("verificalogin.php"))
 else
     include "../verificalogin.php";
 if ($_POST) {
-    $id                     = "";
-    $idfuncionario          = "";
+    $idproducao             = "";
     $idFuncionarioLogado    = $_SESSION["banco_tcc"]["id"];
-    $idproducao_peca        = "";
-    $statusProducao_peca    = false;
-    $statusItemProducao_peca = false;
-    $idpeca                 = "";
-    $prioridade             = "";
-    $qtde                   = "";
-    $qtde_perdas            = "";
+    $statusProducao_peca    = 0;
     $data_ent               = "";
     $data_lan               = date('Y/m/d');
-    $observacao             = "";
 
     foreach ($_POST as $key => $value) {
         if (isset($_POST[$key])) {
@@ -35,33 +27,15 @@ if ($_POST) {
         $insert->bindParam(4, $idFuncionarioLogado);
         $insert->bindParam(5, $observacao);
         if ($insert->execute()) {
-            $idproducao_peca = $pdo->lastInsertId();
-
-            $sql = "INSERT INTO item_producao_peca VALUES (?,?,?,?,?,?,?)";
-            $insert = $pdo->prepare($sql);
-            $insert->bindParam(1, $idpeca);
-            $insert->bindParam(2, $idproducao_peca);
-            $insert->bindParam(3, $qtde);
-            $insert->bindParam(4, $qtde_perdas);
-            $insert->bindParam(5, $prioridade);
-            $insert->bindParam(6, $idfuncionario);
-            $insert->bindParam(7, $statusItemProducao_peca);
-            
-
-
-            if ($insert->execute()) {
-                $pdo->commit();
-                sucesso("Cadastratado com sucesso!!!", "listar/producaoPeca");
-            } else {
-                $pdo->rollBack();
-                print_r($insert->errorInfo());
-            }
-        }else {
-            $pdo->rollBack();
+            $last = $pdo->lastInsertId();
+            $pdo->commit();
+           sucesso("Inserido com sucesso!!","cadastros/producaoPeca/".$last);
+        } else {
             print_r($insert->errorInfo());
-            echo "erro no primeiro";
+            $pdo->rollBack();
+            mensagem("ERRO ao inserir no banco de dados!!!");
         }
-    }else {
-        # code...
     }
+}else {
+    
 }
