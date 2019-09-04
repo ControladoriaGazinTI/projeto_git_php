@@ -62,9 +62,14 @@ else
                 <div class="">
                     <button type="submit" id="receita1" class="btn btn-fill btn-success">Cadastrar</button>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-fill btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-                    + Produto
-                    </button>
+                    <?php
+                    if (isset($p[2])) {
+                        echo
+                        "<button type='button' class='btn btn-fill btn-success' data-toggle='modal' data-target='#exampleModalCenter'>
+                        + Produto
+                        </button>";
+                    }
+                    ?>
                 </div>
             </div>
         </form>
